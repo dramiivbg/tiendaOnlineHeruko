@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ngblogventa": {
+      "hosting": {
+        "ngVentaLibre": [
+          "ngblogventa"
+        ]
+      }
+    }
+  }
+}
