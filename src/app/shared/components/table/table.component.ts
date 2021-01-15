@@ -5,8 +5,9 @@ import {PostI} from '../../models/post.interface';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {PostService} from '../../../components/posts/post.service';
-
-
+import Swal from 'sweetalert2';
+import {MatDialog} from '@angular/material/dialog';
+import {ModalComponent} from './../modal/modal.component';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -19,7 +20,7 @@ export class TableComponent implements OnInit, AfterViewInit {
  
   @ViewChild(MatPaginator,{static: true})paginator: MatPaginator;
   @ViewChild(MatSort,{static:true})sort: MatSort;
-  constructor(private postSvc: PostService){}
+  constructor(private postSvc: PostService, public dialog: MatDialog){}
 
   ngOnInit(): void {
 
@@ -43,20 +44,52 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   oneEditPost(post: PostI){
 
-    console.log('Edit post', post);
-
+   
 }
 
 oneDeletePost(post: PostI){
+  Swal.fire({
 
-  console.log('Delete post', post);
+    title:'Are you sure',
+    text:`You won't be able to revert this!`,
+    icon:'warning',
+    showCancelButton:true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor:'#d33',
+    confirmButtonText:'Yes, delete it!'
+  }).then(result => {
 
+    if(result.value){
+
+      this.postSvc.deletePostById(post).then(() => {
+
+        Swal.fire('Deleted!, Your post has been deleted.','sucessfull');
+        
+      }).catch((error) => {
+
+        Swal.fire('Error!, There was an error deleting this post','error');
+      })
+      
+    }
+  });
 }
 
 onNewPost(){
 
-  console.log('New Post');
+  this.onpenDialog();
+ 
 }
+
+onpenDialog(): void{
+
+  const dialogRef= this.dialog.open(ModalComponent);
+  dialogRef.afterClosed().subscribe(result => {
+
+    console.log(`Dialog result ${result}`);
+  })
+}
+
+
 
 
 }

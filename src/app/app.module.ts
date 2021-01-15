@@ -21,7 +21,11 @@ import { from } from 'rxjs';
 //enviroment
 import {environment} from '../environments/environment';
 import { ContainerAppComponent } from './components/pages/container-app/container-app.component';
+import { ModalComponent } from './shared/components/modal/modal.component';
 
+//form
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,7 @@ import { ContainerAppComponent } from './components/pages/container-app/containe
     PostComponent,
     NewPostComponent,
     ContainerAppComponent,
+    ModalComponent,
   
   ],
   imports: [
@@ -40,8 +45,11 @@ import { ContainerAppComponent } from './components/pages/container-app/containe
     AngularFireStorageModule,
     NewPostModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
+  entryComponents:[ModalComponent],
   providers: [ {provide: BUCKET, useValue: 'gs://ngblogventa.appspot.com' }],
   bootstrap: [AppComponent]
 })
