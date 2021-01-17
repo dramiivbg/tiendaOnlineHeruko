@@ -7,5 +7,6 @@ export interface PostI {
     tagsPost: string;
     fileRef?: string;
 
+    
 
 }

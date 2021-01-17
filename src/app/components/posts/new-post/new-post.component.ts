@@ -25,7 +25,7 @@ export class NewPostComponent implements OnInit {
   addNewPost(data: PostI){
 
    console.log('New post',data);
-   this.postSvc.preAddAndUpdate(data, this.image);
+  console.log(this.postSvc.preAddAndUpdate(data, this.image));
   }
 
   handleImage(event:any): void{

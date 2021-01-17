@@ -2,18 +2,17 @@
 
     <form [formGroup]="newPostForm" (ngSubmit)="addNewPost(newPostForm.value)" >
         <mat-form-field>
-            <mat-label>Title</mat-label>
+            <mat-label>nombre</mat-label>
            <input matInput placeholder="Title post" formControlName=" titlePost">   
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Content</mat-label>
+            <mat-label>valor</mat-label>
            <input matInput placeholder="Content post" formControlName="contentPost">   
         </mat-form-field>
         <mat-form-field>
-            <mat-select  placeholder="Tags" multiple formControlName="tagsPost">
-                <mat-option value="life">Life</mat-option>
-                <mat-option value="sport">Sport</mat-option>
-                <mat-option value="beauty">Beauty</mat-option>
+            <mat-select  placeholder="Tipo" multiple formControlName="tagsPost">
+                <mat-option value="comprar">comprar</mat-option>
+               
             </mat-select>
         </mat-form-field>
         <div class="container-input-file">

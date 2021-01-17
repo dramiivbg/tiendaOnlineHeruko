@@ -19,9 +19,11 @@
         <mat-divider></mat-divider>
         <mat-card-actions>
         <mat-chip-list>
-            <mat-chip  *ngFor= "let tag of post.tagsPost" [ngClass]="tag">
+            <button mat-raised-button color="primary"  *ngFor= "let tag of post.tagsPost" [ngClass]="tag">
+                <a routerLink="/admin">
                 {{ tag }}
-            </mat-chip>
+                </a>
+            </button>
         </mat-chip-list>
         </mat-card-actions>
     </mat-card>
