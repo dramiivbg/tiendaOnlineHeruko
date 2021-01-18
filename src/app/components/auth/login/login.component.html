@@ -3,12 +3,15 @@
         <mat-card-title>Login</mat-card-title>
       
      <mat-card-content>
-       <form>
+       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <p>
 
             <mat-form-field>
 
-                <input type="tex" matInput placeholder="Username" />
+                <input type="tex" 
+                formControlName="username" matInput placeholder="Username" 
+                required />
+
 
             </mat-form-field>
 
@@ -16,8 +19,10 @@
         <p>
 
             <mat-form-field>
-                <input type="password" matInput 
-                placeholder="Password" />
+                <input type="password" 
+               formControlName="password"  matInput 
+                placeholder="Password" 
+                required />
 
 
             </mat-form-field>
