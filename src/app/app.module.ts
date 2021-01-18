@@ -27,6 +27,9 @@ import { ModalComponent } from './shared/components/modal/modal.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+//httpClient
+
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +50,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   entryComponents:[ModalComponent],
   providers: [ {provide: BUCKET, useValue: 'gs://ngblogventa.appspot.com' }],

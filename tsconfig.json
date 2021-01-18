@@ -2,6 +2,15 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths":{
+
+      "@app/*": ["src/app/*"],
+      "@admin/*": ["src/app/components/admin/*"],
+      "@pages/*": ["src/app/components/pages/*"],
+      "@auth/*": ["src/app/components/auth/*"],
+      "@env/*": ["src/environments/*"],
+      
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,

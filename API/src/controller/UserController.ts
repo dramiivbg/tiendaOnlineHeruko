@@ -9,7 +9,7 @@ export class UserController {
     let users;
 
     try {
-      users = await userRepository.find({ select: ['id', 'username', 'role'] });
+      users = await userRepository.find({ select: ['cliente_id', 'username', 'role'] });
     } catch (e) {
       res.status(404).json({ message: 'Somenthing goes wrong!' });
     }
@@ -33,11 +33,15 @@ export class UserController {
   };
 
   static new = async (req: Request, res: Response) => {
-    const { username, password, role } = req.body;
+    const { cliente_id,username, password, gmail, direccion, celular, pais, role } = req.body;
     const user = new Users();
-
+    user.cliente_id = cliente_id;
     user.username = username;
     user.password = password;
+    user.gmail = gmail;
+    user.direccion = direccion;
+    user.celular = celular;
+    user.pais = pais;
     user.role = role;
 
     // Validate
