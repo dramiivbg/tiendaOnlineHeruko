@@ -6,7 +6,7 @@ import * as bcrypt from 'bcryptjs';
 @Unique(['username'])
 export class Users {
   @PrimaryGeneratedColumn()
-  cliente_id: number;
+   user_id: number;
 
   @Column()
   @IsNotEmpty()

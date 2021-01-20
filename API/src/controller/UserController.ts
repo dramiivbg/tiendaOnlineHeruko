@@ -9,7 +9,7 @@ export class UserController {
     let users;
 
     try {
-      users = await userRepository.find({ select: ['cliente_id', 'username', 'role'] });
+      users = await userRepository.find({ select: ['user_id', 'username', 'role'] });
     } catch (e) {
       res.status(404).json({ message: 'Somenthing goes wrong!' });
     }
@@ -33,9 +33,9 @@ export class UserController {
   };
 
   static new = async (req: Request, res: Response) => {
-    const { cliente_id,username, password, gmail, direccion, celular, pais, role } = req.body;
+    const { user_id,username, password, gmail, direccion, celular, pais, role } = req.body;
     const user = new Users();
-    user.cliente_id = cliente_id;
+    user.user_id = user_id;
     user.username = username;
     user.password = password;
     user.gmail = gmail;
@@ -48,7 +48,7 @@ export class UserController {
     const validationOpt = { validationError: { target: false, value: false } };
     const errors = await validate(user, validationOpt);
     if (errors.length > 0) {
-      return res.status(400).json(errors);
+      return res.status(409).json(errors);
     }
 
     // TODO: HASH PASSWORD
@@ -57,11 +57,45 @@ export class UserController {
     try {
       user.hashPassword();
       await userRepository.save(user);
+     
     } catch (e) {
-      return res.status(409).json({ message: 'Username already exist' });
+      return res.status(400).json({ message: 'Username already exist' });
     }
+    
     // All ok
     res.send('User created');
+  };
+
+
+  static changePassword = async (req: Request, res: Response) => {
+    let user;
+    const { id } = req.params;
+    const { password } = req.body;
+
+    const userRepository = getRepository(Users);
+    // Try get user
+    try {
+     let user = await userRepository.findOneOrFail(id);
+      user.password = password; 
+    
+    } catch (e) {
+      return res.status(404).json({ message: 'User not register' });
+    }
+    const validationOpt = { validationError: { target: false, value: false } };
+    const errors = await validate(user, validationOpt);
+
+    if (errors.length > 0) {
+      return res.status(400).json(errors);
+    }
+
+    // Try to save user
+    try {
+      await userRepository.save(user);
+    } catch (e) {
+      return res.status(409).json({ message: 'Username already in use' });
+    }
+
+    res.status(201).json({ message: 'User update' });
   };
 
   static edit = async (req: Request, res: Response) => {
@@ -75,6 +109,7 @@ export class UserController {
       user = await userRepository.findOneOrFail(id);
       user.username = username;
       user.role = role;
+    
     } catch (e) {
       return res.status(404).json({ message: 'User not found' });
     }

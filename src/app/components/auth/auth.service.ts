@@ -1,25 +1,33 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, from, Observable, throwError } from 'rxjs';
 import {environment} from '../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { User, UserResponse } from '@app/shared/models/user.interface';
 import { catchError, map } from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
+
 
 const helper = new JwtHelperService();
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  cliente_id:number;
   private loggedIn = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) { 
     this.checkToken();
   }
 
+  header: HttpHeaders = new HttpHeaders({
+
+    "Content-Type": "application/json"
+  });
+
   get isLogged():Observable<boolean>{
     return this.loggedIn.asObservable();
   }
+
+  //logiar usuario
 
   login(authData:User):Observable<UserResponse | void>{
 
@@ -37,8 +45,59 @@ export class AuthService {
      );   
   }
 
+  setUser(user: User){
+
+    let user_string = JSON.stringify(user);
+    localStorage.setItem("currentUser", user_string);
+
+  }
+
+  getToken(){
+
+    return localStorage.getItem("token");
+  }
+
+
+  getCurrentUser(){
+
+    let user_string = localStorage.getItem("currentUser");
+    if(!(user_string === null || user_string === undefined)){
+
+      let user = JSON.parse(user_string);
+      return user;
+}else{
+
+  return null;
+}
+
+  }
+
+
+
+  registerUser(  username: string, password: string, gmail: string, direccion: string, celular: number, pais: string, role: string){
+  
+    this.cliente_id++;
+     const id = this.cliente_id;
+
+    const url_api = "http://localhost:3000/users";
+ 
+     return this.http.post(url_api,{
+       id,
+       username,
+       password,
+       gmail
+       ,direccion
+       ,celular
+       ,pais
+       ,role},{
+         headers: this.header
+       }).pipe(map(data => data));
+
+      }
+
   logout():void{
     localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
     this.loggedIn.next(false);
   
   }

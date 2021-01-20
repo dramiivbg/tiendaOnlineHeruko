@@ -1,13 +1,18 @@
-import { type } from "os";
+
 
 export type Roles = 'user' | 'vendedor';
 
 
 
 export interface User {
-
+   user_id: number;
    username: string;
    password: string;
+   gmail: string;
+   direccion: string;
+   celular: number;
+   pais: string;
+   role: string;
 
 }
 

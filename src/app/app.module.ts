@@ -30,6 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //httpClient
 
 import {HttpClientModule} from '@angular/common/http';
+
+import {AuthCrudService} from '../app/shared/services/authCrud.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +56,10 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule
   ],
   entryComponents:[ModalComponent],
-  providers: [ {provide: BUCKET, useValue: 'gs://ngblogventa.appspot.com' }],
+  providers: [ 
+    
+    AuthCrudService,
+    {provide: BUCKET, useValue: 'gs://ngblogventa.appspot.com' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-loginForm = this.fb.group({
+
+  hide = true;
+  loginForm = this.fb.group({
 
   username:[''],
   password:[''],
