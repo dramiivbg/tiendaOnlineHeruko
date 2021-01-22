@@ -24,12 +24,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const userData = {
-      username: 'mosquera',
-      password: '782389493',
+  
+    
 
-    };
-    this.authSvc.login(userData).subscribe((res => console.log('Login')))
+  
   }
 
   onLogin():void{

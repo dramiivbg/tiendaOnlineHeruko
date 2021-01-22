@@ -10,12 +10,14 @@ import {AuthCrudService} from '../../../shared/services/authCrud.service';
 })
 export class HomeComponent implements OnInit {
   public posts$ : Observable<PostI[]>;
-
+  filterProduct = '';
 
   constructor(private postSvc: PostService, private authCrud: AuthCrudService) { 
     this.posts$ = this.postSvc.getAllPosts()
    
   }
+
+  
 
   ngOnInit(): void {
 

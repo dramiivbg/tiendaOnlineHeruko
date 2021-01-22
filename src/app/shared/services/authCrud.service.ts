@@ -44,7 +44,7 @@ export class AuthCrudService {
     let token = this.authService.getToken();
 
     const url_api = `http://localhost:3000/users?access_token=${token}`;
-    return (this.User = this.http.patch(url_api, user,{headers: this.header}).pipe(
+    return (this.User = this.http.patch<User>(url_api, user,{headers: this.header}).pipe(
       data => data
     ));
 
@@ -56,7 +56,7 @@ export class AuthCrudService {
     let token  = this.authService.getToken();
 
     const url_api = `http://localhost:3000/users?access_token=${token}`;
-    return (this.User = this.http.delete(url_api,{headers: this.header}).pipe(
+    return (this.User = this.http.delete<User>(url_api,{headers: this.header}).pipe(
       data => data
     )); 
   }

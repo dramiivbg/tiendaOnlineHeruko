@@ -1,20 +1,36 @@
 <mat-toolbar color="primary" class="yellow">
     <a routerLink= "/" >{{appName}}</a>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <a routerLink= "/home" routerLinkActive= "active">
+    
+        <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+
+    </a>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <div class="form-group">
+
+    <input type="text" class="form control" placeholder="search..." >
+    </div>
     <span class="fill-remaining-space"></span>
-    <a routerLink= "/login" routerLinkActive= "active">
-      <button mat-button >login</button>
-    </a>
-    <a routerLink= "/admin" routerLinkActive= "active">
+   
+    <button  mat-button [matMenuTriggerFor]="menu"><span class="material-icons">
+      account_circle
+      </span></button>
+<mat-menu #menu="matMenu">
+  <button class="verde"  mat-menu-item routerLink= "/login" routerLinkActive= "active">
+    log in
+  </button>
+  <button  class="rojo" mat-menu-item (click)="onlogout()">Logout</button>
+</mat-menu>
+
     
-        <button mat-button >Admin</button>
-    </a>
-    <a routerLink= "/about" routerLinkActive= "active">
-    
-        <button mat-button >About</button>
-    </a>
-    <a>
-    
-        <button mat-button (click)="onlogout()">Logout</button>
-    </a>
 </mat-toolbar>
+
+
 

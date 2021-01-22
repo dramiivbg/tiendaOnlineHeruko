@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContainerAppComponent implements OnInit {
 
+
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  handlerSearch(value: string){
+
+    console.log(value);
+
+    
   }
 
 }

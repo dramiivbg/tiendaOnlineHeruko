@@ -32,6 +32,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AuthCrudService} from '../app/shared/services/authCrud.service';
+
+
+
+
+
+//pipe
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +48,9 @@ import {AuthCrudService} from '../app/shared/services/authCrud.service';
     NewPostComponent,
     ContainerAppComponent,
     ModalComponent,
+      
   
+      
   ],
   imports: [
     BrowserModule,
@@ -53,7 +63,9 @@ import {AuthCrudService} from '../app/shared/services/authCrud.service';
     MaterialModule,
     FormsModule, 
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
+    
   ],
   entryComponents:[ModalComponent],
   providers: [ 

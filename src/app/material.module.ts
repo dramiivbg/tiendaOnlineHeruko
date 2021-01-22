@@ -44,6 +44,8 @@ const myModule =[
   declarations: [],
   imports: [
     CommonModule,
+   
+    
     myModule
   ],
   exports:[myModule],

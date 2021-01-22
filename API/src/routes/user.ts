@@ -15,11 +15,11 @@ router.get('/:id',  UserController.getById);
 router.post('/', UserController.new);
 
 // Edit user
-router.patch('?access_token=:token',  UserController.edit);
+router.patch('/:id',  UserController.edit);
 
 //change password
 
-router.patch('?access_token=:token',  UserController.changePassword);
+router.patch('/:id',  UserController.changePassword);
 
 // Delete
 router.delete('/:id', [checkJwt, checkRole(['admin'])], UserController.delete);

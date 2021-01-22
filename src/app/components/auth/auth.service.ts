@@ -58,12 +58,12 @@ export class AuthService {
   }
 
 
-  getCurrentUser(){
+  getCurrentUser():User{
 
     let user_string = localStorage.getItem("currentUser");
     if(!(user_string === null || user_string === undefined)){
 
-      let user = JSON.parse(user_string);
+      let user: User = JSON.parse(user_string);
       return user;
 }else{
 
@@ -81,7 +81,7 @@ export class AuthService {
 
     const url_api = "http://localhost:3000/users";
  
-     return this.http.post(url_api,{
+     return this.http.post<User>(url_api,{
        id,
        username,
        password,

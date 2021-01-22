@@ -13,6 +13,7 @@ const routes: Routes = [
     
        import('./components/pages/home/home.module').then(m => m.HomeModule) },
 
+      
     {path: 'post/:id', component:PostComponent},
     
    { path: 'about', loadChildren: () => 
@@ -36,6 +37,7 @@ const routes: Routes = [
   
 
 
+ 
 
 
 
@@ -43,7 +45,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+    ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
