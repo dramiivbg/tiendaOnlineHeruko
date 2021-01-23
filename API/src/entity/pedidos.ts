@@ -1,18 +1,20 @@
 import { Entity, PrimaryGeneratedColumn , Unique, Column,OneToOne,JoinColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
 import { MinLength, IsNotEmpty, IsEmpty } from 'class-validator';
-
+import {Users} from './Users';
+import {Pagos} from './pagos';
+import {Products} from './Products';
 @Entity()
 
 export class Pedidos {
   @PrimaryGeneratedColumn()
   pedido_id: number;
-  @Column()
-  @IsNotEmpty()
-   user_id: number;
+  @OneToOne(type => Users)
+  @JoinColumn()
+   user_id: Users;
 
-   @Column()
-   @IsNotEmpty()
-  pago_id: number;
+   @OneToOne(type => Pagos)
+  @JoinColumn()
+  pago_id: Pagos;
 
    @Column()
    @IsNotEmpty()
@@ -22,9 +24,9 @@ export class Pedidos {
   @IsNotEmpty()
  ciudad: string;
 
- @Column()
- @IsNotEmpty()
-producto_id: number;
+ @OneToOne(type => Products)
+ @JoinColumn()
+producto_id: Products;
 
 @Column()
 @CreateDateColumn()

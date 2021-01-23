@@ -75,23 +75,25 @@ export class EnvioController{
       };
 
       static edit = async (req: Request, res: Response) => {
-    
+       let envio: Envios;
         const { id } = req.params;
         const { pedido_id, fecha_envio,placa_vehiculo } = req.body;
-        let envios;
+    
         const envioRepository = getRepository(Envios);
         // Try get user
         try {
-          await envioRepository.findOne(id);
-        
-
-          envios = await envioRepository.update(id, req.body);
+          envio = await envioRepository.findOneOrFail(id);
+          envio.pedido_id = pedido_id ;
+          envio.fecha_envio = fecha_envio;
+          envio.placa_vehiculo = placa_vehiculo;
+         
+        ;
           
         } catch (e) {
           return res.status(404).json({ message: 'envio not found' });
         }
         const validationOpt = { validationError: { target: false, value: false } };
-        const errors = await validate(envios, validationOpt);
+        const errors = await validate(envio, validationOpt);
     
         if (errors.length > 0) {
           return res.status(400).json(errors);
@@ -99,7 +101,7 @@ export class EnvioController{
     
         // Try to save user
         try {
-          await envioRepository.save(envios);
+          await envioRepository.save(envio);
         } catch (e) {
           return res.status(409).json({ message: 'envio not Edit' });
         }

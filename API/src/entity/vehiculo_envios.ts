@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn , Unique, Column,OneToOne,JoinColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
 import { MinLength, IsNotEmpty, IsEmpty } from 'class-validator';
 
+
 @Entity()
 
 export class Vehiculo_envios {
