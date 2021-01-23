@@ -9,11 +9,11 @@ export class ProductController{
    
 
     static getAll = async (req: Request, res: Response) => {
-        const userRepository = getRepository(Products);
+        const productRepository = getRepository(Products);
         let products;
 
         try {
-            products = await userRepository.find({ select: ['producto_id', 'tipo_producto', 'valor'] });
+            products = await productRepository.find({ select: ['producto_id', 'tienda_id' ,'tipo_producto', 'valor'] });
           } catch (e) {
             res.status(404).json({ message: 'Somenthing goes wrong!' });
           }
@@ -30,9 +30,9 @@ export class ProductController{
     
     static getById = async (req: Request, res: Response) => {
         const { id } = req.params;
-        const userRepository = getRepository(Products);
+        const productRepository = getRepository(Products);
         try {
-          const product = await userRepository.findOneOrFail(id);
+          const product = await productRepository.findOneOrFail(id);
           res.send(product);
         } catch (e) {
           res.status(404).json({ message: 'Not result' });
@@ -41,9 +41,9 @@ export class ProductController{
 
 
       static new = async (req: Request, res: Response) => {
-        const { producto_id,cantidad, tipo_producto, valor} = req.body;
+        const {  tienda_id,cantidad, tipo_producto, valor} = req.body;
         const product = new Products();
-        product.producto_id = producto_id;
+        product.tienda_id = tienda_id;
         product.cantidad = cantidad;
         product.tipo_producto = tipo_producto;
         product.valor = valor;
@@ -59,10 +59,10 @@ export class ProductController{
     
         // TODO: HASH PASSWORD
     
-        const userRepository = getRepository(Products);
+        const productRepository = getRepository(Products);
         try {
         
-          await userRepository.save(product);
+          await productRepository.save(product);
          
         } catch (e) {
           return res.status(400).json({ message: 'product not create' });
@@ -75,12 +75,13 @@ export class ProductController{
       static edit = async (req: Request, res: Response) => {
        let product: Products;
         const { id } = req.params;
-        const { cantidad,tipo_producto, valor } = req.body;
+        const { cantidad,tipo_producto,tienda_id, valor } = req.body;
     
-        const userRepository = getRepository(Products);
+        const productRepository = getRepository(Products);
         // Try get user
         try {
-          product = await userRepository.findOneOrFail(id);
+          product = await productRepository.findOneOrFail(id);
+          product.tienda_id = tienda_id;
           product.cantidad = cantidad ;
           product.tipo_producto = tipo_producto;
           product.valor = valor;
@@ -97,7 +98,7 @@ export class ProductController{
     
         // Try to save user
         try {
-          await userRepository.save(product);
+          await productRepository.save(product);
         } catch (e) {
           return res.status(409).json({ message: 'product not Edit' });
         }
@@ -108,17 +109,17 @@ export class ProductController{
 
       static delete = async (req: Request, res: Response) => {
         const { id } = req.params;
-        const userRepository = getRepository(Products);
+        const productRepository = getRepository(Products);
         let product: Products;
     
         try {
-          product = await userRepository.findOneOrFail(id);
+          product = await productRepository.findOneOrFail(id);
         } catch (e) {
           return res.status(404).json({ message: 'Product not found' });
         }
     
         // Remove user
-        userRepository.delete(id);
+        productRepository.delete(id);
         res.status(201).json({ message: ' Product deleted' });
       };
     

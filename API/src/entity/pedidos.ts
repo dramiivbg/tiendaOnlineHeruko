@@ -3,28 +3,34 @@ import { MinLength, IsNotEmpty, IsEmpty } from 'class-validator';
 
 @Entity()
 
-export class Products {
+export class Pedidos {
   @PrimaryGeneratedColumn()
-   producto_id: number;
+  pedido_id: number;
+  @Column()
+  @IsNotEmpty()
+   user_id: number;
 
    @Column()
    @IsNotEmpty()
-   tienda_id: number;
-  @Column()
-  @IsNotEmpty()
-  cantidad: number;
+  pago_id: number;
+
+   @Column()
+   @IsNotEmpty()
+  direccion: string;
 
   @Column()
   @IsNotEmpty()
-  tipo_producto: string;
+ ciudad: string;
 
-  @Column()
-  @IsNotEmpty()
-  valor: number;
+ @Column()
+ @IsNotEmpty()
+producto_id: number;
 
+@Column()
+@CreateDateColumn()
+fecha_pedido: Date;
 
-
-  @Column()
+@Column()
   @CreateDateColumn()
   createAt: Date;
 

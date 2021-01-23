@@ -33,9 +33,9 @@ export class UserController {
   };
 
   static new = async (req: Request, res: Response) => {
-    const { user_id,username, password, gmail, direccion, celular, pais, role } = req.body;
+    const { username, password, gmail, direccion, celular, pais, role } = req.body;
     const user = new Users();
-    user.user_id = user_id;
+
     user.username = username;
     user.password = password;
     user.gmail = gmail;

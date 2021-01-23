@@ -8,6 +8,10 @@ export class Users {
   @PrimaryGeneratedColumn()
    user_id: number;
 
+   @Column()
+   @IsNotEmpty()
+   cedula: number;
+   
   @Column()
   @IsNotEmpty()
   username: string;
