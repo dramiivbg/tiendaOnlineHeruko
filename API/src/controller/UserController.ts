@@ -33,9 +33,10 @@ export class UserController {
   };
 
   static new = async (req: Request, res: Response) => {
-    const { username, password, gmail, direccion, celular, pais, role } = req.body;
+    const { cedula,username, password, gmail, direccion, celular, pais, role } = req.body;
     const user = new Users();
-
+   
+    user.cedula = cedula;
     user.username = username;
     user.password = password;
     user.gmail = gmail;
@@ -56,6 +57,7 @@ export class UserController {
     const userRepository = getRepository(Users);
     try {
       user.hashPassword();
+      
       await userRepository.save(user);
      
     } catch (e) {
@@ -66,37 +68,6 @@ export class UserController {
     res.send('User created');
   };
 
-
-  static changePassword = async (req: Request, res: Response) => {
-    let user;
-    const { id } = req.params;
-    const { password } = req.body;
-
-    const userRepository = getRepository(Users);
-    // Try get user
-    try {
-     let user = await userRepository.findOneOrFail(id);
-      user.password = password; 
-    
-    } catch (e) {
-      return res.status(404).json({ message: 'User not register' });
-    }
-    const validationOpt = { validationError: { target: false, value: false } };
-    const errors = await validate(user, validationOpt);
-
-    if (errors.length > 0) {
-      return res.status(400).json(errors);
-    }
-
-    // Try to save user
-    try {
-      await userRepository.save(user);
-    } catch (e) {
-      return res.status(409).json({ message: 'Username already in use' });
-    }
-
-    res.status(201).json({ message: 'User update' });
-  };
 
   static edit = async (req: Request, res: Response) => {
     let user;

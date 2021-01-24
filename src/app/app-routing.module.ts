@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { from } from 'rxjs';
 import { PostComponent } from './components/posts/post/post.component';
-
 import {ContainerAppComponent} from '../app/components/pages/container-app/container-app.component';
 const routes: Routes = [
   {path: '', component:ContainerAppComponent,
@@ -34,8 +33,8 @@ const routes: Routes = [
  { path: 'admin', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule) },
   
  { path: 'login', loadChildren: () => import('./components/auth/login/login.module').then(m => m.LoginModule) },
+  { path: 'crearUser', loadChildren: () => import('./components/auth/crear-user/crear-user.module').then(m => m.CrearUserModule) },
   
-
 
  
 

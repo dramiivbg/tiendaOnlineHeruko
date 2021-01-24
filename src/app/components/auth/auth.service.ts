@@ -74,15 +74,13 @@ export class AuthService {
 
 
 
-  registerUser(  username: string, password: string, gmail: string, direccion: string, celular: number, pais: string, role: string){
-  
-    this.cliente_id++;
-     const id = this.cliente_id;
+  registerUser( cedula:number, username: string, password: string, gmail: string, direccion: string, celular: number, pais: string, role: string){
+ 
 
     const url_api = "http://localhost:3000/users";
  
      return this.http.post<User>(url_api,{
-       id,
+       cedula,
        username,
        password,
        gmail

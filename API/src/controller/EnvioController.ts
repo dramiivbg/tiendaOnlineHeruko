@@ -41,10 +41,10 @@ export class EnvioController{
 
 
       static new = async (req: Request, res: Response) => {
-        const {pedido_id,placa_vehiculo} = req.body;
+        const {pedido_id,vehiculo_id} = req.body;
         const envio = new Envios();
         envio.pedido_id = pedido_id;
-        envio.placa_vehiculo = placa_vehiculo;
+        envio.vehiculo_id = vehiculo_id;
        
        
        
@@ -77,7 +77,7 @@ export class EnvioController{
       static edit = async (req: Request, res: Response) => {
        let envio: Envios;
         const { id } = req.params;
-        const { pedido_id, fecha_envio,placa_vehiculo } = req.body;
+        const { pedido_id, fecha_envio,vehiculo_id } = req.body;
     
         const envioRepository = getRepository(Envios);
         // Try get user
@@ -85,7 +85,7 @@ export class EnvioController{
           envio = await envioRepository.findOneOrFail(id);
           envio.pedido_id = pedido_id ;
           envio.fecha_envio = fecha_envio;
-          envio.placa_vehiculo = placa_vehiculo;
+          envio.vehiculo_id = vehiculo_id;
          
         ;
           

@@ -1,0 +1,45 @@
+<div class="contenedor">
+
+    <mat-form-field>
+      <input matInput [(ngModel)]="username" type="text" placeholder=" username">
+    </mat-form-field>
+  
+    <mat-form-field>
+        <input matInput [(ngModel)]="gmail" type="email" placeholder=" gmail">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <input matInput [(ngModel)]="password" type="password" placeholder=" password">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput [(ngModel)]="direccion" type="text" placeholder=" direccion">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [(ngModel)]="cedula" type="number" placeholder=" Cc:">
+  </mat-form-field>
+
+    <mat-form-field>
+        <input matInput [(ngModel)]="celular" type="number" placeholder=" numero celular">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput [(ngModel)]="pais" type="text" placeholder=" pais recidente">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>roles</mat-label>
+        <mat-select [(ngModel)]="rol">
+          <mat-option  *ngFor="let rol of roles" [value]="rol.value">
+            {{rol.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+  
+    <button mat-raised-button color="primary" (click)="crearUser()">Register</button>
+   
+    
+  </div>
