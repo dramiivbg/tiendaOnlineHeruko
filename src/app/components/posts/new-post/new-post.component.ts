@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormControl,Validators} from '@angular/forms';
-import {PostI} from '../../../shared/models/post.interface';
-import { PostService} from '../post.service';
+import {Product} from '../../../shared/models/product.interface';
+import { ProductService} from '../product.service';
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
@@ -9,23 +9,29 @@ import { PostService} from '../post.service';
 })
 export class NewPostComponent implements OnInit {
   private image:any;
-  constructor(private postSvc: PostService){
+  constructor(private productSvc: ProductService){
   }
   
   public newPostForm = new FormGroup({
-    titlePost: new FormControl('', Validators.required),
-    contentPost: new FormControl('', Validators.required),
-    tagsPost: new FormControl('', Validators.required),
-    imagePost: new FormControl('', Validators.required),
+    cantidad: new FormControl('', Validators.required),
+    imagen: new FormControl('', Validators.required),
+    tienda_id: new FormControl('', Validators.required),
+    tipo_producto: new FormControl('', Validators.required),
+    valor: new FormControl('',Validators.required),
+    nombreTienda: new FormControl('',Validators.required),
+    direccionTienda: new FormControl('', Validators.required),
+    ciudadTienda: new FormControl('',Validators.required),
+    barrioTienda: new FormControl('',Validators.required),
+    imagenTienda: new FormControl('',Validators.required)
   });
 
   ngOnInit(): void {
   }
 
-  addNewPost(data: PostI){
+  addNewPost(data: Product){
 
    console.log('New post',data);
-  console.log(this.postSvc.preAddAndUpdate(data, this.image));
+  console.log(this.productSvc.preAddAndUpdate(data, this.image));
   }
 
   handleImage(event:any): void{
@@ -34,6 +40,11 @@ export class NewPostComponent implements OnInit {
     
     
   
+  }
+
+  handleImage1(event:any): void{
+
+    this.image = event.target.files[1];
   }
 
 }

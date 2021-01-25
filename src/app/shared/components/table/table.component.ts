@@ -1,10 +1,10 @@
 import { Component,AfterViewInit, OnInit,ViewChild } from '@angular/core';
 import { from } from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
-import {PostI} from '../../models/post.interface';
+import {Product} from '../../models/product.interface';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {PostService} from '../../../components/posts/post.service';
+import {ProductService} from '../../../components/posts/product.service';
 import Swal from 'sweetalert2';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalComponent} from './../modal/modal.component';
@@ -15,16 +15,16 @@ import {ModalComponent} from './../modal/modal.component';
 })
 export class TableComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['titlePost', 'tagsPost','actions'];
-  dataSource = new MatTableDataSource<PostI>();
+  displayedColumns: string[] = ['tipo_producto', 'valor','actions'];
+  dataSource = new MatTableDataSource<Product>();
  
   @ViewChild(MatPaginator,{static: true})paginator: MatPaginator;
   @ViewChild(MatSort,{static:true})sort: MatSort;
-  constructor(private postSvc: PostService, public dialog: MatDialog){}
+  constructor(private productSvc: ProductService, public dialog: MatDialog){}
 
   ngOnInit(): void {
 
-   this.postSvc.getAllPosts()
+   this.productSvc.getAllPosts()
    .subscribe(posts => (this.dataSource.data = posts));
   }
 
@@ -42,12 +42,12 @@ export class TableComponent implements OnInit, AfterViewInit {
   }  
 
 
-  oneEditPost(post: PostI){
+  oneEditPost(post: Product){
 
    
 }
 
-oneDeletePost(post: PostI){
+oneDeletePost(post: Product){
   Swal.fire({
 
     title:'Are you sure',
@@ -61,7 +61,7 @@ oneDeletePost(post: PostI){
 
     if(result.value){
 
-      this.postSvc.deletePostById(post).then(() => {
+      this.productSvc.deletePostById(post).then(() => {
 
         Swal.fire('Deleted!, Your post has been deleted.','sucessfull');
         

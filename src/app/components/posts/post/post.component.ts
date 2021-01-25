@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { from, Observable } from 'rxjs';
-import {PostI} from '../../../shared/models/post.interface';
-import {PostService} from '../post.service';
-
+import {Product} from '../../../shared/models/product.interface';
+import {ProductService} from '../product.service';
+import {CantidadTotalService} from '../../../shared/services/cantidad-total.service';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -11,21 +11,46 @@ import {PostService} from '../post.service';
 })
 export class PostComponent implements OnInit {
 
-   public post$: Observable<PostI>;
+   public product$: Observable<Product>;
+  public total:any;
+ 
 
-  
-
-   constructor(private route: ActivatedRoute,public postSvc: PostService) { }
+   constructor(private route: ActivatedRoute,public productSvc: ProductService,
+      private cantidadTotal:CantidadTotalService) { }
  
    ngOnInit(): void {
  
      const idPost  = this.route.snapshot.params.id;
 
-     this.post$ = this.postSvc.getOnePost(idPost);
+     this.product$ = this.productSvc.getOnePost(idPost);
+
+  
+    this.valorTotal();
  
-     console.log(this.post$);
+     console.log(this.product$);
+
+
      
  
    }
+
+
+   valorTotal(){
+
+   this.product$.subscribe(res =>{
+
+
+
+   this.total = this.cantidadTotal.cantidadTotal(res);
+   }
+
+
+   )
+
+    console.log(this.total);
+    
+    }
+
+    
  
 }

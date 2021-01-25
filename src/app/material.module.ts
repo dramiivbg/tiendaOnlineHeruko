@@ -18,7 +18,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 const myModule =[
   MatCardModule,
   MatButtonModule,
@@ -36,8 +36,8 @@ const myModule =[
   MatPaginatorModule,
   MatSortModule,
   MatDialogModule,
-  MatSelectModule
-
+  MatSelectModule,
+  MatDatepickerModule
 ];
 
 @NgModule({

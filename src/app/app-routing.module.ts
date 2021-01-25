@@ -34,6 +34,8 @@ const routes: Routes = [
   
  { path: 'login', loadChildren: () => import('./components/auth/login/login.module').then(m => m.LoginModule) },
   { path: 'crearUser', loadChildren: () => import('./components/auth/crear-user/crear-user.module').then(m => m.CrearUserModule) },
+ 
+  { path: 'medio_pago', loadChildren: () => import('./components/medio-pago/medio-pago.module').then(m => m.MedioPagoModule) },
   
 
  

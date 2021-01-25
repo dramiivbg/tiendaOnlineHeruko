@@ -1,19 +1,24 @@
 import { Entity, PrimaryGeneratedColumn , Unique, Column,OneToOne,JoinColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
 import { MinLength, IsNotEmpty, IsEmpty } from 'class-validator';
-
+import {Targetas} from './targetas';
 
 @Entity()
 
 export class Pagos {
   @PrimaryGeneratedColumn()
   pago_id: number;
-  @Column()
-  @IsEmpty()
-   targeta_credito: number;
+  @OneToOne(type => Targetas)
+  @JoinColumn()
+   targeta_id: Targetas;
 
    @Column()
    @IsEmpty()
-  efectivo: number;
+  efecty: number;
+
+
+  @Column()
+  @IsEmpty()
+ a_la_mano: number;
 
    
 @Column()

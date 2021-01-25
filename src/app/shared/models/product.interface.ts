@@ -3,6 +3,8 @@ export interface Product {
      cantidad: number;
      tipo_producto:string;
      valor:number;
+     id?: string;
+     imagen?: any;
 
 
 }

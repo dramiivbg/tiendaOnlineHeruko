@@ -1,16 +1,42 @@
-<div class="container" *ngIf="post$ | async as post">
+<div class="container" *ngIf="product$ | async as product">
     <mat-card class="post-card" >
-        <img matCardImage class="align-center" [src]="post.imagePost" />
+        <img matCardImage style="width: 30%;" class="align-center" [src]="product.image" />
         <mat-card-content>
-           <mat-card-header>
-            <mat-card-title>
-               {{post.titlePost}}
-            </mat-card-title>
-           </mat-card-header> 
-        <p class="content">
+       
+        <p >
     
-            {{ post.contentPost }}
+        Nombre de la Tienda: {{ product.tienda_id }}
          </p>
+
+         <p>
+
+
+       Cantidad:    {{product.cantidad}}
+
+         </p>
+
+         <p>
+
+
+       nombre:    {{product.tipo_producto}}
+
+         </p>
+
+         <p>
+
+
+      valorTotal:      {{resultado}}
+
+         </p>
+
+         <p>
+
+         <button mat-raised-button color="primary" (click)= "addCantidad()"  
+                routerLink ="/medio_pago" >agregar
+          </button>
+            
+         </p>
+
         </mat-card-content>
    
     </mat-card>
