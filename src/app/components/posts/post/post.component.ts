@@ -12,8 +12,12 @@ import {CantidadTotalService} from '../../../shared/services/cantidad-total.serv
 export class PostComponent implements OnInit {
 
    public product$: Observable<Product>;
-  public total:any;
- 
+  cantidad:number = 0;
+  public valor:Array<string>;
+
+  public valor2:number;
+
+  public total:number;
 
    constructor(private route: ActivatedRoute,public productSvc: ProductService,
       private cantidadTotal:CantidadTotalService) { }
@@ -25,8 +29,7 @@ export class PostComponent implements OnInit {
      this.product$ = this.productSvc.getOnePost(idPost);
 
   
-    this.valorTotal();
- 
+
      console.log(this.product$);
 
 
@@ -37,18 +40,26 @@ export class PostComponent implements OnInit {
 
    valorTotal(){
 
+
    this.product$.subscribe(res =>{
 
 
+  this.valor = res.valor.toString().split('$')
 
-   this.total = this.cantidadTotal.cantidadTotal(res);
-   }
+this.valor2 =  Number(this.valor[1]);
 
 
-   )
+  
 
-    console.log(this.total);
-    
+    return this.total = (this.valor2*this.cantidad );
+   
+   })
+   
+
+
+
+
+  
     }
 
     

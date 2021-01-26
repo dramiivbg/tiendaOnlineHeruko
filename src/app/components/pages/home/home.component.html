@@ -10,7 +10,7 @@
             
             
         </mat-card-header >
-        <img matCardImage   [src]="product.image" />
+        <img matCardImage  [routerLink]="['/post', product.id]"  [src]="product.image" />
         <mat-card-content>
          <p>
     
@@ -23,19 +23,10 @@
          </p>
         </mat-card-content>
      
-        <mat-form-field>
-            <input matInput [(ngModel)]="cantidad" type="number" placeholder=" cantidad" style="text-align: center;">
-        </mat-form-field>
 
         <mat-divider></mat-divider>
 
-        <mat-card-actions>
-        <mat-chip-list>
-            <button mat-raised-button color="primary" (click)= "addCantidad()"  
-            [routerLink]="['/post', product.id]" >comprar
-                </button>
-        </mat-chip-list>
-        </mat-card-actions>
+      
 
     </mat-card>
     </div>
