@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
 import { Router } from '@angular/router';
-import { Roles } from '@app/shared/models/user.interface';
 
+import Swal from 'sweetalert2';
 interface Rol {
   value: string;
   viewValue: string;
@@ -21,15 +21,12 @@ username:string = '';
 gmail: string = '';
 password: string = '';
 direccion: string = '';
-celular: number = 0;
 pais:string = '';
-rol: string = '';
+rol:string = '';
 
 
   roles: Rol[] = [
-    {value: 'user', viewValue: 'User'},
-    {value: 'admin', viewValue: 'Admin'},
-    {value: 'vendedor', viewValue: 'Vendedor'}
+    {value: 'cliente', viewValue: 'Cliente'},
   ];
 
 
@@ -40,19 +37,21 @@ rol: string = '';
 
   crearUser(){
 
-    this.authSvc.registerUser(this.cedula,this.username,this.password,this.gmail,
-    this.direccion,this.celular,this.pais,this.rol).subscribe (res => {
+    this.authSvc.registerUser(this.username,this.password,this.gmail,
+    this.direccion,this.pais,this.rol,this.cedula).subscribe (res => {
 
     try{  
       if(res){
 
+        Swal.fire('User created.','sucessfull');
+        
         this.router.navigate(['/login']);
 
       }
      
     }
   catch(e){
-    console.log(e);
+    Swal.fire(e);
 
   }
 }  

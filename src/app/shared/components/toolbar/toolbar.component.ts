@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@app/components/auth/auth.service';
 import {MatTableDataSource} from '@angular/material/table';
-import { PostI } from '@app/shared/models/post.interface';
+
 import { Observable } from 'rxjs';
 
 @Component({

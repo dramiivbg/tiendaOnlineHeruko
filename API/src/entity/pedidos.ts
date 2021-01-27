@@ -10,7 +10,7 @@ export class Pedidos {
   pedido_id: number;
   @OneToOne(type => Users)
   @JoinColumn()
-   user_id: Users;
+   cedula_user: Users;
 
    @OneToOne(type => Pagos)
   @JoinColumn()

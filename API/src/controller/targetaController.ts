@@ -13,7 +13,7 @@ export class TargetaController{
         let targetas;
 
         try {
-            targetas = await targetaRepository.find({ select: ['targeta_id', 'nombre_targeta' ,'fecha_vencimiento'] });
+            targetas = await targetaRepository.find({ select: ['codigo_seguridad', 'nombre_targeta' ,'fecha_vencimiento'] });
           } catch (e) {
             res.status(404).json({ message: 'Somenthing goes wrong!' });
           }
@@ -29,10 +29,10 @@ export class TargetaController{
     
     
     static getById = async (req: Request, res: Response) => {
-        const { id } = req.params;
+        const { codigo } = req.params;
         const targetaRepository = getRepository(Targetas);
         try {
-          const targeta = await targetaRepository.findOneOrFail(id);
+          const targeta = await targetaRepository.findOneOrFail(codigo);
           res.send(targeta);
         } catch (e) {
           res.status(404).json({ message: 'Not result' });
@@ -41,13 +41,13 @@ export class TargetaController{
 
 
       static new = async (req: Request, res: Response) => {
-        const { nombre_targeta, nombre_y_apellido, tipo_targeta, fecha_vencimiento, codigo_segurida, tipo_documento, numero_documento} = req.body;
+        const {codigo_segurida, nombre_targeta, nombre_y_apellido, tipo_targeta, fecha_vencimiento,  tipo_documento, numero_documento} = req.body;
         const targeta = new Targetas();
         targeta.nombre_targeta = nombre_targeta;
         targeta.nombre_y_apellido = nombre_y_apellido;
         targeta.tipo_targeta = tipo_targeta;
         targeta.fecha_vencimiento = fecha_vencimiento;
-        targeta.codigo_segurida = codigo_segurida;
+        targeta.codigo_seguridad = codigo_segurida;
         targeta.tipo_documento = tipo_documento;
         targeta.numero_documento = numero_documento;
  
@@ -77,18 +77,18 @@ export class TargetaController{
 
       static edit = async (req: Request, res: Response) => {
        let targeta: Targetas;
-        const { id } = req.params;
-        const { nombre_targeta, nombre_y_apellido,tipo_targeta, fecha_vencimiento, codigo_segurida, tipo_documento, numero_documento } = req.body;
+        const { codigo} = req.params;
+        const {codigo_segurida, nombre_targeta, nombre_y_apellido,tipo_targeta, fecha_vencimiento,  tipo_documento, numero_documento } = req.body;
     
         const targetaRepository = getRepository(Targetas);
         // Try get user
         try {
-          targeta = await targetaRepository.findOneOrFail(id);
+          targeta = await targetaRepository.findOneOrFail(codigo);
           targeta.nombre_targeta = nombre_targeta;
           targeta.nombre_y_apellido = nombre_y_apellido ;
           targeta.tipo_targeta = tipo_targeta;
           targeta.fecha_vencimiento = fecha_vencimiento;
-          targeta.codigo_segurida = codigo_segurida;
+          targeta.codigo_seguridad = codigo_segurida;
           targeta.tipo_documento = tipo_documento;
           targeta.numero_documento = numero_documento;
           
@@ -114,18 +114,18 @@ export class TargetaController{
 
 
       static delete = async (req: Request, res: Response) => {
-        const { id } = req.params;
+        const { codigo } = req.params;
         const targetaRepository = getRepository(Targetas);
         let targeta: Targetas;
     
         try {
-          targeta = await targetaRepository.findOneOrFail(id);
+          targeta = await targetaRepository.findOneOrFail(codigo);
         } catch (e) {
           return res.status(404).json({ message: 'targeta not found' });
         }
     
         // Remove user
-        targetaRepository.delete(id);
+        targetaRepository.delete(codigo);
         res.status(201).json({ message: ' targeta deleted' });
       };
     

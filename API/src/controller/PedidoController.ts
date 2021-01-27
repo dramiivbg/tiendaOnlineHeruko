@@ -13,7 +13,7 @@ export class PedidoController{
         let pedidos;
 
         try {
-            pedidos = await pedidoRepository.find({ select: ['pedido_id', 'user_id', 'producto_id','pago_id'] });
+            pedidos = await pedidoRepository.find({ select: ['pedido_id', 'cedula_user', 'producto_id','pago_id'] });
           } catch (e) {
             res.status(404).json({ message: 'Somenthing goes wrong!' });
           }
@@ -41,9 +41,9 @@ export class PedidoController{
 
 
       static new = async (req: Request, res: Response) => {
-        const { user_id,pago_id, direccion,cuidad,producto_id} = req.body;
+        const { cedula_user,pago_id, direccion,cuidad,producto_id} = req.body;
         const pedido = new Pedidos();
-        pedido.user_id = user_id;
+        pedido.cedula_user = cedula_user;
         pedido.pago_id = pago_id;
         pedido.direccion = direccion;
         pedido.ciudad = cuidad;
@@ -78,13 +78,13 @@ export class PedidoController{
       static edit = async (req: Request, res: Response) => {
        let pedido: Pedidos;
         const { id } = req.params;
-        const { user_id, direccion,ciudad,producto_id,fecha_pedido } = req.body;
+        const { cedula_user, direccion,ciudad,producto_id,fecha_pedido } = req.body;
     
         const pedidoRepository = getRepository(Pedidos);
         // Try get user
         try {
           pedido = await pedidoRepository.findOneOrFail(id);
-          pedido.user_id = user_id ;
+          pedido.cedula_user = cedula_user ;
           pedido.direccion = direccion;
           pedido.ciudad = ciudad;
           pedido.producto_id = producto_id;

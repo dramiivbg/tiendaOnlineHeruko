@@ -9,7 +9,7 @@ export class UserController {
     let users;
 
     try {
-      users = await userRepository.find({ select: ['user_id', 'username', 'role'] });
+      users = await userRepository.find({ select: ['cedula', 'username', 'role'] });
     } catch (e) {
       res.status(404).json({ message: 'Somenthing goes wrong!' });
     }
@@ -22,10 +22,10 @@ export class UserController {
   };
 
   static getById = async (req: Request, res: Response) => {
-    const { id } = req.params;
+    const { cedula } = req.params;
     const userRepository = getRepository(Users);
     try {
-      const user = await userRepository.findOneOrFail(id);
+      const user = await userRepository.findOneOrFail(cedula);
       res.send(user);
     } catch (e) {
       res.status(404).json({ message: 'Not result' });
@@ -33,7 +33,7 @@ export class UserController {
   };
 
   static new = async (req: Request, res: Response) => {
-    const { username, password, gmail, direccion, pais, role, cedula} = req.body;
+    const {cedula, username, password, gmail, direccion, pais, role} = req.body;
     const user = new Users();
    
    
@@ -70,15 +70,19 @@ export class UserController {
 
 
   static edit = async (req: Request, res: Response) => {
-    let user;
-    const { id } = req.params;
-    const { username } = req.body;
+    let user:Users;
+    const { cedula1 } = req.params;
+    const { cedula, username, gmail, direccion, pais, } = req.body;
 
     const userRepository = getRepository(Users);
     // Try get user
     try {
-      user = await userRepository.findOneOrFail(id);
+      user = await userRepository.findOneOrFail(cedula);
+      user.cedula = cedula;
       user.username = username;
+      user.gmail = gmail;
+      user.direccion = direccion;
+      user.pais = pais;
  
     
     } catch (e) {
@@ -102,18 +106,18 @@ export class UserController {
   };
 
   static delete = async (req: Request, res: Response) => {
-    const { id } = req.params;
+    const { cedula } = req.params;
     const userRepository = getRepository(Users);
     let user: Users;
 
     try {
-      user = await userRepository.findOneOrFail(id);
+      user = await userRepository.findOneOrFail(cedula);
     } catch (e) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     // Remove user
-    userRepository.delete(id);
+    userRepository.delete(cedula);
     res.status(201).json({ message: ' User deleted' });
   };
 }

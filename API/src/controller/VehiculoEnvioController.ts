@@ -29,10 +29,10 @@ export class VehiculoEnvioController{
     
     
     static getById = async (req: Request, res: Response) => {
-        const { id } = req.params;
+        const { placa } = req.params;
         const VehiculoEnvioRepository = getRepository(Vehiculo_envios);
         try {
-          const pedido = await VehiculoEnvioRepository.findOneOrFail(id);
+          const pedido = await VehiculoEnvioRepository.findOneOrFail(placa);
           res.send(pedido);
         } catch (e) {
           res.status(404).json({ message: 'Not result' });
@@ -77,13 +77,13 @@ export class VehiculoEnvioController{
 
       static edit = async (req: Request, res: Response) => {
        let vehiculo_envio: Vehiculo_envios;
-        const { id } = req.params;
+        const { placa1 } = req.params;
         const { placa,nombre,color,marca } = req.body;
     
         const VehiculoEnvioRepository = getRepository(Vehiculo_envios);
         // Try get user
         try {
-          vehiculo_envio = await VehiculoEnvioRepository.findOneOrFail(id);
+          vehiculo_envio = await VehiculoEnvioRepository.findOneOrFail(placa1);
           vehiculo_envio.placa = placa;
           vehiculo_envio.nombre = nombre;
           vehiculo_envio.color = color;
@@ -111,18 +111,18 @@ export class VehiculoEnvioController{
 
 
       static delete = async (req: Request, res: Response) => {
-        const { id } = req.params;
+        const { placa } = req.params;
         const VehiculoEnvioRepository = getRepository(Vehiculo_envios);
         let vehiculo_envio: Vehiculo_envios;
     
         try {
-          vehiculo_envio = await VehiculoEnvioRepository.findOneOrFail(id);
+          vehiculo_envio = await VehiculoEnvioRepository.findOneOrFail(placa);
         } catch (e) {
           return res.status(404).json({ message: 'vehiculo not found' });
         }
         
         // Remove user
-        VehiculoEnvioRepository.delete(id);
+        VehiculoEnvioRepository.delete(placa);
         res.status(201).json({ message: ' vehiculo deleted' });
       };
     

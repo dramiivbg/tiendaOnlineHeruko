@@ -9,7 +9,7 @@ export class Pagos {
   pago_id: number;
   @OneToOne(type => Targetas)
   @JoinColumn()
-   targeta_id: Targetas;
+   codigo_targeta: Targetas;
 
    @Column()
    @IsEmpty()

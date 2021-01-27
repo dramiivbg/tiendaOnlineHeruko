@@ -17,7 +17,7 @@ export class Envios {
 
   @OneToOne(type => Vehiculo_envios)
   @JoinColumn()
-  vehiculo_id: Vehiculo_envios;
+  placa_vehiculo: Vehiculo_envios;
 
   @Column()
   @CreateDateColumn()

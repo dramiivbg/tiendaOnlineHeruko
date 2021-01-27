@@ -13,7 +13,7 @@ export class ProductController{
         let products;
 
         try {
-            products = await productRepository.find({ select: ['producto_id', 'tienda_id' ,'tipo_producto', 'valor'] });
+            products = await productRepository.find({ select: ['producto_id' ,'tipo_producto', 'valor'] });
           } catch (e) {
             res.status(404).json({ message: 'Somenthing goes wrong!' });
           }
@@ -41,12 +41,11 @@ export class ProductController{
 
 
       static new = async (req: Request, res: Response) => {
-        const {  tienda_id,cantidad, tipo_producto, valor} = req.body;
+        const {   tipo_producto, valor, ciudad_de_exportacion} = req.body;
         const product = new Products();
-        product.tienda_id = tienda_id;
-        product.cantidad = cantidad;
         product.tipo_producto = tipo_producto;
         product.valor = valor;
+        product.ciudad_de_exportacion = ciudad_de_exportacion;
  
        
     
@@ -75,16 +74,16 @@ export class ProductController{
       static edit = async (req: Request, res: Response) => {
        let product: Products;
         const { id } = req.params;
-        const { cantidad,tipo_producto,tienda_id, valor } = req.body;
+        const { tipo_producto, valor,ciudad_de_exportacion } = req.body;
     
         const productRepository = getRepository(Products);
         // Try get user
         try {
           product = await productRepository.findOneOrFail(id);
-          product.tienda_id = tienda_id;
-          product.cantidad = cantidad ;
+       
           product.tipo_producto = tipo_producto;
           product.valor = valor;
+          product.ciudad_de_exportacion = ciudad_de_exportacion;
           
         } catch (e) {
           return res.status(404).json({ message: 'User not found' });

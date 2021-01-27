@@ -76,20 +76,20 @@ export class AuthService {
 
 
 
-  registerUser( cedula:number, username: string, password: string, gmail: string, direccion: string, celular: number, pais: string, role: string){
+  registerUser( username: string, password: string, gmail: string, direccion: string,  pais: string, role: string,cedula:number){
  
 
     const url_api = "http://localhost:3000/users";
  
      return this.http.post<User>(url_api,{
-       cedula,
+      cedula,
        username,
        password,
        gmail
        ,direccion
-       ,celular
        ,pais
-       ,role},{
+       ,role,
+       },{
          headers: this.header
        }).pipe(map(data => data));
 

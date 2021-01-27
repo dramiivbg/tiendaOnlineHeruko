@@ -20,16 +20,13 @@
       <input matInput [(ngModel)]="cedula" type="number" placeholder=" Cc:">
   </mat-form-field>
 
-    <mat-form-field>
-        <input matInput [(ngModel)]="celular" type="number" placeholder=" numero celular">
-    </mat-form-field>
 
     <mat-form-field>
         <input matInput [(ngModel)]="pais" type="text" placeholder=" pais recidente">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-        <mat-label>roles</mat-label>
+        <mat-label>rol</mat-label>
         <mat-select [(ngModel)]="rol">
           <mat-option  *ngFor="let rol of roles" [value]="rol.value">
             {{rol.viewValue}}

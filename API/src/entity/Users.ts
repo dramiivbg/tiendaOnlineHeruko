@@ -1,15 +1,11 @@
-import { Entity, PrimaryGeneratedColumn , Unique, Column, UpdateDateColumn, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn , Unique, Column, UpdateDateColumn, CreateDateColumn, PrimaryColumn } from 'typeorm';
 import { MinLength, IsNotEmpty, IsEmail } from 'class-validator';
 import * as bcrypt from 'bcryptjs';
 
 @Entity()
 @Unique(['username'])
 export class Users {
-  @PrimaryGeneratedColumn()
-   user_id: number;
-
-   @Column()
-   @IsNotEmpty()
+ @PrimaryColumn()
    cedula: number;
    
   @Column()

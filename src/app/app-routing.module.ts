@@ -44,6 +44,7 @@ const routes: Routes = [
   { path: 'selectTargeta', loadChildren: () => import('./components/pagoTargeta/select-targeta/select-targeta.module').then(m => m.SelectTargetaModule) },
   { path: 'comprar_efecty/:id', loadChildren: () => import('./components/pagoEfectivo/comprar-efecty/comprar-efecty.module').then(m => m.ComprarEfectyModule) },
   { path: 'comprar_contraentrega/:id', loadChildren: () => import('./components/pagoEfectivo/comprar-contraentrega/comprar-contraentrega.module').then(m => m.ComprarContraentregaModule) },
+  { path: 'change-password', loadChildren: () => import('./components/auth/change-password/change-password.module').then(m => m.ChangePasswordModule) },
   
 
  

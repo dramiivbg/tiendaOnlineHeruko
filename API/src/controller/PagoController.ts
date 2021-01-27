@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 import { Request, Response } from 'express';
-import { validate } from 'class-validator';
+import { Allow, validate } from 'class-validator';
 import {Pagos } from '../entity/pagos';
 
 
@@ -13,7 +13,7 @@ export class PagoController{
         let pagos;
 
         try {
-            pagos = await pagoRepository.find({ select: ['pago_id', 'targeta_credito', 'efectivo'] });
+            pagos = await pagoRepository.find({ select: ['codigo_seguridad', 'efecty','a_la_mano'] });
           } catch (e) {
             res.status(404).json({ message: 'Somenthing goes wrong!' });
           }
@@ -41,10 +41,11 @@ export class PagoController{
 
 
       static new = async (req: Request, res: Response) => {
-        const { pago_id,targeta_credito,efectivo} = req.body;
+        const { codigo_seguridad,efecty,a_la_mano} = req.body;
         const pago = new Pagos();
-        pago.targeta_credito = targeta_credito;
-        pago.efectivo = efectivo;       
+        pago.codigo_seguridad = codigo_seguridad;
+        pago.efecty = efecty;       
+        pago.a_la_mano = a_la_mano;
        
        
  
@@ -76,14 +77,15 @@ export class PagoController{
       static edit = async (req: Request, res: Response) => {
        let pago: Pagos;
         const { id } = req.params;
-        const { targeta_credito, efectivo } = req.body;
+        const {codigo_seguridad,efecty,a_la_mano } = req.body;
     
         const pagoRepository = getRepository(Pagos);
         // Try get user
         try {
           pago = await pagoRepository.findOneOrFail(id);
-          pago.targeta_credito = targeta_credito;
-          pago.efectivo = efectivo;
+          pago.codigo_seguridad = codigo_seguridad;
+          pago.efecty = efecty;
+          pago.a_la_mano = a_la_mano;
           
         } catch (e) {
           return res.status(404).json({ message: 'pago not found' });

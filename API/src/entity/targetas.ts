@@ -1,11 +1,11 @@
-import { Entity, PrimaryGeneratedColumn , Unique, Column,OneToOne,JoinColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn , Unique, Column,OneToOne,JoinColumn, UpdateDateColumn, CreateDateColumn, PrimaryColumn } from 'typeorm';
 import { MinLength, IsNotEmpty, IsEmpty } from 'class-validator';
-import {Tiendas} from './tiendas';
+
 @Entity()
 
 export class Targetas {
-  @PrimaryGeneratedColumn()
-   targeta_id: number;
+  @PrimaryColumn()
+  codigo_seguridad: string;
 
   @Column()
   @IsNotEmpty()
@@ -23,9 +23,7 @@ export class Targetas {
   @IsNotEmpty()
   fecha_vencimiento: string;
 
-  @Column()
-  @IsNotEmpty()
-  codigo_segurida: string;
+
 
   @Column()
   @IsNotEmpty()
