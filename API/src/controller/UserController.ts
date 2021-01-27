@@ -33,7 +33,7 @@ export class UserController {
   };
 
   static new = async (req: Request, res: Response) => {
-    const { username, password, gmail, direccion, celular, pais, role, cedula} = req.body;
+    const { username, password, gmail, direccion, pais, role, cedula} = req.body;
     const user = new Users();
    
    
@@ -41,7 +41,6 @@ export class UserController {
     user.password = password;
     user.gmail = gmail;
     user.direccion = direccion;
-    user.celular = celular;
     user.pais = pais;
     user.role = role;
     user.cedula = cedula;
@@ -73,14 +72,14 @@ export class UserController {
   static edit = async (req: Request, res: Response) => {
     let user;
     const { id } = req.params;
-    const { username, role } = req.body;
+    const { username } = req.body;
 
     const userRepository = getRepository(Users);
     // Try get user
     try {
       user = await userRepository.findOneOrFail(id);
       user.username = username;
-      user.role = role;
+ 
     
     } catch (e) {
       return res.status(404).json({ message: 'User not found' });

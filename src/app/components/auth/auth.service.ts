@@ -13,11 +13,10 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
   cliente_id:number;
-
-  public isLogged: boolean = false; 
+  public value: boolean = false;
 
   private loggedIn = new BehaviorSubject<boolean>(false);
-  constructor(private http: HttpClient,private authSvc: AuthService) { 
+  constructor(private http: HttpClient) { 
     this.checkToken();
   }
 
@@ -26,9 +25,9 @@ export class AuthService {
     "Content-Type": "application/json"
   });
 
-//  get isLogged():Observable<boolean>{
-   // return this.loggedIn.asObservable();
- // }
+  get isLogged():Observable<boolean>{
+   return this.loggedIn.asObservable();
+ }
 
   //logiar usuario
 
@@ -102,12 +101,24 @@ export class AuthService {
     this.loggedIn.next(false);
   
   }
-  private checkToken():void{
+  public checkToken():boolean{
     const userToken = localStorage.getItem('token');
     const isExpired = helper.isTokenExpired(userToken);
     console.log('isExpired->', isExpired);
+    if(isExpired == false)
+    {
+      this.value = true;
+      
+    }
+    else{
+      this.value  = false;
+    }
+
+   
 
     isExpired ? this.logout() : this.loggedIn.next(true);
+    return this.value;
+   
     // if(isExpired){
     //   this.logout();
     // }else{

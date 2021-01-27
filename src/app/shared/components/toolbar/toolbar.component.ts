@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@app/components/auth/auth.service';
 import {MatTableDataSource} from '@angular/material/table';
 import { PostI } from '@app/shared/models/post.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,12 +13,13 @@ export class ToolbarComponent implements OnInit {
   public opened = false;
   public filterProduct = '';
   public  appName = 'ngOnline';
-  public isLogged: boolean = false; 
+
   constructor(private authSvc: AuthService) { }
 
   ngOnInit(): void {
 
-    this.onCheckUser();
+
+  
   
   }
   
@@ -33,16 +35,6 @@ export class ToolbarComponent implements OnInit {
   }
 
 
-  onCheckUser():void{
-
-    if (this.authSvc.getCurrentUser() == null){
-
-      this.isLogged = false;
-    }else{
-
-      this.isLogged = true;
-    }
-  }
 
 
 

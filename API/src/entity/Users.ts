@@ -32,9 +32,7 @@ export class Users {
   @IsNotEmpty()
   direccion: string;
 
-  @Column()
-  @IsNotEmpty()
-  celular: number;
+
 
   @Column()
   @IsNotEmpty()

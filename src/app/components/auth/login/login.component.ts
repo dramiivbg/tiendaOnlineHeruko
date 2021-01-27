@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.authSvc.login(formValue).subscribe(res => {
 
       if(res){
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/home']);
       }
     })
     

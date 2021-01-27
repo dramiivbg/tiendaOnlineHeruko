@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { from } from 'rxjs';
 import { PostComponent } from './components/posts/post/post.component';
 import {ContainerAppComponent} from '../app/components/pages/container-app/container-app.component';
+import { GuardGuard } from './guards/guard.guard';
 const routes: Routes = [
   {path: '', component:ContainerAppComponent,
 
@@ -10,10 +11,13 @@ const routes: Routes = [
 
     { path: 'home', loadChildren: () => 
     
-       import('./components/pages/home/home.module').then(m => m.HomeModule) },
+       import('./components/pages/home/home.module').then(m => m.HomeModule) 
+        
+      },
 
       
-    {path: 'post/:id', component:PostComponent},
+    {path: 'post/:id', component:PostComponent,
+    canActivate: [GuardGuard]},
     
    { path: 'about', loadChildren: () => 
      
