@@ -5,7 +5,7 @@ import {finalize, map} from 'rxjs/operators';
 import {Product} from './../../shared/models/product.interface';
 import { FileI } from 'src/app/shared/models/file.interface';
 import { AngularFireStorage } from '@angular/fire/storage';
-import {CantidadTotalService} from '../../shared/services/cantidad-total.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +17,7 @@ export class ProductService {
   
   constructor(private afs: AngularFirestore,
   private storage: AngularFireStorage, 
-  private cantidadSvc: CantidadTotalService  
+
     
     ) { 
     this.postCollection = afs.collection<Product>('1');
@@ -68,8 +68,7 @@ export class ProductService {
 
     const producObj = {
 
-      tienda_id: product.tienda_id,
-      cantidad: product.cantidad,
+      ciudad_de_exportacion: product.ciudad_de_exportacion,
       tipo_producto: product.tipo_producto,
       image: this.downloadURL,
       valor: product.valor

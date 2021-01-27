@@ -1,18 +1,15 @@
-import { Entity, PrimaryGeneratedColumn , Unique, Column,OneToOne,JoinColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
-import { MinLength, IsNotEmpty, IsEmpty } from 'class-validator';
-import {Tiendas} from './tiendas';
+import { Entity, PrimaryGeneratedColumn ,  Column, UpdateDateColumn, CreateDateColumn } from 'typeorm';
+import {  IsNotEmpty} from 'class-validator';
+
 @Entity()
 
 export class Products {
   @PrimaryGeneratedColumn()
    producto_id: number;
 
-   @OneToOne(type => Tiendas)
-  @JoinColumn()
-   tienda_id: Tiendas;
   @Column()
   @IsNotEmpty()
-  cantidad: number;
+  ciudad_de_exportacion: string;
 
   @Column()
   @IsNotEmpty()

@@ -1,0 +1,174 @@
+.container{
+
+    height: 80%;
+    width: 50%;
+
+
+    .post-card{
+height: 100%;
+
+  
+.card1{
+
+    width: 90%;
+    height: 20vh;
+
+
+    text-align: center;
+ 
+
+}
+
+
+  
+.card2{
+
+    width: 90%;
+    height: 50vh;
+
+
+    text-align: center;
+ 
+
+}
+
+    }
+
+    
+
+
+    
+}
+
+.rojo{
+
+    height: 40% ;
+
+
+    text-align: center;
+    align-content: center;
+}
+
+.azul{
+
+    
+  
+    height: 40%;
+
+    text-align: center;
+    align-content: center;
+}
+
+.conten1{
+
+    width: 80%;
+
+}
+
+.conten2{
+
+    width: 80%;
+
+}
+
+label{
+
+    text-align: center;
+    align-content: center;
+}
+
+.center{
+
+    text-align: center;
+    align-content: center;
+
+}
+
+.container{
+
+
+    width: 60%;
+    height: 60%;
+}
+
+
+a{
+
+    color: #fff;
+    text-decoration: none;
+   }
+
+   .yellow{
+
+    background: yellow;
+  
+    span{
+
+      cursor: pointer;
+    }
+   }
+
+   mat-icon{
+
+    font-size: 50px;
+    width: 50px;
+
+
+   }
+
+
+
+
+   span{
+
+     font-size: 50px;
+     width: 50px;
+   }
+
+  input{
+      width: 100vh;
+  }
+
+
+  .verde{
+
+    background: forestgreen;
+  }
+
+
+ 
+
+
+  
+  .navbar{
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    mat-icon{
+
+        cursor: pointer;
+    }
+}
+
+mat-sidenav{
+   
+    width: 200px;
+    cursor: pointer;
+    background:yellow;
+    position: fixed;
+    top: 55px;
+    z-index: 1000;
+  
+
+}
+
+.mat-list-base .mat-list-item,a
+{
+
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+
+}

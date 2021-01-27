@@ -11,7 +11,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
-import { from } from 'rxjs';
+import {MatProgressBarModule}  from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSortModule} from '@angular/material/sort';
@@ -19,6 +19,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+
+
 const myModule =[
   MatCardModule,
   MatButtonModule,
@@ -37,7 +39,10 @@ const myModule =[
   MatSortModule,
   MatDialogModule,
   MatSelectModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatProgressBarModule
+
+
 ];
 
 @NgModule({

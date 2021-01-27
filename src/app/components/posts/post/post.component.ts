@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import { from, Observable } from 'rxjs';
 import {Product} from '../../../shared/models/product.interface';
 import {ProductService} from '../product.service';
-import {CantidadTotalService} from '../../../shared/services/cantidad-total.service';
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -19,8 +19,7 @@ export class PostComponent implements OnInit {
 
   public total:number;
 
-   constructor(private route: ActivatedRoute,public productSvc: ProductService,
-      private cantidadTotal:CantidadTotalService) { }
+   constructor(private route: ActivatedRoute,public productSvc: ProductService) { }
  
    ngOnInit(): void {
  

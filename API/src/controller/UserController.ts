@@ -33,10 +33,10 @@ export class UserController {
   };
 
   static new = async (req: Request, res: Response) => {
-    const { cedula,username, password, gmail, direccion, celular, pais, role } = req.body;
+    const { username, password, gmail, direccion, celular, pais, role, cedula} = req.body;
     const user = new Users();
    
-    user.cedula = cedula;
+   
     user.username = username;
     user.password = password;
     user.gmail = gmail;
@@ -44,6 +44,7 @@ export class UserController {
     user.celular = celular;
     user.pais = pais;
     user.role = role;
+    user.cedula = cedula;
 
     // Validate
     const validationOpt = { validationError: { target: false, value: false } };

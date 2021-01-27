@@ -1,5 +1,6 @@
 
 
+
 <mat-toolbar color="primary" class="yellow">
     <span color="primary" (click)="opened = !opened">
   
@@ -19,8 +20,7 @@
       
       <span class="fill-remaining-space"></span>
   
-      <span  class="material-icons"
-      matBadge="4" matBadgeOverlap="false" >
+      <span  class="material-icons">
         add_alert
         </span>
   
@@ -61,42 +61,24 @@
   
   </mat-sidenav-container>
 
-<br><br>
-<div class="container">
-
-<mat-card>
-
-<mat-card-content>
-
-
-  <a routerLink="/selectEfectivo" routerLinkActive= "active" >
-<mat-card class="rojo">
-
-  
-
-    
-
-    <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPfZaZdYeSF-MDe-ePLZNM3kADsmHCxOOvcw&usqp=CAU">
 
 
 
+<div class="container" *ngIf="product$ | async as product; else loading">
+    <mat-card class="post-card" ><br><br>
+        <img matCardImage style="width: 80%;" class="align-center" [src]="product.image" />
+        <div class="centrado"><b><i>Comprado</i></b></div>
+        <mat-card-content>
+   
 
-</mat-card><br><br>
+        </mat-card-content>
+   
+    </mat-card>
+    </div>
 
-</a>
+   
 
-<a routerLink="/selectTargeta" routerLinkActive= "active">
-<mat-card class="azul">
-
-
-
-    <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY4mM0E--RweClZ4v6uC98EZj4Tbm4oEmqrg&usqp=CAU"
-    >
-
-</mat-card>
-
-</a>
-</mat-card-content>
-</mat-card>
-</div>
-
+           <ng-template #loading>
+           
+            <mat-progress-bar mode="indeterminate" ></mat-progress-bar>
+        </ng-template>

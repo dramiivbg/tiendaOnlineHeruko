@@ -13,8 +13,11 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
   cliente_id:number;
+
+  public isLogged: boolean = false; 
+
   private loggedIn = new BehaviorSubject<boolean>(false);
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient,private authSvc: AuthService) { 
     this.checkToken();
   }
 
@@ -23,9 +26,9 @@ export class AuthService {
     "Content-Type": "application/json"
   });
 
-  get isLogged():Observable<boolean>{
-    return this.loggedIn.asObservable();
-  }
+//  get isLogged():Observable<boolean>{
+   // return this.loggedIn.asObservable();
+ // }
 
   //logiar usuario
 
@@ -135,5 +138,6 @@ export class AuthService {
     
 
   }
+
 
 }

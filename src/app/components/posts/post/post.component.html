@@ -1,6 +1,6 @@
 <div class="container" *ngIf="product$ | async as product">
     <mat-card class="post-card" >
-        <img matCardImage style="width: 30%;" class="align-center" [src]="product.image" />
+        <img matCardImage style="width: 40%;" class="align-center" [src]="product.image" />
         <mat-card-content>
        
         <p >
@@ -18,7 +18,7 @@
             </mat-form-field>
 
             <p>
-            <button  style="width: 30%;" mat-raised-button color="primary" (click)=" valorTotal()">agregar</button>
+            <button  style="width: 30%;" mat-raised-button color="primary" (click)=" valorTotal()">valor</button>
             </p>
 
        

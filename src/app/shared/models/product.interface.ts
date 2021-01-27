@@ -1,6 +1,5 @@
 export interface Product {
-     tienda_id:number;
-     cantidad: number;
+     ciudad_de_exportacion: string;
      tipo_producto:string;
      valor:number;
      id?: string;

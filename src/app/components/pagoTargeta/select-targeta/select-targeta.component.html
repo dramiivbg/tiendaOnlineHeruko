@@ -19,8 +19,7 @@
       
       <span class="fill-remaining-space"></span>
   
-      <span  class="material-icons"
-      matBadge="4" matBadgeOverlap="false" >
+      <span  class="material-icons">
         add_alert
         </span>
   
@@ -61,42 +60,63 @@
   
   </mat-sidenav-container>
 
-<br><br>
-<div class="container">
 
-<mat-card>
+
+
+
+<br><br>
+<div class="container"><br><br>
+
+ <mat-card class="post-card">
+    
 
 <mat-card-content>
 
 
-  <a routerLink="/selectEfectivo" routerLinkActive= "active" >
-<mat-card class="rojo">
 
+<div align="center">
+
+    <img style="width: 30%;" src="https://png.pngtree.com/element_our/png_detail/20181227/credit-card-glyph-black-icon-png_293807.jpg">
   
-
-    
-
-    <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPfZaZdYeSF-MDe-ePLZNM3kADsmHCxOOvcw&usqp=CAU">
-
-
-
-
-</mat-card><br><br>
-
-</a>
-
-<a routerLink="/selectTargeta" routerLinkActive= "active">
-<mat-card class="azul">
-
-
-
-    <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY4mM0E--RweClZ4v6uC98EZj4Tbm4oEmqrg&usqp=CAU"
-    >
-
-</mat-card>
-
-</a>
-</mat-card-content>
-</mat-card>
 </div>
 
+<mat-form-field class="example-full-width">
+   
+    <input matInput placeholder="nombre y apellido" value="">
+  </mat-form-field>&nbsp;
+    
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="tipo targeta: credito o debito">
+  </mat-form-field>&nbsp;
+    
+  <mat-form-field class="example-full-width">
+
+    <input matInput placeholder="fecha de vencimiento" value="">
+  </mat-form-field>&nbsp;
+    
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo de documento</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let food of foods" [value]="food.value">
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>&nbsp;
+    
+    
+  <mat-form-field class="example-full-width">
+
+    <input matInput placeholder="numero de documento" value="">
+
+  </mat-form-field>&nbsp;
+
+  <button mat-raised-button color="primary" routerLink="/">siguiente</button>
+
+
+</mat-card-content>
+
+ </mat-card>
+
+
+
+</div>

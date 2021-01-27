@@ -12,6 +12,11 @@
            <input matInput placeholder="valor" formControlName="valor">   
         </mat-form-field>
 
+        <mat-form-field>
+            <mat-label>cuidad de exportacion</mat-label>
+           <input matInput placeholder="cuidad de exportacion" formControlName="ciudad_de_exportacion">   
+        </mat-form-field>
+
 
         <div class="container-input-file">
             <label class="custom-file">
@@ -21,50 +26,9 @@
             </label>
         </div>
 
-        <label>New Tienda</label>
-        <mat-form-field>
-            <mat-label>nombre</mat-label>
-           <input matInput placeholder="nombre" formControlName="nombreTienda">   
-        </mat-form-field>
-
-
-        <mat-form-field>
-            <mat-label>direccion</mat-label>
-           <input matInput placeholder="direccion" formControlName="direccionTienda">   
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>cuidad</mat-label>
-           <input matInput placeholder="cuidad" formControlName="ciudadTienda">   
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label>barrio</mat-label>
-           <input matInput placeholder="barrio" formControlName="barrioTienda">   
-        </mat-form-field>
-
-
-  <!----      <mat-form-field appearance="fill">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          
-        -->  
-
-        <div class="container-input-file">
-            <label class="custom-file">
-                <input type="file" formControlName="imagenTienda" (change)="handleImage1
-                ($event)"/>
-                <mat-icon >cloud_upload</mat-icon><span>CHOOSE IMAGE</span>
-            </label>
-        </div>
-
-
-          
+                 
         <div class="container-button">
-            <input type="submit" class="mat-flat-button" value="Save">
+            <input type="submit" class="mat-flat-button" value="Save" (click)="create()">
         </div>
     </form>
 
