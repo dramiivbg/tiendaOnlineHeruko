@@ -33,13 +33,18 @@ rol:string = '';
   constructor(private authSvc: AuthService,private router: Router) { }
 
   ngOnInit(): void {
+
+   
   }
 
   crearUser(){
 
-    this.authSvc.registerUser(this.username,this.password,this.gmail,
-    this.direccion,this.pais,this.rol,this.cedula).subscribe (res => {
+   
 
+    this.authSvc.registerUser(this.cedula,this.username,this.password,this.gmail,
+    this.direccion,this.pais,this.rol).subscribe (res => {
+
+      
     try{  
       if(res){
 

@@ -76,7 +76,7 @@ export class AuthService {
 
 
 
-  registerUser( username: string, password: string, gmail: string, direccion: string,  pais: string, role: string,cedula:number){
+  registerUser(cedula:number, username: string, password: string, gmail: string, direccion: string,  pais: string, role: string){
  
 
     const url_api = "http://localhost:3000/users";
