@@ -1,77 +1,73 @@
-import { ThrowStmt } from '@angular/compiler';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { AfterViewInit, Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from '@app/components/auth/auth.service';
-import { StripeService } from '@app/servicioPago/stripe.service';
-
-
+import { StripeService, StripeCardComponent } from 'ngx-stripe';
+import {stripeService} from '../../../servicioPago/stripe.service';
+import {
+  StripeCardElementOptions,
+  StripeElementsOptions,
+} from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-select-targeta',
   templateUrl: './select-targeta.component.html',
   styleUrls: ['./select-targeta.component.scss']
 })
-export class SelectTargetaComponent implements AfterViewInit {
+export class SelectTargetaComponent implements OnInit {
+  @ViewChild(StripeCardComponent) card: StripeCardComponent;
 
-@ViewChild('cardInfo') cardInfo: ElementRef;
+  stripeTest: FormGroup;
 
-cardError: string;
-card:any;
-
-  constructor(private authSvc: AuthService,
-    private ngZone: NgZone, private stripeSvc: StripeService) { }
-
-
-  ngAfterViewInit(){
-
-    this.card = elements.create('card');
-    this.card.mount(this.cardInfo.nativeElement);
-    this.card.addEventListener('change', this.onChange.bind(this) );
-
-  }
-
-  onChange({ error }){
-
-
-    if (error){
-
-      this.ngZone.run(() =>   this.cardError = error.message);
-
-
-    
-      
-    }else{
-
-      this.ngZone.run(() =>  this.cardError = null);
-     
+  cardOptions: StripeCardElementOptions = {
+    style: {
+      base: {
+        iconColor: '#666EE8',
+        color: '#31325F',
+        fontWeight: '300',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSize: '18px',
+        '::placeholder': {
+          color: '#CFD7E0'
+        }
+      }
     }
-
-
-  }
-
-
- async onClick(){
-try {
+  };
  
-  const {token, error} =  await stripe.createToken(this.card);
-
- if(token){
-
-const response =  await this.stripeSvc.charge(100, token.id);
-  
-console.log(response);
- }else{
-
-  this.ngZone.run(() =>   this.cardError = error.message);
- }
-
-} catch (error) {
+  elementsOptions: StripeElementsOptions = {
+    locale: 'es'
+  };
  
-  console.log(error);
+
+ 
+
+  constructor(private fb: FormBuilder, private stripeService: StripeService,
+    private stripSvc: stripeService) { }
+
+
+  ngOnInit(): void{
+
+    this.stripeTest = this.fb.group({
+      name: ['', [Validators.required]]
+
+  });
+
 }
- 
 
-  }
-
-  
+createToken(): void {
+  const name = this.stripeTest.get('name').value;
+  this.stripeService
+    .createToken(this.card.element, { name })
+    .subscribe((result) => {
+      if (result.token) {
+       
+       this.stripSvc.charge(100, result.token.id);
+       
+        console.log('Token', result.token.id);
+        
+      } else if (result.error) {
+        console.log('error', result.error.message);
+    
+      }
+    });
+}
 
 }

@@ -1,26 +1,35 @@
+<div class="container ">
+  
+  <br>
+  <br>
 
-<div class="container"><br><br>
+  
 
- <
+  <div>
 
-  <div class="credit-card">
-
-    <div>
-
-      <div #cardInfo>
-        <div class="error" *ngIf="cardError">
-
-   {{  cardError}}
-
-        </div>
-      </div>
-      <button (click)="onClick()">Pagar</button>
-    </div>
-
+    <img src="https://static.vecteezy.com/system/resources/previews/000/886/974/non_2x/person-holding-credit-card-using-laptop-photo.jpg">
   </div>
+  &nbsp;
+  &nbsp;
+ 
+ <mat-card>
+  <form novalidate [formGroup]="stripeTest"  (ngSubmit)="createToken()" >
 
+   
+    <input type="text" formControlName="name" placeholder="Name" />
+    &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;  &nbsp;   &nbsp;
+    &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;
+ 
+    <ngx-stripe-card
+      [options]="cardOptions"
+      [elementsOptions]="elementsOptions"
+    ></ngx-stripe-card>
+    <button type="submit" mat-raised-button  color="primary">
+      Pagar
+    </button>
+  </form>
 
-
-
+</mat-card>
 
 </div>
+
