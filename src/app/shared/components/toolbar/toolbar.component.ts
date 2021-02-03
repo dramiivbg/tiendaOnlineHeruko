@@ -7,16 +7,36 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss']
+  styleUrls: ['./toolbar.component.scss'],
+  providers:[AuthService]
 })
 export class ToolbarComponent implements OnInit {
   public opened = false;
   public filterProduct = '';
   public  appName = 'ngOnline';
-
+  public isLogged = false; 
   constructor(private authSvc: AuthService) { }
 
-  ngOnInit(): void {
+ async ngOnInit() {
+
+try {
+  
+    const user = await  this.authSvc.getCurrentUser();
+
+    if(user){
+ 
+ 
+      this.isLogged = true;
+    
+     }else{
+    
+      this.isLogged = false;
+      console.log('deslogiado')
+     }
+
+  } catch (error) {
+    
+  }
 
 
   
@@ -24,9 +44,9 @@ export class ToolbarComponent implements OnInit {
   }
   
 
-  onlogout(): void{
+ async onlogout(){
 
-    this.authSvc.logout();
+   this.authSvc.logout();
 
 
 

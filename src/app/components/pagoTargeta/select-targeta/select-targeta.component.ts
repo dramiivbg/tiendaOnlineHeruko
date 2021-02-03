@@ -1,43 +1,77 @@
-import { Component, OnInit } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
+import { AfterViewInit, Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '@app/components/auth/auth.service';
+import { StripeService } from '@app/servicioPago/stripe.service';
 
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-select-targeta',
   templateUrl: './select-targeta.component.html',
   styleUrls: ['./select-targeta.component.scss']
 })
-export class SelectTargetaComponent implements OnInit {
-  public opened = false;
-  public filterProduct = '';
-  public  appName = 'ngOnline';
+export class SelectTargetaComponent implements AfterViewInit {
 
-  foods: Food[] = [
-    {value: 'cedula', viewValue: 'Cc'},
-    {value: 'targeta_identida', viewValue: 'Ti'},
+@ViewChild('cardInfo') cardInfo: ElementRef;
+
+cardError: string;
+card:any;
+
+  constructor(private authSvc: AuthService,
+    private ngZone: NgZone, private stripeSvc: StripeService) { }
+
+
+  ngAfterViewInit(){
+
+    this.card = elements.create('card');
+    this.card.mount(this.cardInfo.nativeElement);
+    this.card.addEventListener('change', this.onChange.bind(this) );
+
+  }
+
+  onChange({ error }){
+
+
+    if (error){
+
+      this.ngZone.run(() =>   this.cardError = error.message);
+
+
+    
+      
+    }else{
+
+      this.ngZone.run(() =>  this.cardError = null);
+     
+    }
+
+
+  }
+
+
+ async onClick(){
+try {
+ 
+  const {token, error} =  await stripe.createToken(this.card);
+
+ if(token){
+
+const response =  await this.stripeSvc.charge(100, token.id);
   
-  ];
-  constructor(private authSvc: AuthService) { }
+console.log(response);
+ }else{
 
+  this.ngZone.run(() =>   this.cardError = error.message);
+ }
 
-
-  ngOnInit(): void {
-  }
-
-
-  onlogout(): void{
-
-    this.authSvc.logout();
-
-
-
-
+} catch (error) {
+ 
+  console.log(error);
+}
+ 
 
   }
+
+  
 
 }

@@ -34,7 +34,7 @@
       </span>
 
     
-    <button  mat-button [matMenuTriggerFor]="menu"><span class="material-icons">
+    <button *ngIf="isLogged"  mat-button [matMenuTriggerFor]="menu"><span class="material-icons">
       account_circle
       </span></button>
 <mat-menu #menu="matMenu">

@@ -3,152 +3,71 @@ import { BehaviorSubject, from, Observable, throwError } from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { User, UserResponse } from '@app/shared/models/user.interface';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, first, map } from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {AngularFireAuth} from '@angular/fire/auth';
 
+import * as firebase from 'firebase/app';
+import { promise } from 'protractor';
 
 const helper = new JwtHelperService();
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  cliente_id:number;
-  public value: boolean = false;
-
-  private loggedIn = new BehaviorSubject<boolean>(false);
-  constructor(private http: HttpClient) { 
-    this.checkToken();
+ 
+ 
+  constructor(private auth: AngularFireAuth) { 
+    
   }
 
-  header: HttpHeaders = new HttpHeaders({
+ async register(email: string, password: string){
 
-    "Content-Type": "application/json"
-  });
+  try {
 
-  get isLogged():Observable<boolean>{
-   return this.loggedIn.asObservable();
- }
-
-  //logiar usuario
-
-  login(authData:User):Observable<UserResponse | void>{
-
-    return this.http.post<UserResponse>(`${environment.API_URL}/auth/login`,
-     authData).pipe(
-       map((res:UserResponse) =>{
-        this.saveToken(res.token);
-        this.loggedIn.next(true);
-        return res;
+    const {user}  =  await  this.auth.createUserWithEmailAndPassword(email,password);
 
 
-}),
-
-       catchError( (err) => this.handlerError(err))
-     );   
+   return user;
+    
+  } catch (error) {
+    
+    console.log(error);
   }
-
-  setUser(user: User){
-
-    let user_string = JSON.stringify(user);
-    localStorage.setItem("currentUser", user_string);
-
-  }
-
-  getToken(){
-
-    return localStorage.getItem("token");
-  }
+  
 
 
-  getCurrentUser():User{
 
-    let user_string = localStorage.getItem("currentUser");
-    if(!(user_string === null || user_string === undefined)){
-
-      let user: User = JSON.parse(user_string);
-      return user;
-}else{
-
-  return null;
 }
 
+
+login(email: string, password: string){
+
+
+  return this.auth.signInWithEmailAndPassword(email,password);
+
+}
+
+
+async logout(){
+
+  try{
+ await this.auth.signOut();
+  }catch(error){
+
+    console.log(error);
   }
 
+}
 
 
-  registerUser(cedula:number, username: string, password: string, gmail: string, direccion: string,  pais: string, role: string){
- 
+getCurrentUser(){
 
-    const url_api = "http://localhost:3000/users";
- 
-     return this.http.post<User>(url_api,{
-      cedula,
-       username,
-       password,
-       gmail
-       ,direccion
-       ,pais
-       ,role,
-       },{
-         headers: this.header
-       }).pipe(map(data => data));
+  return this.auth.authState.pipe(first()).toPromise();
 
-      }
+}
 
-  logout():void{
-    localStorage.removeItem('token');
-    localStorage.removeItem('currentUser');
-    this.loggedIn.next(false);
-  
-  }
-  public checkToken():boolean{
-    const userToken = localStorage.getItem('token');
-    const isExpired = helper.isTokenExpired(userToken);
-    console.log('isExpired->', isExpired);
-    if(isExpired == false)
-    {
-      this.value = true;
-      
-    }
-    else{
-      this.value  = false;
-    }
 
-   
-
-    isExpired ? this.logout() : this.loggedIn.next(true);
-    return this.value;
-   
-    // if(isExpired){
-    //   this.logout();
-    // }else{
-
-    //  this.loggedIn.next(true);
-    // }
-    //set userisLogged = isExpired
-  }
-  private saveToken(token: string):void{
-    localStorage.setItem('token',token);
-  }
-  
-  
-  private handlerError(err):Observable<never>{
-
-    let errorMessage = 'An error occured restrienving data';
-    if(err){
-
-      errorMessage = `Error: code ${err.message}`;
-
-    }
-
-    window.alert(errorMessage);
-
-    return throwError(errorMessage);
-    
-    
-    
-
-  }
 
 
 }

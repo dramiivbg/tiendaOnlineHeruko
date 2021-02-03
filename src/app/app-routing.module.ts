@@ -28,24 +28,21 @@ const routes: Routes = [
 
     path:'', redirectTo:'home',
     pathMatch: 'full' 
-  }
-  ]
-},
-
-
+  },
 
  { path: 'admin', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule) },
   
  { path: 'login', loadChildren: () => import('./components/auth/login/login.module').then(m => m.LoginModule) },
   { path: 'crearUser', loadChildren: () => import('./components/auth/crear-user/crear-user.module').then(m => m.CrearUserModule) },
  
-  { path: 'medio_pago', loadChildren: () => import('./components/medio-pago/medio-pago.module').then(m => m.MedioPagoModule) },
-  { path: 'selectEfectivo', loadChildren: () => import('./components/pagoEfectivo/select-efectivo/select-efectivo.module').then(m => m.SelectEfectivoModule) },
-  { path: 'selectTargeta', loadChildren: () => import('./components/pagoTargeta/select-targeta/select-targeta.module').then(m => m.SelectTargetaModule) },
-  { path: 'comprar_efecty/:id', loadChildren: () => import('./components/pagoEfectivo/comprar-efecty/comprar-efecty.module').then(m => m.ComprarEfectyModule) },
-  { path: 'comprar_contraentrega/:id', loadChildren: () => import('./components/pagoEfectivo/comprar-contraentrega/comprar-contraentrega.module').then(m => m.ComprarContraentregaModule) },
+  
   { path: 'change-password', loadChildren: () => import('./components/auth/change-password/change-password.module').then(m => m.ChangePasswordModule) },
   
+  {path: 'pago', loadChildren: () => import('./components/pagoTargeta/select-targeta/select-targeta.module').then(m => m.SelectTargetaModule)}
+  ]
+},
+
+
 
  
 

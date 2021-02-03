@@ -12,11 +12,7 @@ import { AuthService } from '@app/components/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  public cantidad = 0;
-  public producto: Product;
-  public products$ : Observable<Product[]>;
-  public isLogged:boolean ;
-  
+  products$: Observable<Product[]>;
 
   constructor(private postSvc: ProductService, private authCrud: AuthCrudService,
     private authSvc: AuthService
@@ -30,27 +26,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
    this.postSvc.getAllPosts().subscribe(res => console.log('POSTS',res));
-  
-   this.oncheckUser();
+
 
    }
 
-
-   oncheckUser(): void{
-
-    this.authSvc.isLogged.subscribe(res =>{
-   
-   
-     if(res){
-   
-       this.isLogged = true;
-     }
-     else{
-   
-       this.isLogged = false;
-     }
-   });
-   }
 
   
 

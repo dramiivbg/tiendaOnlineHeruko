@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
 import {AuthService} from '@auth/auth.service';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import { ThrowStmt } from '@angular/compiler';
 import { Router } from '@angular/router';
+import { Validator } from 'class-validator';
 
 @Component({
   selector: 'app-login',
@@ -13,34 +14,39 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   hide = true;
-  loginForm = this.fb.group({
-
-  username:[''],
-  password:[''],
 
 
-})
-  constructor(private authSvc: AuthService, private fb:FormBuilder, private router: Router) { }
+
+
+ 
+ 
+
+  constructor(private authSvc: AuthService,private router: Router) { }
+
+
 
   ngOnInit(): void {
 
-  
     
+  
 
   
   }
 
-  onLogin():void{
 
-    const formValue =  this.loginForm.value;
-    this.authSvc.login(formValue).subscribe(res => {
+  onLogin(emial,password){
 
-      if(res){
-        this.router.navigate(['/home']);
-      }
-    })
+
+this.authSvc.login(emial.value, password.value).then(res =>{
+
+  if(res){
+
+    console.log(res);
+    this.router.navigate(['/home']);
     
-
   }
+})
+
+}
 
 }

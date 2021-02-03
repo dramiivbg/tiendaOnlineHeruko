@@ -12,15 +12,10 @@ export class GuardGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> |  boolean {
-   const cokie = this.authSvc.checkToken(); 
-    if(cokie){
-
-      return cokie;
-    }else{
-
-      this.router.navigate(['/login'])
-    }
+   
  
+
+    return 
   }
   
 }
