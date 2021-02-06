@@ -11,13 +11,14 @@ import { promise } from 'protractor';
 export class AuthCrudService {
 
   users: Observable<User[]>;
+  public user: User
 
 private usersCollection: AngularFirestoreCollection<User>;
 
   constructor(private afs: AngularFirestore){
 
 
-    this.usersCollection = afs.collection<User>('users');
+    this.usersCollection = afs.collection('users');
     this.getUsers();
 
 
@@ -42,26 +43,38 @@ private usersCollection: AngularFirestoreCollection<User>;
   }
 
 
-  onSaveUser(user:User, userId: string): Promise<void>{
+  onSaveUser(gmail: string,cedula:number,direccion: string,pais: string,rol:string, userId: string) /*: Promise<void>*/{
 
     
-    return new Promise( async (resolve, reject) => {
 
-      try {
+     
+
+  var user = {
+
+    gmail : gmail,
+    cedula :  cedula,
+    direccion : direccion,
+    pais :  pais,
+    role :  rol,
+  }
+    
+  
+
+
+
+
+     
         
-   const id = userId || this.afs.createId();
+ 
+     this.usersCollection.doc(userId).set(
+      user
+     );
 
-   const data = {id, ...user};
-   const result = this.usersCollection.doc(id).set(data);
-   resolve(result);
 
-      } catch (error) {
+     
+    
 
-        reject(error.message);
-        
-        
-      }
-    })
+    
 
   }
 

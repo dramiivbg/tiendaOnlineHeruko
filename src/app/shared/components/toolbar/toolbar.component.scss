@@ -84,3 +84,7 @@ mat-sidenav{
 
 
   
+.mat-badge-medium.mat-badge-overlap.mat-badge-after.first .mat-badge-content { /* Using first inside the multiple class selector */
+  right: 15px;
+  background-color: black;
+}

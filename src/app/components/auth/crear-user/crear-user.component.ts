@@ -55,7 +55,9 @@ try {
  if(user){
  
 
+  Swal.fire('user created successfully');
    this.router.navigate(['/login']);
+
 
    this.onsave(user.uid);
    
@@ -79,19 +81,13 @@ try {
  try {
   
 
-  var  user: User;
-  user.cedula = this.cedula;
-  user.gmail = this.gmail;
-  user.pais = this.pais;
-  user.role = this.rol;
-  user.direccion = this.direccion;
+ 
+ this.authCrud.onSaveUser(this.gmail, this.cedula,this.direccion,this.pais,this.rol,id);
 
-  console.log(user.cedula);
- this.authCrud.onSaveUser(user,id);
 
 } catch (error) {
   
-  console.log(error);
+  console.log(error.message);
 }
   
 

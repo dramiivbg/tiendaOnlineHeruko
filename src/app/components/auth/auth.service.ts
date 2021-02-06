@@ -1,14 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, from, Observable, throwError } from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { User, UserResponse } from '@app/shared/models/user.interface';
 import { catchError, first, map } from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {AngularFireAuth} from '@angular/fire/auth';
-
-import * as firebase from 'firebase/app';
-import { promise } from 'protractor';
 
 const helper = new JwtHelperService();
 @Injectable({
@@ -66,6 +59,18 @@ getCurrentUser(){
   return this.auth.authState.pipe(first()).toPromise();
 
 }
+
+async resetPassword(email: string):Promise<void>{
+
+  try {
+    
+    return this.auth.sendPasswordResetEmail(email);
+  } catch (error) {
+
+    console.log(error.message);
+    
+  }
+} 
 
 
 

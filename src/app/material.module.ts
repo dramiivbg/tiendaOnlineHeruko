@@ -40,7 +40,8 @@ const myModule =[
   MatDialogModule,
   MatSelectModule,
   MatDatepickerModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+
 
 
 ];
