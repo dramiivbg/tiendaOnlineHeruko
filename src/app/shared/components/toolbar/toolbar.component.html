@@ -27,16 +27,27 @@
     <input type="text" class="form control" placeholder="search..." >
     </div>
 
-    <div matBadge="0" class="first"></div>
-    <div matBadge="1" class="second"></div>
+  
     
     
   
     <span class="fill-remaining-space"></span>
 
-    <span  class="material-icons">
-      add_alert
+
+    <span class="material-icons" (click)="onNewcarrito()" >
+      shopping_cart
       </span>
+
+   &nbsp;
+   &nbsp;
+   &nbsp;
+   &nbsp;
+   &nbsp;
+   &nbsp;
+   &nbsp;
+   &nbsp;
+
+
 
     
     <button *ngIf="isLogged"  mat-button [matMenuTriggerFor]="menu"><span class="material-icons">

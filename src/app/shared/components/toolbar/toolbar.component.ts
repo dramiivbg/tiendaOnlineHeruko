@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@app/components/auth/auth.service';
 import {MatTableDataSource} from '@angular/material/table';
-
+import {ModalCarritoComponent} from '../modal-carrito/modal-carrito.component';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-toolbar',
@@ -15,7 +16,7 @@ export class ToolbarComponent implements OnInit {
   public filterProduct = '';
   public  appName = 'ngOnline';
   public isLogged = false; 
-  constructor(private authSvc: AuthService) { }
+  constructor(private authSvc: AuthService,public dialog: MatDialog) { }
 
  async ngOnInit() {
 
@@ -55,6 +56,23 @@ try {
   }
 
 
+  onNewcarrito(){
+
+  this.onpenDialog();
+
+
+  }
+
+
+
+  onpenDialog(): void{
+
+    const dialogRef= this.dialog.open(ModalCarritoComponent);
+    dialogRef.afterClosed().subscribe(result => {
+  
+      console.log(`Dialog result ${result}`);
+    })
+  }
 
 
 

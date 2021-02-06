@@ -32,6 +32,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AuthCrudService} from '../app/shared/services/authCrud.service';
+import { ModalCarritoComponent } from './shared/components/modal-carrito/modal-carrito.component';
+import { NewCarritoComponent } from './components/posts/new-carrito/new-carrito.component';
+import { NewCarritoModule } from './components/posts/new-carrito/new-carrito.module';
 
 
 
@@ -48,6 +51,8 @@ import {AuthCrudService} from '../app/shared/services/authCrud.service';
     NewPostComponent,
     ContainerAppComponent,
     ModalComponent,
+    ModalCarritoComponent,
+    NewCarritoComponent,
       
   
       
@@ -64,6 +69,7 @@ import {AuthCrudService} from '../app/shared/services/authCrud.service';
     FormsModule, 
     ReactiveFormsModule,
     HttpClientModule,
+    NewCarritoModule,
  
    
     
