@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Pedido } from '@app/shared/models/pedido';
+import { CarritoService } from '@app/shared/services/carrito.service';
 
 @Component({
   selector: 'app-new-carrito',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewCarritoComponent implements OnInit {
 
-  constructor() { }
+ public pedido: Pedido;
+
+  
+
+  constructor(public carritoSvc: CarritoService) {
+
+    this.loadPedido();
+   }
 
   ngOnInit(): void {
   }
+
+  loadPedido(){
+
+
+  this.pedido =   this.carritoSvc.getCarrito();
+
+  
+
+}
 
 }

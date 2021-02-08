@@ -1,4 +1,10 @@
-<div class="new-carrito-container">
+<div class="new-carrito-container" *ngFor="let producto of  pedido.productos">
+
+
+
+    <app-item-carrito [productoPedido]="producto"></app-item-carrito>
+
+  
 
   
 

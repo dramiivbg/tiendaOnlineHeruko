@@ -4,8 +4,18 @@
     <mat-card class="post-card" *ngFor="let product of products ">
         <mat-card-header>
             
-            
+            {{product.tipo_producto}}
+
+       <div class="circulo">
+        <ion-icon color="primary" name="cart" (click)="addCarrito(product)"></ion-icon>
+       </div>
+       
+       
+             
+          
         </mat-card-header >
+        &nbsp;
+        &nbsp;
         <img   matCardImage [routerLink]="['/post', product.id]"  [src]="product.image" />
         <mat-card-content>
          <p>
@@ -17,6 +27,15 @@
     
             {{ product.valor }}
          </p>
+
+
+         <button type="submit" mat-raised-button 
+         color="primary">comprar</button>
+         &nbsp;
+         &nbsp;
+
+       
+        
 
 
 

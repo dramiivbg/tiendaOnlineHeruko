@@ -35,6 +35,7 @@ import {AuthCrudService} from '../app/shared/services/authCrud.service';
 import { ModalCarritoComponent } from './shared/components/modal-carrito/modal-carrito.component';
 import { NewCarritoComponent } from './components/posts/new-carrito/new-carrito.component';
 import { NewCarritoModule } from './components/posts/new-carrito/new-carrito.module';
+import { ItemCarritoComponent } from './components/item-carrito/item-carrito.component';
 
 
 
@@ -53,6 +54,7 @@ import { NewCarritoModule } from './components/posts/new-carrito/new-carrito.mod
     ModalComponent,
     ModalCarritoComponent,
     NewCarritoComponent,
+    ItemCarritoComponent,
       
   
       

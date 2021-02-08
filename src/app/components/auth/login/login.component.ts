@@ -5,7 +5,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import { ThrowStmt } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { Validator } from 'class-validator';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -42,8 +42,12 @@ this.authSvc.login(emial.value, password.value).then(res =>{
   if(res){
 
     console.log(res);
+    Swal.fire('login successfully');
     this.router.navigate(['/home']);
     
+  }else{
+
+    Swal.fire('user and password incorrect');
   }
 })
 

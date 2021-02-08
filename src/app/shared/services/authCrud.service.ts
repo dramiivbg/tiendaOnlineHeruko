@@ -5,6 +5,8 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import { CdkNoDataRow } from '@angular/cdk/table';
 import { Observable } from 'rxjs';
 import { promise } from 'protractor';
+import { Pedido } from '../models/pedido';
+import { Product } from '../models/product.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,11 +16,13 @@ export class AuthCrudService {
   public user: User
 
 private usersCollection: AngularFirestoreCollection<User>;
+private docCollection: AngularFirestoreCollection<Product>;
 
-  constructor(private afs: AngularFirestore){
+  constructor(private afs: AngularFirestore ){
 
 
-    this.usersCollection = afs.collection('users');
+    this.usersCollection = afs.collection<User>('users');
+  
     this.getUsers();
 
 
@@ -66,7 +70,7 @@ private usersCollection: AngularFirestoreCollection<User>;
      
         
  
-     this.usersCollection.doc(userId).set(
+     this.usersCollection.doc<User>(userId).set(
       user
      );
 
@@ -78,6 +82,9 @@ private usersCollection: AngularFirestoreCollection<User>;
 
   }
 
+
+
+
  
 private getUsers(){
 
@@ -88,8 +95,42 @@ private getUsers(){
 
 
 }
+
+ getDoc<tipo>(path: string, uid: string){
+
+  return this.afs.doc<tipo>(`${path}/${uid}`).valueChanges();
+
+}
+
+createDoc(data: Pedido, path: string, id: string){
+
+  const collection = this.afs.collection<Pedido>(path).doc(id).set( data);
+
+  return collection;
+
+}
+
+
+deleteDoc(path: string, id:string){
+
+  const collection = this.afs.collection(path).doc(id).delete();
+
+
+  return collection;
+
+}
         
- 
+updateDoc(data:any, path: string, id: string){
+
+  const collection = this.afs.collection(path).doc(id).update(data);
+
+
+  return collection;
+
+}
+
+
+
   
 
 }

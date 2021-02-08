@@ -1,0 +1,16 @@
+$rowHeight: 40px;
+.flexp {
+
+
+
+    column-count: 2;
+max-height: calc(5 * #{$rowHeight});
+
+
+span{
+
+    cursor: pointer;
+    width: 20%;
+}
+    }
+
