@@ -7,6 +7,7 @@ import { AuthService } from '@app/components/auth/auth.service';
 import { CarritoService } from '@app/shared/services/carrito.service';
 import { ProductoPedido } from '@app/shared/models/pedido';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,27 +15,73 @@ import { ProductoPedido } from '@app/shared/models/pedido';
 })
 export class HomeComponent implements OnInit {
 
+  uid?:string;
 
+  contador:number = 0;
 
   products$: Observable<Product[]>;
 
+
+  vector:string[];
+
+private uids:string[];
+
   constructor(private postSvc: ProductService, private authCrud: AuthCrudService,
-    private carritoSvc: CarritoService
+    private carritoSvc: CarritoService,
+    private authSvc: AuthService,
+
       ) { 
-    this.products$ = this.postSvc.getAllPosts()
-   
-  }
+
+
+            
+        this.products$ = this.postSvc.getAllPosts();
+
+
+
+        
+
+       
+
+
+
+
+            
+    
+}
+  
 
   
 
   ngOnInit(): void {
 
-   this.postSvc.getAllPosts().subscribe(res => console.log('POSTS',res));
 
 
 
-   }
+    this.postSvc.getAllPosts().subscribe(res => console.log('POSTS',res));
 
+
+      
+
+         
+
+
+        
+
+        
+  
+
+
+       
+        
+ 
+
+    
+
+
+
+
+   
+  }
 
    addCarrito(product: Product){
 

@@ -3,7 +3,7 @@ export interface Product {
      tipo_producto:string;
      valor:number;
      id?: string;
-     imagen?: any;
+     image?: any;
 
 
 }

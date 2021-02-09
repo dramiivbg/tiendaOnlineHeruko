@@ -14,7 +14,8 @@ export class CarritoService {
 
   pedido: Pedido;
 
- public cliente;User;
+ public cliente;
+ User;
 
 path = 'carrito';
 uid = '';
@@ -65,7 +66,7 @@ const path = 'users';
     fecha: new Date(),
     valoracion: null,
 }
-this.loadCarrito();
+// this.loadCarrito();
 
 
  })
@@ -73,9 +74,12 @@ this.loadCarrito();
 
 }
 
+
+/*
+
   loadCarrito(){
 
-    const path = 'users/' +this.uid +'/'+this.path;
+    const path = 'vendedores/' +this.uid +'/'+this.path;
     this.firestore.getDoc<Pedido>(path, this.uid).subscribe(res => {
 
       console.log(res);
@@ -91,6 +95,8 @@ this.loadCarrito();
 
 
   }
+
+  */
 
   getCarrito(){
 

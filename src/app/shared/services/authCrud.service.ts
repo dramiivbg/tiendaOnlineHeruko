@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { promise } from 'protractor';
 import { Pedido } from '../models/pedido';
 import { Product } from '../models/product.interface';
+import { Vendedor } from '../models/vendedor';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,12 +17,15 @@ export class AuthCrudService {
   public user: User
 
 private usersCollection: AngularFirestoreCollection<User>;
+private vendedorCollection: AngularFirestoreCollection<Vendedor>;
 private docCollection: AngularFirestoreCollection<Product>;
 
   constructor(private afs: AngularFirestore ){
 
 
     this.usersCollection = afs.collection<User>('users');
+
+    this.vendedorCollection = afs.collection<Vendedor>('vendedores');
   
     this.getUsers();
 
@@ -82,6 +86,45 @@ private docCollection: AngularFirestoreCollection<Product>;
 
   }
 
+
+  onSaveVendedor(gmail: string,cedula:number,direccion: string,pais: string,rol:string, userId: string) /*: Promise<void>*/{
+
+    
+
+     
+
+    var vendedor = {
+  
+      gmail : gmail,
+      cedula :  cedula,
+      direccion : direccion,
+      pais :  pais,
+      role :  rol,
+    }
+      
+    
+  
+  
+  
+  
+       
+          
+   
+       this.vendedorCollection.doc<Vendedor>(userId).set(
+        vendedor
+        
+       );
+  
+  
+       
+      
+  
+      
+  
+    }
+  
+  
+  
 
 
 

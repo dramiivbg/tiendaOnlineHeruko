@@ -3,6 +3,7 @@ import {FormGroup,FormControl,Validators} from '@angular/forms';
 import {Product} from '../../../shared/models/product.interface';
 import { ProductService} from '../product.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '@app/components/auth/auth.service';
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
@@ -12,7 +13,12 @@ export class NewPostComponent implements OnInit {
   private image:any;
   private product:any;
 
-  constructor(private productSvc: ProductService){
+  uid = '';
+
+  producto: Product;
+
+  constructor(private productSvc: ProductService,  private authSvc: AuthService){
+
   }
   
   public newPostForm = new FormGroup({
@@ -29,8 +35,35 @@ export class NewPostComponent implements OnInit {
 
   addNewPost(data: Product){
 
-   console.log('New post',data);
-   this.product =  console.log(this.productSvc.preAddAndUpdate(data, this.image));
+
+    this.authSvc.getCurrentUser().then( res => {
+
+
+
+      if(res !== null){
+     
+        this.uid = res.uid;
+
+
+        console.log('New post',data);
+        const path =  `vendedores/${this.uid}/producto`;
+         this.product =  console.log(this.productSvc.preAddAndUpdate(data, this.image,path));
+      
+     
+       
+     
+      }
+      
+      })
+
+
+
+  
+
+  
+
+
+ 
   }
 
   handleImage(event:any): void{

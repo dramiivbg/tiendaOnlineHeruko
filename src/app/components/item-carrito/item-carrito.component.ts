@@ -17,4 +17,15 @@ export class ItemCarritoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+addCantidad(){
+
+
+}
+
+resCantidad(){
+
+  
+}
+
 }

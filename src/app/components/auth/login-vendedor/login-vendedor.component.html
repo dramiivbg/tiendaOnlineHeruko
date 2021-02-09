@@ -1,0 +1,60 @@
+<mat-card>
+  
+    <mat-card-title>Login</mat-card-title>
+  
+
+
+        <mat-form-field>
+
+            <input type="email" 
+          #email matInput placeholder="Username" 
+            required />
+
+
+        </mat-form-field>
+
+  
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your password</mat-label>
+            <input #password  matInput [type]="hide ? 'password' : 'text'"   placeholder="Password" 
+            required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </p>
+
+    <button type="submit" mat-raised-button (click)="onLogin(email,password)"
+    color="primary">Login</button>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <a routerLink="/crearUser">
+        create user
+    </a>&nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+
+    <a routerLink="/change-password">
+        change Password
+    </a>
+ 
+
+
+
+</mat-card>
+

@@ -5,12 +5,15 @@ import {finalize, map} from 'rxjs/operators';
 import {Product} from './../../shared/models/product.interface';
 import { FileI } from 'src/app/shared/models/file.interface';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
+
+ private id: string; 
  private postCollection: AngularFirestoreCollection<Product>;
   private filePath: any;
   private downloadURL: Observable<string>;
@@ -18,11 +21,18 @@ export class ProductService {
   constructor(private afs: AngularFirestore,
   private storage: AngularFireStorage, 
 
+
     
     ) { 
-    this.postCollection = afs.collection<Product>('1');
 
-  }
+      this.postCollection = afs.collection<Product>('productos');
+    
+  
+
+
+    }
+
+
 
   public getAllPosts():Observable<Product[]>{
     return this.postCollection
@@ -38,12 +48,28 @@ export class ProductService {
     );
 
   }
+  
+
+  public getAllPostsVendedor(path: string):Observable<Product[]>{
+    return this.afs.collection(path)
+    .snapshotChanges()
+    .pipe(
+      map(actions =>
+        actions.map(a => {
+          const data = a.payload.doc.data() as Product;
+          const id = a.payload.doc.id;
+           return { id, ...data };
+        })
+      )
+    );
+
+  }
 
 
-  public getOnePost(id: Product):Observable<Product>{
+  public getOnePost(id:string):Observable<Product>{
 
     
-    return this.afs.doc<Product>(`1/${id}`).valueChanges();
+    return this.afs.doc<Product>(id).valueChanges();
 
       
      
@@ -59,13 +85,14 @@ export class ProductService {
     return this.postCollection.doc(post.id).update(post);
   }
 
-  public preAddAndUpdate(product: Product, image:FileI){
+  public preAddAndUpdate(product: Product, image:FileI , path: string){
 
-    this.uploadImage(product,image);
+    this.uploadImage(product,image,path);
   }
 
-  private saveProduct(product: Product){
+  private saveProduct(product: Product,path: string){
 
+   this.id = this.afs.createId();
     const producObj = {
 
       ciudad_de_exportacion: product.ciudad_de_exportacion,
@@ -75,11 +102,19 @@ export class ProductService {
 
     }
 
-    this.postCollection.add(producObj);
+    this.afs.collection<Product>(path).doc(this.id).set( 
+
+      producObj
+    )
+
+    this.postCollection.doc(this.id).set(
+
+      producObj
+    )
 
   }
 
- private  uploadImage(product:Product,image:FileI){
+ private  uploadImage(product:Product,image:FileI,path:string){
   this.filePath = `images/${image.name}`;
    const fileRef = this.storage.ref(this.filePath);
    const task = this.storage.upload(this.filePath, image);
@@ -88,7 +123,7 @@ export class ProductService {
      finalize(() =>{
        fileRef.getDownloadURL().subscribe( urlImage => {
        this.downloadURL = urlImage;
-       this.saveProduct(product);
+       this.saveProduct(product,path);
 
        //call addPost()
 

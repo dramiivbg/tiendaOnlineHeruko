@@ -36,6 +36,7 @@ import { ModalCarritoComponent } from './shared/components/modal-carrito/modal-c
 import { NewCarritoComponent } from './components/posts/new-carrito/new-carrito.component';
 import { NewCarritoModule } from './components/posts/new-carrito/new-carrito.module';
 import { ItemCarritoComponent } from './components/item-carrito/item-carrito.component';
+import { PuenteComponent } from './shared/components/puente/puente.component';
 
 
 
@@ -55,6 +56,7 @@ import { ItemCarritoComponent } from './components/item-carrito/item-carrito.com
     ModalCarritoComponent,
     NewCarritoComponent,
     ItemCarritoComponent,
+    PuenteComponent,
       
   
       

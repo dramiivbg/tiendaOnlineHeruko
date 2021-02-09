@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError, first, map } from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {AngularFireAuth} from '@angular/fire/auth';
-
+import Swal from 'sweetalert2';
 const helper = new JwtHelperService();
 @Injectable({
   providedIn: 'root'
@@ -36,10 +36,19 @@ export class AuthService {
 
 login(email: string, password: string){
 
+  try {
 
   return this.auth.signInWithEmailAndPassword(email,password);
 
+} catch (error) {
+  
+
+
+  Swal.fire(error.message);
 }
+
+}
+
 
 
 async logout(){

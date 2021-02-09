@@ -8,6 +8,7 @@ import {ProductService} from '../../../components/posts/product.service';
 import Swal from 'sweetalert2';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalComponent} from './../modal/modal.component';
+import { AuthService } from '@app/components/auth/auth.service';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -17,15 +18,48 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['tipo_producto', 'valor','actions'];
   dataSource = new MatTableDataSource<Product>();
+
+
+ public uid = '';
  
   @ViewChild(MatPaginator,{static: true})paginator: MatPaginator;
   @ViewChild(MatSort,{static:true})sort: MatSort;
-  constructor(private productSvc: ProductService, public dialog: MatDialog){}
+  constructor(private productSvc: ProductService, public dialog: MatDialog,
+    private authSvc: AuthService){
+
+
+  
+  
+  }
 
   ngOnInit(): void {
+  
+    this.authSvc.getCurrentUser().then( res => {
 
-   this.productSvc.getAllPosts()
-   .subscribe(posts => (this.dataSource.data = posts));
+
+
+      if(res !== null){
+     
+        this.uid = res.uid;
+
+        const path = `vendedores/${this.uid}/producto`;
+  
+        console.log(this.uid);
+    
+       this.productSvc.getAllPostsVendedor(path)
+       .subscribe(posts => (this.dataSource.data = posts));
+      
+  
+     
+       
+     
+      }
+      
+      })
+
+
+
+
   }
 
   ngAfterViewInit(){
