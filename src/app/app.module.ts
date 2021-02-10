@@ -37,6 +37,8 @@ import { NewCarritoComponent } from './components/posts/new-carrito/new-carrito.
 import { NewCarritoModule } from './components/posts/new-carrito/new-carrito.module';
 import { ItemCarritoComponent } from './components/item-carrito/item-carrito.component';
 import { PuenteComponent } from './shared/components/puente/puente.component';
+import { ToolbarLoginComponent } from './shared/components/toolbar-login/toolbar-login.component';
+import { ContainerLoginsComponent } from './components/pages/container-logins/container-logins.component';
 
 
 
@@ -57,6 +59,8 @@ import { PuenteComponent } from './shared/components/puente/puente.component';
     NewCarritoComponent,
     ItemCarritoComponent,
     PuenteComponent,
+    ToolbarLoginComponent,
+    ContainerLoginsComponent,
       
   
       

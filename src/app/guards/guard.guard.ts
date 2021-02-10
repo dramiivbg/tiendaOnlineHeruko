@@ -1,21 +1,27 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Router } from '@angular/router';
+import { User } from '@app/shared/models/user.interface';
+import { Vendedor } from '@app/shared/models/vendedor';
+import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { from, Observable } from 'rxjs';
 import {AuthService} from '../components/auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
 export class GuardGuard implements CanActivate {
-  constructor(private authSvc: AuthService,private router: Router){}
+
+  public active: boolean = false;
+  constructor(){}
   
-  canActivate(
+    canActivate(
     route: ActivatedRouteSnapshot,
    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> |  boolean {
-   
+
+ 
  
 
-    return 
-  }
-  
+  return 
+ 
+         }
 }

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PuenteComponent } from './puente.component';
+import { ContainerLoginsComponent } from './container-logins.component';
 
-describe('PuenteComponent', () => {
-  let component: PuenteComponent;
-  let fixture: ComponentFixture<PuenteComponent>;
+describe('ContainerLoginsComponent', () => {
+  let component: ContainerLoginsComponent;
+  let fixture: ComponentFixture<ContainerLoginsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PuenteComponent ]
+      declarations: [ ContainerLoginsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PuenteComponent);
+    fixture = TestBed.createComponent(ContainerLoginsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

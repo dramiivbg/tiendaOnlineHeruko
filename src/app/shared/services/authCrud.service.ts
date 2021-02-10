@@ -23,7 +23,7 @@ private docCollection: AngularFirestoreCollection<Product>;
   constructor(private afs: AngularFirestore ){
 
 
-    this.usersCollection = afs.collection<User>('users');
+    this.usersCollection = afs.collection<User>('clientes');
 
     this.vendedorCollection = afs.collection<Vendedor>('vendedores');
   

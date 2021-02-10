@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { GuardGuard } from '@app/guards/guard.guard';
 
 import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
   { path: '', component: AdminComponent,  
+
  children:[
 {
 

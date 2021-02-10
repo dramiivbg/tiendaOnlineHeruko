@@ -20,7 +20,7 @@ interface Rol {
 
 
 export class CrearUserComponent implements OnInit {
-
+  public  appName = 'ngOnline';
  public gmail: string = '';
  public  password: string = '';
  public direccion: string = '';

@@ -23,6 +23,8 @@ export class CrearVendedorComponent implements OnInit {
   public  cedula:number = 0;
   public  pais: string = '';
   public  rol: string = '';
+
+  public  appName = 'ngOnline';
  
  
    roles: Rol[] = [
