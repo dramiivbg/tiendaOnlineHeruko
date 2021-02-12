@@ -39,13 +39,19 @@ export class LoginComponent implements OnInit {
 
 this.authSvc.login(emial.value, password.value).then(res =>{
 
-  if(res){
+  if(res && res.user.emailVerified){
 
     console.log(res);
     Swal.fire('login successfully');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/admin']);
     
-  }else{
+  }else if(res){
+
+    this.router.navigate(['/sendEmail']);
+
+  }
+  
+  else{
 
     Swal.fire('user and password incorrect');
   }

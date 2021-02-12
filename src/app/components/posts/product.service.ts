@@ -6,6 +6,7 @@ import {Product} from './../../shared/models/product.interface';
 import { FileI } from 'src/app/shared/models/file.interface';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from '../auth/auth.service';
+import { promise } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class ProductService {
  private postCollection: AngularFirestoreCollection<Product>;
   private filePath: any;
   private downloadURL: Observable<string>;
+  private downloadURL1: Observable<string>;
   
   constructor(private afs: AngularFirestore,
   private storage: AngularFireStorage, 
@@ -65,29 +67,107 @@ export class ProductService {
 
   }
 
+  public getOnePostVendedor(idVendedor:string, product: Product):Observable<Product>{
 
-  public getOnePost(id:string):Observable<Product>{
 
-    
-    return this.afs.doc<Product>(id).valueChanges();
+    const path = `vendedores/${idVendedor}/producto`;
 
-      
-     
+    return this.afs.collection<Product>(path).doc(product.id).valueChanges();
   }
 
-  public deletePostById(product:Product){
+ 
+
+  public deletePostVendedor(product: Product, idVendedor: string){
+
+
+    const path = `vendedores/${idVendedor}/producto`
+
+    const result = this.afs.collection<Product>(path).doc(product.id).delete();
+    
+    
+    this.deletePostById(product);
+
+    return result;
+
+  }
+
+  private deletePostById(product:Product){
 
     return this.postCollection.doc(product.id).delete();
 
   }
 
-  public editPostById(post:Product){
-    return this.postCollection.doc(post.id).update(post);
+  private editPostVendedor(product: Product, path: string,id: string,img: string){
+
+
+    const producto = {
+
+      ciudad_de_exportacion: product.ciudad_de_exportacion,
+      image: img,
+      tipo_producto: product.tipo_producto,
+      valor: product.valor
+    }
+
+    const result = this.afs.collection<Product>(path).doc(id).set(
+    producto
+    );
+
+    this.postCollection.doc<Product>(id).set(
+      producto
+    )
+
+
+
+    return result;
+
   }
+
+
+
+  private editPostVendedor1(product: Product, path: string,id: string){
+
+
+    const producto = {
+
+      ciudad_de_exportacion: product.ciudad_de_exportacion,
+      image: this.downloadURL1,
+      tipo_producto: product.tipo_producto,
+      valor: product.valor
+    }
+
+    const result = this.afs.collection<Product>(path).doc(id).set(
+    producto
+    );
+
+    this.postCollection.doc<Product>(id).set(
+      producto
+    )
+
+
+
+    return result;
+
+  }
+
+
+
 
   public preAddAndUpdate(product: Product, image:FileI , path: string){
 
-    this.uploadImage(product,image,path);
+  this.uploadImage(product,image,path);
+  }
+
+
+  public preUpdate(product: Product , path: string,id: string,img: string,img2: FileI){
+
+
+    if(img2 != null){
+
+      this.uploadImage1(product,path,id,img2)
+    }else{
+    this.editPostVendedor(product,path,id,img);
+  }
+
   }
 
   private saveProduct(product: Product,path: string){
@@ -133,6 +213,28 @@ export class ProductService {
    ).subscribe();
   }
 
-  
+
+
+ private  uploadImage1(product:Product,path:string,id:string, image:FileI){
+  this.filePath = `images/${image.name}`;
+   const fileRef = this.storage.ref(this.filePath);
+   const task = this.storage.upload(this.filePath, image);
+   task.snapshotChanges()
+   .pipe(
+     finalize(() =>{
+       fileRef.getDownloadURL().subscribe( urlImage => {
+       this.downloadURL1 = urlImage;
+       this.editPostVendedor1(product,path,id);
+
+       //call addPost()
+
+
+       });
+     })
+   ).subscribe();
+  }
+
+ 
+ 
 
 }

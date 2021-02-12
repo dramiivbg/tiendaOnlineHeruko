@@ -52,7 +52,7 @@ uid = '';
 
 
 loadUser(){
-const path = 'users';
+const path = 'clientes';
 
 
  this.firestore.getDoc<User>(path, this.uid).subscribe(res => {
@@ -75,11 +75,11 @@ const path = 'users';
 }
 
 
-/*
+
 
   loadCarrito(){
 
-    const path = 'vendedores/' +this.uid +'/'+this.path;
+    const path = 'clientes/' +this.uid +'/'+this.path;
     this.firestore.getDoc<Pedido>(path, this.uid).subscribe(res => {
 
       console.log(res);
@@ -96,7 +96,7 @@ const path = 'users';
 
   }
 
-  */
+  
 
   getCarrito(){
 
@@ -142,7 +142,7 @@ const item =   this.pedido.productos.find( productoPedido => {
   return;
 }
 
- const path = `users/${this.uid}/${this.path}`;
+ const path = `clientes/${this.uid}/${this.path}`;
 
   this.firestore.createDoc(this.pedido,path,this.uid).then(() => {
 

@@ -56,7 +56,7 @@ try {
  
 
   Swal.fire('user created successfully');
-   this.router.navigate(['/login']);
+   this.router.navigate(['/sendEmail']);
 
 
    this.onsave(user.uid);

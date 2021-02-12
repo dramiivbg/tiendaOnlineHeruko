@@ -9,6 +9,10 @@ import Swal from 'sweetalert2';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalComponent} from './../modal/modal.component';
 import { AuthService } from '@app/components/auth/auth.service';
+import { ModalEditComponent } from '../modal-edit/modal-edit.component';
+import { Data } from '@angular/router';
+import { DataService } from '@app/shared/services/data.service';
+import { promise } from 'protractor';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -25,7 +29,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator,{static: true})paginator: MatPaginator;
   @ViewChild(MatSort,{static:true})sort: MatSort;
   constructor(private productSvc: ProductService, public dialog: MatDialog,
-    private authSvc: AuthService){
+    private authSvc: AuthService,
+    private data: DataService){
 
 
   
@@ -76,9 +81,12 @@ export class TableComponent implements OnInit, AfterViewInit {
   }  
 
 
-  oneEditPost(post: Product){
+  oneEditPost(product: Product){
 
-   
+
+    this.data.setProduct(product);
+
+   this.oneditDialog();
 }
 
 oneDeletePost(post: Product){
@@ -95,7 +103,9 @@ oneDeletePost(post: Product){
 
     if(result.value){
 
-      this.productSvc.deletePostById(post).then(() => {
+      
+
+      this.productSvc.deletePostVendedor(post, this.uid).then(() => {
 
         Swal.fire('Deleted!, Your post has been deleted.','sucessfull');
         
@@ -122,6 +132,17 @@ onpenDialog(): void{
     console.log(`Dialog result ${result}`);
   })
 }
+
+
+oneditDialog(): void{
+
+  const dialogRef= this.dialog.open(ModalEditComponent);
+  dialogRef.afterClosed().subscribe(result => {
+
+    console.log(`Dialog result ${result}`);
+  })
+}
+
 
 
 

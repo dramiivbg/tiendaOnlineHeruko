@@ -1,29 +1,52 @@
 import { Injectable } from '@angular/core';
-import { catchError, first, map } from 'rxjs/operators';
+import { catchError, first, map, switchMap } from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {AngularFireAuth} from '@angular/fire/auth';
 import Swal from 'sweetalert2';
+import { Observable, of } from 'rxjs';
+import { User } from '@app/shared/models/user.interface';
+import { AngularFirestore } from '@angular/fire/firestore';
 const helper = new JwtHelperService();
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public user$: Observable<User>;
  
- 
-  constructor(private auth: AngularFireAuth) { 
+  constructor(public afAuth: AngularFireAuth,private afs: AngularFirestore) { 
     
+
+
+    this.user$ = this.afAuth.authState.pipe(
+      switchMap((user) => {
+        if (user) {
+          return this.afs.doc<User>(`clientes/${user.uid}`).valueChanges();
+        }
+        return of(null);
+      })
+    );
+  }
+
+  async sendVerifyEmail(): Promise<void>{
+
+    return await (await this.afAuth.currentUser).sendEmailVerification();
+
+
   }
 
  async register(email: string, password: string){
 
   try {
 
-    const {user}  =  await  this.auth.createUserWithEmailAndPassword(email,password);
+    const {user}  =  await  this.afAuth.createUserWithEmailAndPassword(email,password);
+
 
 
    return user;
     
-  } catch (error) {
+  }
+  
+  catch (error) {
     
     console.log(error);
   }
@@ -38,7 +61,13 @@ login(email: string, password: string){
 
   try {
 
-  return this.auth.signInWithEmailAndPassword(email,password);
+  const result =  this.afAuth.signInWithEmailAndPassword(email,password);
+
+
+  this.sendVerifyEmail();
+
+  return result;
+
 
 } catch (error) {
   
@@ -54,7 +83,7 @@ login(email: string, password: string){
 async logout(){
 
   try{
- await this.auth.signOut();
+ await this.afAuth.signOut();
   }catch(error){
 
     console.log(error);
@@ -65,7 +94,7 @@ async logout(){
 
 getCurrentUser(){
 
-  return this.auth.authState.pipe(first()).toPromise();
+  return this.afAuth.authState.pipe(first()).toPromise();
 
 }
 
@@ -73,13 +102,15 @@ async resetPassword(email: string):Promise<void>{
 
   try {
     
-    return this.auth.sendPasswordResetEmail(email);
+    return this.afAuth.sendPasswordResetEmail(email);
   } catch (error) {
 
     console.log(error.message);
     
   }
 } 
+
+
 
 
 

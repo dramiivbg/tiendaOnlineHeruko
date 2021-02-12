@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { from } from 'rxjs';
-import { PostComponent } from './components/posts/post/post.component';
+
 import {ContainerAppComponent} from '../app/components/pages/container-app/container-app.component';
 import { GuardGuard } from './guards/guard.guard';
 import { ContainerLoginsComponent } from './components/pages/container-logins/container-logins.component';
@@ -19,8 +19,7 @@ const routes: Routes = [
       },
 
             
-{path: 'post/:id', component:PostComponent,
-    },
+
 
 { path: 'about', loadChildren: () => 
  
@@ -67,12 +66,14 @@ children:[
 
 {path: 'pago', loadChildren: () => import('./components/pagoTargeta/select-targeta/select-targeta.module').then(m => m.SelectTargetaModule)},
 
+{ path: 'sendEmail', loadChildren: () => import('./components/auth/send-email/send-email.module').then(m => m.SendEmailModule) }
+
  
+
 ]
 
-}
-
-
+},
+ 
  
 
 

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NewPostComponent } from './components/posts/new-post/new-post.component';
 import { NewPostModule } from './components/posts/new-post/new-post.module';
-import { PostComponent } from './components/posts/post/post.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 
@@ -39,6 +39,11 @@ import { ItemCarritoComponent } from './components/item-carrito/item-carrito.com
 import { PuenteComponent } from './shared/components/puente/puente.component';
 import { ToolbarLoginComponent } from './shared/components/toolbar-login/toolbar-login.component';
 import { ContainerLoginsComponent } from './components/pages/container-logins/container-logins.component';
+import { EditPostComponent } from './components/posts/edit-post/edit-post.component';
+import { EditPostModule } from './components/posts/edit-post/edit-post.module';
+import { ModalEditComponent } from './shared/components/modal-edit/modal-edit.component';
+
+
 
 
 
@@ -51,7 +56,7 @@ import { ContainerLoginsComponent } from './components/pages/container-logins/co
   declarations: [
     AppComponent,
     ToolbarComponent,
-    PostComponent,
+
     NewPostComponent,
     ContainerAppComponent,
     ModalComponent,
@@ -61,6 +66,9 @@ import { ContainerLoginsComponent } from './components/pages/container-logins/co
     PuenteComponent,
     ToolbarLoginComponent,
     ContainerLoginsComponent,
+    EditPostComponent,
+    ModalEditComponent
+
       
   
       
@@ -78,6 +86,8 @@ import { ContainerLoginsComponent } from './components/pages/container-logins/co
     ReactiveFormsModule,
     HttpClientModule,
     NewCarritoModule,
+    EditPostModule,
+   
  
    
     
