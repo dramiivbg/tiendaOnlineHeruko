@@ -6,6 +6,7 @@ import {
   StripeCardElementOptions,
   StripeElementsOptions,
 } from '@stripe/stripe-js';
+import { ValorService } from '@app/shared/services/valor.service';
 
 @Component({
   selector: 'app-select-targeta',
@@ -40,7 +41,7 @@ export class SelectTargetaComponent implements OnInit {
  
 
   constructor(private fb: FormBuilder, private stripeService: StripeService,
-    private stripSvc: stripeService) { }
+    private stripSvc: stripeService,private cantidaSvc: ValorService) { }
 
 
   ngOnInit(): void{
@@ -59,7 +60,9 @@ createToken(): void {
     .subscribe((result) => {
       if (result.token) {
        
-       this.stripSvc.charge(100, result.token.id);
+        const valor = this.cantidaSvc.getValorTotal();
+
+       this.stripSvc.charge(valor, result.token.id);
        
         console.log('Token', result.token.id);
         

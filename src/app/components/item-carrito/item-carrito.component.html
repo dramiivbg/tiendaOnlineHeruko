@@ -23,26 +23,31 @@
 
 <p> cantidad: {{
 
-   productoPedido.cantidad
+   num
 
 }}</p>
 
 
 <p>valor: {{
 
-  productoPedido.producto.valor
+   cantidad
  
  }}</p>
 
- <span class="material-icons">
+ <span class="material-icons" (click)="addCantidad()">
     control_point
     </span>
 
-    <span class="material-icons">
+    <span class="material-icons" (click)="resCantidad()">
         do_disturb_on
         </span>
 
 
+</div>
+
+<div>
+
+   <a routerLink="/pago" routerLinkActive="active" class="btn-flotante" (click)="sendValor()">comprar</a>
 </div>
 
 </mat-card-content>
