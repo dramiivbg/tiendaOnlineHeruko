@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProductoPedido } from '@app/shared/models/pedido';
 import {HttpClient} from '@angular/common/http';
 import { ValorService } from '@app/shared/services/valor.service';
+import { CarritoService } from '@app/shared/services/carrito.service';
 @Component({
   selector: 'app-item-carrito',
   templateUrl: './item-carrito.component.html',
@@ -14,43 +15,48 @@ export class ItemCarritoComponent implements OnInit {
   num:number = 1;
 
   cantidad: number = 0;
-  
 
-  constructor(private Http: HttpClient,private valorSvc: ValorService) { 
+  cantidades: number[] = [];
+  
+ contador: number = 0;
+  constructor(private Http: HttpClient,private valorSvc: ValorService,
+    private carritoSvc: CarritoService) { 
+
+  
+  
 
    
   }
 
   ngOnInit(): void {
 
-    this.cantidad = this.productoPedido.producto.valor;
+
+
+
+
+
+  }
+  addProducto(){
+
+
+    this.carritoSvc.addProduct(this.productoPedido.producto);
+
+
   }
 
+
+  resProducto(){
+
+    this.carritoSvc.removeProduct(this.productoPedido.producto);
+
+  }
+
+
+
   
-addCantidad(){
-
-  this.num++;
-
-this.cantidad =   this.productoPedido.producto.valor * this.num;
-
-}
-
-resCantidad(){
 
 
-  this.num--;
-
-this.cantidad =   this.productoPedido.producto.valor * this.num;
-  
-}
 
 
-sendValor(){
-
-
-this.valorSvc.setValorTotal(this.cantidad);
-
-
-}
 
 }

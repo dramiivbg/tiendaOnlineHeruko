@@ -46,7 +46,7 @@ public contador:number = 0;
 
     if(res){
   
-      console.log(res)
+      console.log(res && res.user.emailVerified)
 
    
     
@@ -57,6 +57,12 @@ public contador:number = 0;
       
 
       
+    }
+    else if(res){
+
+      this.router.navigate(['/sendEmail']);
+    
+    
     }else{
 
       Swal.fire('username and password incorrect')

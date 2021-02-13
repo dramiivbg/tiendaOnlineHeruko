@@ -43,7 +43,7 @@ this.authSvc.login(emial.value, password.value).then(res =>{
 
     console.log(res);
     Swal.fire('login successfully');
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/home']);
     
   }else if(res){
 

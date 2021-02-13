@@ -32,7 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AuthCrudService} from '../app/shared/services/authCrud.service';
-import { ModalCarritoComponent } from './shared/components/modal-carrito/modal-carrito.component';
+
 import { NewCarritoComponent } from './components/posts/new-carrito/new-carrito.component';
 import { NewCarritoModule } from './components/posts/new-carrito/new-carrito.module';
 import { ItemCarritoComponent } from './components/item-carrito/item-carrito.component';
@@ -42,6 +42,7 @@ import { ContainerLoginsComponent } from './components/pages/container-logins/co
 import { EditPostComponent } from './components/posts/edit-post/edit-post.component';
 import { EditPostModule } from './components/posts/edit-post/edit-post.module';
 import { ModalEditComponent } from './shared/components/modal-edit/modal-edit.component';
+
 
 
 
@@ -60,14 +61,15 @@ import { ModalEditComponent } from './shared/components/modal-edit/modal-edit.co
     NewPostComponent,
     ContainerAppComponent,
     ModalComponent,
-    ModalCarritoComponent,
+
     NewCarritoComponent,
     ItemCarritoComponent,
     PuenteComponent,
     ToolbarLoginComponent,
     ContainerLoginsComponent,
     EditPostComponent,
-    ModalEditComponent
+    ModalEditComponent,
+ 
 
       
   

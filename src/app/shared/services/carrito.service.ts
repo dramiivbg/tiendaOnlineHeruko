@@ -5,7 +5,8 @@ import { Product} from '../models/product.interface';
 import {Router} from '@angular/router';
 import { AuthCrudService } from './authCrud.service';
 import { User } from '../models/user.interface';
-import { Observable } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +15,12 @@ export class CarritoService {
 
   pedido: Pedido;
 
+  clienteSuscriber: Subscription;
+  carritoSuscriber: Subscription;
+
+  pedido$ = new Subject<Pedido>();
+
+  carritoTotal: number;
  public cliente;
  User;
 
@@ -24,18 +31,36 @@ uid = '';
     private router: Router,
     private firestore: AuthCrudService) {
 
-     this.authSvc.getCurrentUser().then( res => {
+      
 
+     this.authSvc.afAuth.authState.subscribe( res => {
 
+    
 
-      if(res !== null){
+      if(res !== null && res.emailVerified){
      
         this.uid = res.uid;
 
       
+        this.initCarrito();
+
         this.loadUser();
+
+        this.loadCarrito();
+
+        
+
+     
+       
+
+   
+
        
      
+      }else {
+
+
+        router.navigate(['/sendEmail']);
       }
       
       })
@@ -66,7 +91,7 @@ const path = 'clientes';
     fecha: new Date(),
     valoracion: null,
 }
-// this.loadCarrito();
+
 
 
  })
@@ -75,39 +100,69 @@ const path = 'clientes';
 }
 
 
+initCarrito(){
+
+  this.pedido = {
+    id: '',
+    cliente: null,
+    productos:[],
+    precioTotal: null,
+    estado: 'enviado',
+    fecha: new Date(),
+    valoracion: null,
+}
+
+this.pedido$.next(this.pedido);
+}
+
+
 
 
   loadCarrito(){
+    const path = `clientes/${this.uid}/${this.path}`;
 
-    const path = 'clientes/' +this.uid +'/'+this.path;
-    this.firestore.getDoc<Pedido>(path, this.uid).subscribe(res => {
+    if(this.carritoSuscriber){
 
-      console.log(res);
+      this.carritoSuscriber.unsubscribe();
+    }
+  this.carritoSuscriber =   this.firestore.getDoc<Pedido>(path, this.uid).subscribe(res => {
+
+     console.log(res);
 
       if(res){
 
-        this.pedido = res;
+        this.pedido = res; 
+        this.pedido$.next(this.pedido);
 
-    
+      }else{
+
+  
+        this.initCarrito();
+
+        
       }
-    })
+    });
+
+
 
 
 
   }
 
+ 
+
   
 
-  getCarrito(){
+  
 
- return this.pedido;
+  getCarrito(): Observable<Pedido>{
+
+    return  this.pedido$.asObservable();
+
   }
 
 
 addProduct(producto: Product){
-
-
-
 
 if(this.uid.length){
 
@@ -117,8 +172,9 @@ const item =   this.pedido.productos.find( productoPedido => {
 
   if(item !== undefined){
 
-    item.cantidad ++;
+    item.cantidad+=1;
 
+    
 
   }else{
 
@@ -132,6 +188,7 @@ const item =   this.pedido.productos.find( productoPedido => {
 
 
     this.pedido.productos.push(add);
+  
   }
 
   
@@ -142,11 +199,15 @@ const item =   this.pedido.productos.find( productoPedido => {
   return;
 }
 
+
+this.pedido$.next(this.pedido);
  const path = `clientes/${this.uid}/${this.path}`;
 
   this.firestore.createDoc(this.pedido,path,this.uid).then(() => {
 
-  console.log('añadido con exito')
+  console.log('añadido con exito');
+
+ 
 
   });
 
@@ -158,13 +219,72 @@ const item =   this.pedido.productos.find( productoPedido => {
 realizarPedido(){
 
 
+
+
+
 }
 
-removeProduct(producto: Product){}
+removeProduct(producto: Product){
+
+  
+
+if(this.uid.length){
+
+  let position = 0;
+  const item =   this.pedido.productos.find( (productoPedido, index) => {
+
+    position = index;
+     return (productoPedido.producto.id == producto.id);
+    });
+  
+    if(item !== undefined){
+  
+      item.cantidad-=1;
+  
+      if(item.cantidad == 0){
+
+
+        this.pedido.productos.splice(position, 1);
+      }
+
+
+      console.log('remove->', this.pedido);
+      const path = `clientes/${this.uid}/${this.path}`;
+  
+      this.firestore.createDoc(this.pedido,path,this.uid).then(() => {
+    
+      console.log('añadido con exito');
+      
+     
+    
+      });
+      
+  }
+  
+
+
+  
+  
+  
+  
+
+
+}
+}
 
 clearCarrito(){
 
+ 
+
+  const path = `clientes/${this.uid}/${this.path}`;
+  this.firestore.deleteDoc(path, this.uid).then(() => {
+
+    this.initCarrito();
+  })
+
 
 }
+
+
 
 }

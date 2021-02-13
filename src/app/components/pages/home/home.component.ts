@@ -19,6 +19,11 @@ export class HomeComponent implements OnInit {
 
   contador:number = 0;
 
+  numero: number[] = [];
+
+
+  selected = '';
+
   products$: Observable<Product[]>;
 
 
@@ -55,6 +60,12 @@ private uids:string[];
   ngOnInit(): void {
 
 
+    for (let index = 1; index <= this.numero.length; index++) {
+     
+
+      this.numero[index] = index;
+      
+    }
 
 
     this.postSvc.getAllPosts().subscribe(res => console.log('POSTS',res));

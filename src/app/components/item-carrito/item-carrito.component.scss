@@ -1,3 +1,12 @@
+
+mat-card{
+
+    height: 40vh;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+
+
 $rowHeight: 40px;
 .flexp {
 
@@ -17,10 +26,12 @@ span{
 
     img{
 
-        width: 50%;
+        width: 100%;
 
     }
 
+
+}
 
 
 
@@ -53,3 +64,4 @@ span{
             right: 20px;
         }
     }   
+

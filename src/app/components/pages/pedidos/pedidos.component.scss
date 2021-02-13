@@ -1,0 +1,22 @@
+
+
+
+$rowHeight: 40px;
+.flexp {
+
+
+
+    column-count: 2;
+max-height: calc(5 * #{$rowHeight});
+
+
+
+mat-card{
+
+    height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+}

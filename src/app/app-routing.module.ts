@@ -5,6 +5,9 @@ import { from } from 'rxjs';
 import {ContainerAppComponent} from '../app/components/pages/container-app/container-app.component';
 import { GuardGuard } from './guards/guard.guard';
 import { ContainerLoginsComponent } from './components/pages/container-logins/container-logins.component';
+
+import { NewCarritoComponent } from './components/posts/new-carrito/new-carrito.component';
+import { ItemCarritoComponent } from './components/item-carrito/item-carrito.component';
 const routes: Routes = [
   {path: '', component:ContainerAppComponent,
 
@@ -17,6 +20,8 @@ const routes: Routes = [
        import('./components/pages/home/home.module').then(m => m.HomeModule) 
         
       },
+
+      {path: 'carrito', component: NewCarritoComponent},
 
             
 
@@ -66,14 +71,15 @@ children:[
 
 {path: 'pago', loadChildren: () => import('./components/pagoTargeta/select-targeta/select-targeta.module').then(m => m.SelectTargetaModule)},
 
-{ path: 'sendEmail', loadChildren: () => import('./components/auth/send-email/send-email.module').then(m => m.SendEmailModule) }
+{ path: 'sendEmail', loadChildren: () => import('./components/auth/send-email/send-email.module').then(m => m.SendEmailModule) },
 
- 
+{ path: 'pedidos', loadChildren: () => import('./components/pages/pedidos/pedidos.module').then(m => m.PedidosModule) },
+  
 
 ]
 
 },
- 
+
  
 
 

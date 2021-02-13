@@ -54,7 +54,7 @@ export class CrearVendedorComponent implements OnInit {
   
  
    Swal.fire('user created successfully');
-    this.router.navigate(['/loginVendedor']);
+    this.router.navigate(['/sendEmail']);
  
  
     this.onsave(user.uid);

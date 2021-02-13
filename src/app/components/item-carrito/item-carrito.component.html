@@ -1,13 +1,21 @@
 
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
-<mat-card>
+
+
+<mat-card >
 
  
 
     <mat-card-content>
 
-        <div class="flexp">
 
+
+<div class="flexp ">
 
     
      <img [src]=" productoPedido.producto.image" />
@@ -23,36 +31,36 @@
 
 <p> cantidad: {{
 
-   num
+   productoPedido.cantidad
 
 }}</p>
 
 
 <p>valor: {{
 
-   cantidad
+   productoPedido.producto.valor
  
  }}</p>
 
- <span class="material-icons" (click)="addCantidad()">
+ <span class="material-icons" (click)="addProducto()">
     control_point
     </span>
 
-    <span class="material-icons" (click)="resCantidad()">
+    <span class="material-icons" (click)="resProducto()">
         do_disturb_on
         </span>
 
+  
 
-</div>
+      </div>
 
-<div>
 
-   <a routerLink="/pago" routerLinkActive="active" class="btn-flotante" (click)="sendValor()">comprar</a>
-</div>
+ 
 
 </mat-card-content>
 
 </mat-card>
+
 
 
 

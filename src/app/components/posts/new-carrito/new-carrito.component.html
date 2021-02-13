@@ -1,12 +1,36 @@
-<div class="new-carrito-container" *ngFor="let producto of  pedido.productos">
-
+<div  *ngFor="let producto of pedido.productos">
 
 
     <app-item-carrito [productoPedido]="producto"></app-item-carrito>
 
-  
 
-  
-
-
+ 
 </div>
+&nbsp;
+&nbsp;
+
+<footer>
+
+    <div>
+
+        <a  (click)="pedir()" routerLinkActive="active" class="btn-flotante" >comprar</a>
+     </div>
+
+
+    <div class="flexp ">    
+   <mat-card>
+
+    cantidad: {{cantidad}}
+   </mat-card> 
+
+   <mat-card>
+
+    total: ${{carritoTotal}}
+   </mat-card>
+
+    </div>
+</footer>
+  
+
+
+
