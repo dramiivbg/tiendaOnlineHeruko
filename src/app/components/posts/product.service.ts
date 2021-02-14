@@ -7,6 +7,7 @@ import { FileI } from 'src/app/shared/models/file.interface';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from '../auth/auth.service';
 import { promise } from 'protractor';
+import { Pedido } from '@app/shared/models/pedido';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +60,22 @@ export class ProductService {
       map(actions =>
         actions.map(a => {
           const data = a.payload.doc.data() as Product;
+          const id = a.payload.doc.id;
+           return { id, ...data };
+        })
+      )
+    );
+
+  }
+
+
+  public getAllPedidos(path: string):Observable<Pedido[]>{
+    return this.afs.collection(path)
+    .snapshotChanges()
+    .pipe(
+      map(actions =>
+        actions.map(a => {
+          const data = a.payload.doc.data() as Pedido;
           const id = a.payload.doc.id;
            return { id, ...data };
         })

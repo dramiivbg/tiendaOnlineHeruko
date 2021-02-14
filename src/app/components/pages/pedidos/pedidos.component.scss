@@ -1,5 +1,26 @@
 
 
+.boton1{
+
+    float: right;
+    width: 50%;
+}
+
+.boton2{
+
+    float: left;
+    width: 50%;
+}
+
+
+
+mat-card{
+
+    height: 40vh;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+
 
 $rowHeight: 40px;
 .flexp {
@@ -10,13 +31,28 @@ $rowHeight: 40px;
 max-height: calc(5 * #{$rowHeight});
 
 
+span{
 
-mat-card{
+    cursor: pointer;
+    width: 20%;
+}
+    }
 
-    height: 20vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+    img{
+
+        width: 70%;
+
+    }
+
+
+
+
 }
 
+
+.ancho{
+
+    height: 10%;
 }
+

@@ -1,9 +1,72 @@
 
+
+
+
+
+
+
+<div class="flexp ">
+
+    
+   
+
+
+
+    <div>
+        
+    <mat-button-toggle class="boton1"  (click)=" getPedidosNuevos()" value="nuevos" ><strong>nuevos</strong></mat-button-toggle>
+
+
+
+
+
+
+
+
+    <mat-button-toggle class="boton2"  (change)="change($event)" value="culminados"><strong>culminados</strong></mat-button-toggle>
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+<div *ngFor="let pedido of   pedidos " style="text-align: center;">
+
+    &nbsp;
+    &nbsp;
+
+  <mat-card class="ancho">
+    <p>
+        
+
+     Estado:   {{pedido.estado}}
+     </p>
+
+</mat-card >  
+  
+<mat-card  class="ancho">
+    <p>
+
+    Fecha:    {{pedido.fecha.seconds | date }}
+  </p>
+
+</mat-card> 
+
+  <div *ngFor="let producto of pedido.productos">
+ 
+ 
 &nbsp;
 &nbsp;
 &nbsp;
 &nbsp;
 &nbsp;
+
 
 
 
@@ -18,26 +81,36 @@
 <div class="flexp ">
 
     
-   
+     <img [src]=" producto.producto.image" />
+
+<br>
+<br>
 
 
-<p>nombre: 
 
+<p> <strong>{{
 
+    producto.producto.tipo_producto
+
+}}
+
+</strong>
 </p>
 
 
 
-<p> cantidad: 
+<p> cantidad: {{
+
+    producto.cantidad
+
+}}</p>
 
 
+<p>valor: {{
 
-</p>
-
-
-<p>valor: 
-</p>
-
+    producto.producto.valor
+ 
+ }}</p>
 
 
   
@@ -51,5 +124,12 @@
 
 </mat-card>
 
+
+    </div>
+
+
+ 
+
+    
   
 

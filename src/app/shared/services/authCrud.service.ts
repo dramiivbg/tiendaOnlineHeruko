@@ -172,6 +172,15 @@ updateDoc(data:any, path: string, id: string){
 
 }
 
+getCollectionQuery<tipo>(path: string, parametro: string, condicion: any, busqueda: string ){
+
+  const collection = this.afs.collection<tipo>(path
+    , ref => ref.where(parametro, condicion, busqueda));
+
+ return collection.valueChanges();
+
+}
+
 
 
   

@@ -8,6 +8,7 @@ import { ContainerLoginsComponent } from './components/pages/container-logins/co
 
 import { NewCarritoComponent } from './components/posts/new-carrito/new-carrito.component';
 import { ItemCarritoComponent } from './components/item-carrito/item-carrito.component';
+import { PedidosComponent } from './components/pages/pedidos/pedidos.component';
 const routes: Routes = [
   {path: '', component:ContainerAppComponent,
 
@@ -73,8 +74,7 @@ children:[
 
 { path: 'sendEmail', loadChildren: () => import('./components/auth/send-email/send-email.module').then(m => m.SendEmailModule) },
 
-{ path: 'pedidos', loadChildren: () => import('./components/pages/pedidos/pedidos.module').then(m => m.PedidosModule) },
-  
+{path:'pedidos', component: PedidosComponent}
 
 ]
 
