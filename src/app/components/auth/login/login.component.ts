@@ -6,6 +6,8 @@ import { ThrowStmt } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { Validator } from 'class-validator';
 import Swal from 'sweetalert2';
+import { User } from '@app/shared/models/user.interface';
+import { AuthCrudService } from '@app/shared/services/authCrud.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,15 +18,19 @@ export class LoginComponent implements OnInit {
   hide = true;
 
 
-
+uid = '';
 
  
  
 
-  constructor(private authSvc: AuthService,private router: Router) { }
+  constructor(private authSvc: AuthService,private router: Router,
+    private firestore: AuthCrudService) {
+
+          
+   
 
 
-
+    }
   ngOnInit(): void {
 
     
@@ -41,9 +47,7 @@ this.authSvc.login(emial.value, password.value).then(res =>{
 
   if(res && res.user.emailVerified){
 
-    console.log(res);
-    Swal.fire('login successfully');
-    this.router.navigate(['/home']);
+   this.verifyIfClient();
     
   }else if(res){
 
@@ -54,6 +58,38 @@ this.authSvc.login(emial.value, password.value).then(res =>{
   else{
 
     Swal.fire('user and password incorrect');
+  }
+})
+
+}
+
+
+verifyIfClient(){
+
+  this.authSvc.afAuth.user.subscribe(res1 => {
+
+
+    this.uid = res1.uid;
+
+   })
+
+  const path = 'clientes';
+
+this.firestore.getDoc<User>(path,this.uid).subscribe(res => {
+
+  if(res){
+
+    console.log(res);
+    Swal.fire('login successfully');
+    this.router.navigate(['/home']);
+  }else{
+
+    this.router.navigate(['/loginVendedor']);
+    this.authSvc.logout();
+ 
+
+    return;
+
   }
 })
 

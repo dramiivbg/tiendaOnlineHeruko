@@ -27,6 +27,7 @@ export class CrearUserComponent implements OnInit {
  public  cedula:number = 0;
  public  pais: string = '';
  public  rol: string = '';
+ public telefono: number = 0;
 
 
   roles: Rol[] = [
@@ -82,7 +83,7 @@ try {
   
 
  
- this.authCrud.onSaveUser(this.gmail, this.cedula,this.direccion,this.pais,this.rol,id);
+ this.authCrud.onSaveUser(this.gmail, this.cedula,this.direccion,this.pais,this.rol,id,this.telefono);
 
 
 } catch (error) {

@@ -1,0 +1,52 @@
+
+<div class="container" *ngIf="products$  | async as products; else loading">
+
+    <br>
+    <br>
+
+
+
+    <mat-card class="color" *ngFor="let product of products ">
+
+        <mat-card-title>
+
+     
+        </mat-card-title>
+
+
+        <mat-card-content>
+
+            <span class="material-icons" >
+                local_shipping
+                </span>
+
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <mat-slider vertical
+            
+                
+         
+               
+               [step]= "estado"
+                [value]=  "estado"
+              ></mat-slider>
+                 
+
+             
+
+        </mat-card-content>
+    </mat-card>
+</div>
+
+
+<ng-template #loading>
+    <div class="container-spinner">
+    
+        <mat-spinner></mat-spinner>
+    </div>
+        
+    
+    </ng-template>

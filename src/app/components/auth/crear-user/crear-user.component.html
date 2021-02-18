@@ -17,7 +17,7 @@
     </mat-form-field><br>
     
     <mat-form-field>
-        <input matInput [(ngModel)]="password" type="password" placeholder=" password" required>
+        <input matInput [(ngModel)]="password" type="password" minlength="8" placeholder=" password" required>
     </mat-form-field><br>
 
     <mat-form-field>
@@ -25,13 +25,23 @@
     </mat-form-field><br>
 
     <mat-form-field>
-      <input matInput [(ngModel)]="cedula" type="number" placeholder=" Cc:" required>
+      <input matInput [(ngModel)]="cedula" maxlength="10" minlength="10" type="number" placeholder=" Cc:" required>
   </mat-form-field><br>
 
 
     <mat-form-field>
         <input matInput [(ngModel)]="pais" type="text" placeholder=" pais recidente" required>
     </mat-form-field><br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Telephone</mat-label>
+      <span matPrefix> &nbsp;</span>
+      <input [(ngModel)]="telefono" type="tel" maxlength="10" minlength="10"
+       matInput placeholder="555-555-1234" required>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field><br>
+
+   
 
     <mat-form-field appearance="fill">
         <mat-label>rol</mat-label>

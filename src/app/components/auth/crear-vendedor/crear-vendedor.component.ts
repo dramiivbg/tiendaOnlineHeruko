@@ -23,6 +23,7 @@ export class CrearVendedorComponent implements OnInit {
   public  cedula:number = 0;
   public  pais: string = '';
   public  rol: string = '';
+  public telefono: number = 0;
 
   public  appName = 'ngOnline';
  
@@ -80,7 +81,7 @@ export class CrearVendedorComponent implements OnInit {
    
  
   
-  this.authCrud.onSaveVendedor(this.gmail, this.cedula,this.direccion,this.pais,this.rol,id);
+  this.authCrud.onSaveVendedor(this.gmail, this.cedula,this.direccion,this.pais,this.rol,id,this.telefono);
  
  
  } catch (error) {

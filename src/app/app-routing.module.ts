@@ -74,11 +74,16 @@ children:[
 
 { path: 'sendEmail', loadChildren: () => import('./components/auth/send-email/send-email.module').then(m => m.SendEmailModule) },
 
-{path:'pedidos', component: PedidosComponent}
+{path:'mispedidos', component: PedidosComponent},
 
+{ path: 'pedidos', loadChildren: () => import('./components/pages/pedidos-admin/pedidos-admin.module').then(m => m.PedidosAdminModule) },
+ 
+
+{ path: 'envio', loadChildren: () => import('./components/pages/envio/envio.module').then(m => m.EnvioModule) },
 ]
 
 },
+  
 
  
 

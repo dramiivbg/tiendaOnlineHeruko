@@ -51,7 +51,7 @@ private docCollection: AngularFirestoreCollection<Product>;
   }
 
 
-  onSaveUser(gmail: string,cedula:number,direccion: string,pais: string,rol:string, userId: string) /*: Promise<void>*/{
+  onSaveUser(gmail: string,cedula:number,direccion: string,pais: string,rol:string, userId: string,telefono:number) /*: Promise<void>*/{
 
     
 
@@ -64,6 +64,7 @@ private docCollection: AngularFirestoreCollection<Product>;
     direccion : direccion,
     pais :  pais,
     role :  rol,
+    telefono: telefono
   }
     
   
@@ -87,7 +88,7 @@ private docCollection: AngularFirestoreCollection<Product>;
   }
 
 
-  onSaveVendedor(gmail: string,cedula:number,direccion: string,pais: string,rol:string, userId: string) /*: Promise<void>*/{
+  onSaveVendedor(gmail: string,cedula:number,direccion: string,pais: string,rol:string, userId: string,telefono: number) /*: Promise<void>*/{
 
     
 
@@ -100,6 +101,8 @@ private docCollection: AngularFirestoreCollection<Product>;
       direccion : direccion,
       pais :  pais,
       role :  rol,
+      telefono: telefono
+      
     }
       
     
@@ -153,6 +156,15 @@ createDoc(data: Pedido, path: string, id: string){
 
 }
 
+doc<type>(data:any ,path: string){
+
+  const id = this.afs.createId();
+  const collection = this.afs.collection<type>(path).doc(id).set(data);
+
+  return collection;
+}
+
+
 
 deleteDoc(path: string, id:string){
 
@@ -180,6 +192,26 @@ getCollectionQuery<tipo>(path: string, parametro: string, condicion: any, busque
  return collection.valueChanges();
 
 }
+
+getCollectionAll<tipo>(path: string, parametro: string, condicion: any, busqueda: string,
+  startAt: any ){
+
+    if(startAt == null){
+
+
+     startAt = new Date();
+    }
+ 
+  const collection = this.afs.collectionGroup<tipo>(path
+   , ref => ref.where(parametro, condicion, busqueda)
+   .orderBy('fecha','desc')
+   .limit(2)
+   .startAfter(startAt)
+   
+   );
+
+ return collection.valueChanges();
+  }
 
 
 

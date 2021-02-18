@@ -7,8 +7,10 @@ import { HomeComponent } from './home.component';
 import {MaterialModule} from '../../../material.module';
 import { from } from 'rxjs';
 
+
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent,
+  ],
   imports: [
     CommonModule,
     HomeRoutingModule,

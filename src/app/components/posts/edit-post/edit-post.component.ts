@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@app/components/auth/auth.service';
 import { Product } from '@app/shared/models/product.interface';
+import { Vendedor } from '@app/shared/models/vendedor';
+import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { DataService } from '@app/shared/services/data.service';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -25,11 +27,12 @@ export class EditPostComponent implements OnInit {
  
 
   producto: Product[];
+  vendedor: Vendedor;
 
   product$: Product ;
   
   constructor(private productSvc: ProductService,  private authSvc: AuthService,
-    private data: DataService) {
+    private data: DataService,private firestoreSvc: AuthCrudService) {
 
   
      
@@ -115,6 +118,12 @@ export class EditPostComponent implements OnInit {
      
         this.uid = res.uid;
 
+        const path1 = 'vendedores'
+        
+        this.firestoreSvc.getDoc<Vendedor>(path1,this.uid).subscribe(user => {
+          this.vendedor = user;
+       
+
 
         console.log('New post',data);
 
@@ -122,9 +131,9 @@ export class EditPostComponent implements OnInit {
 
      
     
-      this.productSvc.preUpdate(data,path,this.product.id,this.product$.image,this.image);
+      this.productSvc.preUpdate(data,path,this.product.id,this.product$.image,this.image,this.vendedor);
 
-         
+    });
       
      
        

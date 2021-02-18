@@ -6,6 +6,9 @@ import {AuthCrudService} from '../../../shared/services/authCrud.service';
 import { AuthService } from '@app/components/auth/auth.service';
 import { CarritoService } from '@app/shared/services/carrito.service';
 import { ProductoPedido } from '@app/shared/models/pedido';
+import { Router } from '@angular/router';
+import { Vendedor } from '@app/shared/models/vendedor';
+import { FilterProductPipe } from '../../../pipe/filter-product.pipe';
 
 
 @Component({
@@ -15,11 +18,11 @@ import { ProductoPedido } from '@app/shared/models/pedido';
 })
 export class HomeComponent implements OnInit {
 
-  uid?:string;
+admin:  boolean = false;
 
-  contador:number = 0;
+producto: any;
 
-  numero: number[] = [];
+
 
 
   selected = '';
@@ -27,14 +30,12 @@ export class HomeComponent implements OnInit {
   products$: Observable<Product[]>;
 
 
-  vector:string[];
 
-private uids:string[];
 
   constructor(private postSvc: ProductService, private authCrud: AuthCrudService,
     private carritoSvc: CarritoService,
     private authSvc: AuthService,
-
+    private router: Router,private firestore: AuthCrudService
       ) { 
 
 
@@ -60,13 +61,8 @@ private uids:string[];
   ngOnInit(): void {
 
 
-    for (let index = 1; index <= this.numero.length; index++) {
-     
-
-      this.numero[index] = index;
-      
-    }
-
+ 
+ this.userActive();
 
     this.postSvc.getAllPosts().subscribe(res => console.log('POSTS',res));
 
@@ -99,6 +95,60 @@ private uids:string[];
   
     this.carritoSvc.addProduct(product);
    }
+
+
+   userActive(){
+
+      
+    this.authSvc.afAuth.user.subscribe(res1 => {
+  
+    
+  
+      if(res1 == null){
+  
+      this.admin = true;
+        
+        
+      }else{
+        this.comprobarUser(res1.uid);
+      }
+
+    });
+   
+  }
+
+
+  comprobarUser(id: string){
+
+ 
+
+    const path = 'vendedores';
+
+      this.firestore.getDoc<Vendedor>(path,id).subscribe(res => {
+  
+  
+  
+        if(res == null){
+  
+        this.admin = true;
+  
+          
+        }else{
+  
+          this.admin = false;
+  
+        }
+         
+        
+  
+        
+        
+        
+      });
+  
+  
+      }
+
 
   
 

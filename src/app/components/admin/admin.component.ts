@@ -28,7 +28,7 @@ public opened = false;
       
     this.authSvc.getCurrentUser().then(res1 => {
   
-      const path = 'vendedores';
+    
   
       if(res1 == null){
   

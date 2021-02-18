@@ -4,6 +4,9 @@ import {MatTableDataSource} from '@angular/material/table';
 
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthCrudService } from '@app/shared/services/authCrud.service';
+import { Vendedor } from '@app/shared/models/vendedor';
+import { User } from '@app/shared/models/user.interface';
 
 @Component({
   selector: 'app-toolbar',
@@ -16,9 +19,26 @@ export class ToolbarComponent implements OnInit {
   public filterProduct = '';
   public  appName = 'ngOnline';
   public isLogged = false; 
-  constructor(private authSvc: AuthService,public dialog: MatDialog) { }
+  uid = '';
+  admin: boolean = false;
+  client: Boolean = false;
+
+  producto: any;
+  constructor(private authSvc: AuthService, private firestore: AuthCrudService) {
+
+    authSvc.afAuth.user.subscribe(res => {
+
+      this.uid  = res.uid;
+
+      this.verifyAdmin();
+      this.verifyClient();
+
+    })
+   }
 
  async ngOnInit() {
+
+ 
 
 try {
   
@@ -56,9 +76,42 @@ try {
   }
 
 
+  verifyAdmin(){
+
+    const path = 'vendedores';
+    this.firestore.getDoc<Vendedor>(path,this.uid).subscribe(res => {
+
+      if(res){
+
+        this.admin = true;
+
+      }else{
+
+        this.admin = false;
+      }
+    })
+    
+  }
 
 
 
+
+  verifyClient(){
+
+    const path = 'clientes';
+    this.firestore.getDoc<User>(path,this.uid).subscribe(res => {
+
+      if(res){
+
+        this.client = true;
+
+      }else{
+
+        this.client = false;
+      }
+    })
+    
+  }
 
   
 

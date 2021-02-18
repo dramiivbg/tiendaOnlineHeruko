@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '@app/components/auth/auth.service';
 import { Pedido } from '@app/shared/models/pedido';
+import { User } from '@app/shared/models/user.interface';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { CarritoService } from '@app/shared/services/carrito.service';
-import { Observable, Subscription } from 'rxjs';
+import { from, Observable, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
-
+import {ValorService} from '../../../shared/services/valor.service';
 @Component({
   selector: 'app-new-carrito',
   templateUrl: './new-carrito.component.html',
@@ -14,9 +15,11 @@ import Swal from 'sweetalert2';
 })
 export class NewCarritoComponent implements OnInit {
 
-
+uid1 = '';
  pedido: Pedido;
  cantidad: number;
+
+ cliente: User;
 
  carritoTotal: number;
 
@@ -26,7 +29,8 @@ uid= '';
   constructor(public carritoSvc: CarritoService,
     private firestoreSvc: AuthCrudService,
     private firesore: AngularFirestore,
-    private authSvc: AuthService) {
+    private authSvc: AuthService, 
+      private totalSvc: ValorService) {
 
       this.authSvc.afAuth.authState.subscribe( res => {
       
@@ -38,7 +42,7 @@ uid= '';
 
     this.initCarrito();
 
-    this.loadPedido(); 
+
   
    
   
@@ -47,10 +51,18 @@ uid= '';
  
    }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
+    this.authSvc.getCurrentUser().then(res => {
 
+      const path = 'clientes';
+    this.firestoreSvc.getDoc<User>(path,res.uid).subscribe(user => {
 
+      this.cliente = user;
+    })
+    })
+
+    this.loadPedido(); 
  
   
 
@@ -62,6 +74,9 @@ uid= '';
  this.carritoSuscriber =  this.carritoSvc.getCarrito().subscribe(res => {
 
   console.log('loadPedido() en carrito', res);
+
+  res.cliente = this.cliente;
+  
  this.pedido = res;
 
 this.getTotal();
@@ -98,7 +113,9 @@ getTotal(){
   this.carritoTotal = 0;
 this.pedido.productos.forEach( producto => {
 
-this.carritoTotal =   (producto.producto.valor) * producto.cantidad + this.carritoTotal;
+this.carritoTotal =   (producto.producto.valor) * producto.cantidad + this.carritoTotal; 
+
+
 
 
 })
@@ -139,8 +156,12 @@ this.pedido.precioTotal = this.carritoTotal;
   this.firestoreSvc.createDoc(this.pedido, path,this.pedido.id).then(( ) => {
 
     Swal.fire('guardado con exito');
+    this.totalSvc.setValorTotal(this.carritoTotal);
 
    this.carritoSvc.clearCarrito();
+
+  
+ 
  
   });
 

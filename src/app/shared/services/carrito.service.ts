@@ -57,10 +57,13 @@ uid = '';
 
        
      
-      }else {
-
+      }else if(res) {
 
         router.navigate(['/sendEmail']);
+        
+      }else{
+
+        router.navigate(['/home']);
       }
       
       })

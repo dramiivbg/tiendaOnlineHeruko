@@ -4,6 +4,8 @@ import {Product} from '../../../shared/models/product.interface';
 import { ProductService} from '../product.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '@app/components/auth/auth.service';
+import { AuthCrudService } from '@app/shared/services/authCrud.service';
+import { Vendedor } from '@app/shared/models/vendedor';
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
@@ -17,7 +19,10 @@ export class NewPostComponent implements OnInit {
 
   producto: Product;
 
-  constructor(private productSvc: ProductService,  private authSvc: AuthService){
+  vendedor: Vendedor;
+
+  constructor(private productSvc: ProductService,  private authSvc: AuthService,
+   private firestoreSvc: AuthCrudService){
 
   }
   
@@ -31,6 +36,8 @@ export class NewPostComponent implements OnInit {
   });
 
   ngOnInit(): void {
+
+  
   }
 
   addNewPost(data: Product){
@@ -44,13 +51,18 @@ export class NewPostComponent implements OnInit {
      
         this.uid = res.uid;
 
+        const path1 = 'vendedores'
+        
+        this.firestoreSvc.getDoc<Vendedor>(path1,this.uid).subscribe(user => {
+          this.vendedor = user;
+      
 
         console.log('New post',data);
         const path =  `vendedores/${this.uid}/producto`;
-         this.product =  console.log(this.productSvc.preAddAndUpdate(data, this.image,path));
+         this.product =  console.log(this.productSvc.preAddAndUpdate(data, this.image,path,this.vendedor));
       
      
-       
+        });
      
       }
       

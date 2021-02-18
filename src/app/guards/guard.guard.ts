@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '@app/shared/models/user.interface';
 import { Vendedor } from '@app/shared/models/vendedor';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
-import { from, Observable } from 'rxjs';
+import { from, Observable, Subscription } from 'rxjs';
 import {AuthService} from '../components/auth/auth.service';
 @Injectable({
   providedIn: 'root'
@@ -12,16 +12,24 @@ import {AuthService} from '../components/auth/auth.service';
 export class GuardGuard implements CanActivate {
 
   public active: boolean = false;
-  constructor(){}
+
+  newSuscriber: Subscription;
+  constructor(private authSvc: AuthService){
+
+
+  }
   
+
+
     canActivate(
     route: ActivatedRouteSnapshot,
    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> |  boolean {
 
  
+  
  
 
-  return 
+  return false
  
          }
 }

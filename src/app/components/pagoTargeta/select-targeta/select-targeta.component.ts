@@ -7,6 +7,12 @@ import {
   StripeElementsOptions,
 } from '@stripe/stripe-js';
 import { ValorService } from '@app/shared/services/valor.service';
+import { AuthCrudService } from '@app/shared/services/authCrud.service';
+import { AuthService } from '@app/components/auth/auth.service';
+import { Pago } from '@app/shared/models/pago';
+import { CdkNoDataRow } from '@angular/cdk/table';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-select-targeta',
@@ -15,8 +21,10 @@ import { ValorService } from '@app/shared/services/valor.service';
 })
 export class SelectTargetaComponent implements OnInit {
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
-
+uid = '';
   stripeTest: FormGroup;
+
+  pago:Pago;
 
   cardOptions: StripeCardElementOptions = {
     style: {
@@ -41,7 +49,16 @@ export class SelectTargetaComponent implements OnInit {
  
 
   constructor(private fb: FormBuilder, private stripeService: StripeService,
-    private stripSvc: stripeService,private cantidaSvc: ValorService) { }
+    private stripSvc: stripeService,private cantidaSvc: ValorService,
+    private authAf: AuthService, private firestore: AuthCrudService,
+    private router: Router) {
+
+      this.authAf.afAuth.user.subscribe(res => {
+
+        this.uid = res.uid;
+
+      })
+     }
 
 
   ngOnInit(): void{
@@ -55,6 +72,7 @@ export class SelectTargetaComponent implements OnInit {
 
 createToken(): void {
   const name = this.stripeTest.get('name').value;
+
   this.stripeService
     .createToken(this.card.element, { name })
     .subscribe((result) => {
@@ -62,9 +80,36 @@ createToken(): void {
        
         const valor = this.cantidaSvc.getValorTotal();
 
-       this.stripSvc.charge(valor, result.token.id);
+        console.log(valor);
+
+       this.stripSvc.charge(valor, result.token.id).then(() => {
+
+        const path = 'pagos';
+
+       this.pago = {
+
+        idtokenTargeta: result.token.id,
+        cantidad: valor,
+        idCliente: this.uid
+
+       }
+
+       Swal.fire('transiccion exitosa');
+       this.router.navigate(['/envio']);
        
+        this.firestore.doc<Pago>(this.pago,path).then(res => {
+
+          console.log(res);
+        });
+
+
+        
+
+       });
+       
+
         console.log('Token', result.token.id);
+
         
       } else if (result.error) {
         console.log('error', result.error.message);

@@ -44,6 +44,7 @@ import { EditPostModule } from './components/posts/edit-post/edit-post.module';
 import { ModalEditComponent } from './shared/components/modal-edit/modal-edit.component';
 
 import {PedidosComponent} from './components/pages/pedidos/pedidos.component';
+import { FilterProductPipe } from './pipe/filter-product.pipe';
 
 
 
@@ -69,7 +70,8 @@ import {PedidosComponent} from './components/pages/pedidos/pedidos.component';
     ContainerLoginsComponent,
     EditPostComponent,
     ModalEditComponent,
-    PedidosComponent
+    PedidosComponent,
+    FilterProductPipe
  
 
       

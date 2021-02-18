@@ -20,6 +20,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatSliderModule} from '@angular/material/slider';
 
 const myModule =[
   MatCardModule,
@@ -41,7 +43,9 @@ const myModule =[
   MatSelectModule,
   MatDatepickerModule,
   MatProgressBarModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatBadgeModule,
+  MatSliderModule
 
 
 

@@ -24,4 +24,4 @@ export interface ProductoPedido{
 
 }
 
-export type EstadoPedido = 'enviado' | 'visto' | 'camino' | 'entregado';
+export type EstadoPedido = 'enviado'| 'preparando' | 'camino' | 'entregado';

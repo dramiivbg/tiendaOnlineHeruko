@@ -6,5 +6,6 @@ export interface User {
    direccion: string;
    pais: string;
    role: string;
+   telefono: number;
 
 }

@@ -1,13 +1,17 @@
+
+
+
+
 <div class="container" *ngIf="products$  | async as products; else loading" >
 
 
-    <mat-card class="post-card"  *ngFor="let product of products">
+    <mat-card class="post-card"  *ngFor="let product of products ">
         <mat-card-header>
             
             {{product.tipo_producto}}
 
        <div class="circulo">
-        <ion-icon color="primary" name="cart" (click)="addCarrito(product)"></ion-icon>
+        <ion-icon color="primary" *ngIf="admin"  name="cart" (click)="addCarrito(product)"></ion-icon>
        </div> 
        
        
@@ -29,8 +33,7 @@
          </p>
 
         
-         <button type="submit" mat-raised-button 
-         color="primary">comprar</button>
+      
          &nbsp;
          &nbsp;
 
