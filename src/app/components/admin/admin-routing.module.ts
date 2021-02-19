@@ -6,6 +6,7 @@ import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
   { path: '', component: AdminComponent,  
+  canActivate: [GuardGuard],
 
  children:[
 {

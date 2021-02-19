@@ -10,7 +10,7 @@ export interface Pedido{
     cliente:User
     productos: ProductoPedido[];
     precioTotal: number;
-    estado: EstadoPedido;
+    estado: string;
     fecha: any;
     valoracion: number;
 }
@@ -24,4 +24,3 @@ export interface ProductoPedido{
 
 }
 
-export type EstadoPedido = 'enviado'| 'preparando' | 'camino' | 'entregado';

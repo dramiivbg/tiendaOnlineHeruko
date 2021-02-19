@@ -3,15 +3,28 @@
 .boton1{
 
     float: right;
-    width: 50%;
+    width: 30%;
 }
 
 .boton2{
 
     float: left;
-    width: 50%;
+    width: 30%;
 }
 
+
+
+.boton1{
+
+    float: right;
+    width: 30%;
+}
+
+.boton3{
+
+  align-content: center;
+    width: 40%;
+}
 
 
 mat-card{
@@ -62,4 +75,9 @@ button{
     width: 110px; /* Para que no se rompa en dos líneas, y lo translade tal cual. */
     margin-left: 50%;
     transform: translateX(-50%);
+}
+
+.tamaño{
+
+    width: 20%;
 }

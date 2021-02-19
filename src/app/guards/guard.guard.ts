@@ -13,11 +13,37 @@ export class GuardGuard implements CanActivate {
 
   public active: boolean = false;
 
+  uid = '';
+
   newSuscriber: Subscription;
-  constructor(private authSvc: AuthService){
+  constructor(private authSvc: AuthService,private firestoreSvc: AuthCrudService){
+
+    this.authSvc.afAuth.user.subscribe(res => {
+
+      this.uid = res.uid;
+    })
+
 
 
   }
+
+
+comprobarVendedor(){
+
+  const path = 'vendedores';
+
+  this.firestoreSvc.getDoc<Vendedor>(path,this.uid).subscribe(user => {
+
+    if(user){
+
+      this.active = true;
+    }else{
+      this.active = false;
+    }
+  })
+}
+
+  
   
 
 
@@ -25,11 +51,14 @@ export class GuardGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> |  boolean {
 
+    this.comprobarVendedor();
  
+  
+    
   
  
 
-  return false
+  return this.active;
  
          }
 }

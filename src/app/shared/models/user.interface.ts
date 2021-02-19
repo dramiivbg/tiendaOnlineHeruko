@@ -7,5 +7,6 @@ export interface User {
    pais: string;
    role: string;
    telefono: number;
+   id?: string;
 
 }

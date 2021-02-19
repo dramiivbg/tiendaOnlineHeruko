@@ -64,7 +64,8 @@ private docCollection: AngularFirestoreCollection<Product>;
     direccion : direccion,
     pais :  pais,
     role :  rol,
-    telefono: telefono
+    telefono: telefono,
+    id: userId
   }
     
   
@@ -102,6 +103,7 @@ private docCollection: AngularFirestoreCollection<Product>;
       pais :  pais,
       role :  rol,
       telefono: telefono
+      
       
     }
       
@@ -159,10 +161,13 @@ createDoc(data: Pedido, path: string, id: string){
 doc<type>(data:any ,path: string){
 
   const id = this.afs.createId();
+
+  
   const collection = this.afs.collection<type>(path).doc(id).set(data);
 
   return collection;
 }
+
 
 
 
@@ -203,7 +208,7 @@ getCollectionAll<tipo>(path: string, parametro: string, condicion: any, busqueda
     }
  
   const collection = this.afs.collectionGroup<tipo>(path
-   , ref => ref.where(parametro, condicion, busqueda)
+   , ref => ref.where(parametro, condicion, busqueda,)
    .orderBy('fecha','desc')
    .limit(2)
    .startAfter(startAt)

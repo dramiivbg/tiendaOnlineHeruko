@@ -12,66 +12,14 @@ import { User } from '@app/shared/models/user.interface';
 })
 export class AdminComponent implements OnInit {
 public opened = false;
-  constructor(private authSvc: AuthService,private router: Router,private firestore: AuthCrudService) { 
+  constructor() { 
 
     
   }
 
   ngOnInit(): void {
 
-    this.userActive();
-  
-  }
-
-  userActive(){
-
-      
-    this.authSvc.getCurrentUser().then(res1 => {
-  
-    
-  
-      if(res1 == null){
-  
-        this.router.navigate(['/home']);
-        
-        
-      }else{
-        this.comprobarUser(res1.uid);
-      }
-
-    });
-   
-  }
-
-
-  comprobarUser(id: string){
-
  
-
-    const path = 'vendedores';
-
-      this.firestore.getDoc<Vendedor>(path,id).subscribe(res => {
   
-  
-  
-        if(res != null){
-  
-        this.router.navigate(['/admin']);
-  
-          
-        }else{
-  
-          this.router.navigate(['/home']);
-  
-        }
-         
-        
-  
-        
-        
-        
-      });
-  
-  
-      }
+  }
 }

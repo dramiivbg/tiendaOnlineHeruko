@@ -24,11 +24,14 @@
     <mat-button-toggle class="boton2"  (change)="change($event)" value="culminados"><strong>culminados</strong></mat-button-toggle>
 
 
+    <mat-button-toggle class="boton3"  (change)="change2($event)" value="camino"><strong>camino</strong></mat-button-toggle>
 
 
+
+   
 <div *ngIf="nuevos">
 
-<div *ngFor="let pedido of   pedidosNew " style="text-align: center;">
+<div #pedido *ngFor="let pedido of   pedidosNew " style="text-align: center;">
 
 
 
@@ -65,7 +68,7 @@
     </p>
   </mat-card >
 
-  <div *ngFor="let producto of pedido.productos">
+  <div  *ngFor="let producto of pedido.productos">
  
  
 &nbsp;
@@ -119,11 +122,14 @@
  
  }}</p>
 
- <p>
-
-
- </p>
-
+ <mat-form-field class="tamaño" appearance="fill">
+  <mat-label>estado</mat-label>
+  <mat-select [(ngModel)]="rol">
+    <mat-option (click)="cambiarEstado(pedido)" *ngFor="let rol of roles" [value]="rol.value">
+      {{rol.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
   
 
@@ -145,6 +151,135 @@
 
     <button mat-raised-button color="primary"  (click)="cargarNuevos()">cargar mas</button>
 </div>
+
+
+
+  
+<div *ngIf="camino">
+
+  <div  *ngFor="let pedido of   pedidosCamino " style="text-align: center;">
+  
+  
+  
+  
+      &nbsp;
+      &nbsp;
+  
+    <mat-card class="ancho">
+      <p>
+          
+  
+       Estado:   {{pedido.estado}}
+       </p>
+  
+  </mat-card >  
+    
+  <mat-card  class="ancho" >
+      <p >
+  
+      Fecha:    {{pedido.fecha.seconds*1000 | date }}
+    </p>
+  </mat-card> 
+  <mat-card class="ancho">
+    <p>
+  
+      Telefono: {{pedido.cliente.telefono}}
+    </p>
+  </mat-card >
+  
+  <mat-card class="ancho">
+      <p>
+    
+        Direccion: {{pedido.cliente.direccion}}
+      </p>
+    </mat-card >
+  
+    <div  *ngFor="let producto of pedido.productos">
+   
+   
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  
+  
+  
+  
+  <mat-card >
+  
+   
+  
+      <mat-card-content>
+  
+  
+  
+  <div class="flexp ">
+  
+      
+       <img [src]=" producto.producto.image" />
+  
+  <br>
+  <br>
+  
+  
+  
+  <p> <strong>{{
+  
+      producto.producto.tipo_producto
+  
+  }}
+  
+  </strong>
+  </p>
+  
+  
+  
+  <p> cantidad: {{
+  
+      producto.cantidad
+  
+  }}</p>
+  
+  
+  <p>valor: {{
+  
+      producto.producto.valor
+   
+   }}</p>
+  
+   <mat-form-field class="tamaño" appearance="fill">
+    <mat-label>estado</mat-label>
+    <mat-select [(ngModel)]="rol">
+      <mat-option (click)="cambiarEstado(pedido)" *ngFor="let rol of roles" [value]="rol.value">
+        {{rol.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+    
+  
+        </div>
+  
+  
+   
+  
+  </mat-card-content>
+  
+  </mat-card>
+  
+  
+      </div>
+  </div>
+  
+  
+  
+  
+      <button mat-raised-button color="primary"  (click)="cargarCaminos()">cargar mas</button>
+  </div>
+  
+  
+
 
 
 <div *ngIf="culminados">
@@ -230,20 +365,15 @@
  
  }}</p>
 
- <p>
 
-  
- <!-- <mat-form-field appearance="fill">
-    <mat-label>Select an option</mat-label>
-    <mat-select [(value)]="selected">
-      <mat-option>None</mat-option>
-      <mat-option value="preparando">preparando</mat-option>
-      <mat-option value="camino">camino</mat-option>
-      <mat-option value="entregado">entregado</mat-option>
-    </mat-select>
-  </mat-form-field> -->
-
-</p>
+ <mat-form-field class="tamaño" appearance="fill">
+  <mat-label>estado</mat-label>
+  <mat-select [(ngModel)]="estado">
+    <mat-option  *ngFor="let rol of roles" [value]="rol.value">
+      {{rol.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
   
 

@@ -27,21 +27,22 @@ export class PedidosComponent implements OnInit, OnDestroy {
     private authSvc: AuthService,
     private firesore: AngularFirestore) { 
 
-      this.authSvc.afAuth.authState.subscribe( res => {
 
-
-        this.uid = res.uid;
-
-        this.getPedidosNuevos();
-
-
-      });
 
 
     }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
+    this.authSvc.afAuth.authState.subscribe( res => {
+
+
+      this.uid = res.uid;
+
+      this.getPedidosNuevos();
+
+
+    });
 
   }
 
