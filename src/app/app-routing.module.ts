@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, GuardsCheckEnd } from '@angular/router';
 import { from } from 'rxjs';
 
 import {ContainerAppComponent} from '../app/components/pages/container-app/container-app.component';
@@ -9,6 +9,7 @@ import { ContainerLoginsComponent } from './components/pages/container-logins/co
 import { NewCarritoComponent } from './components/posts/new-carrito/new-carrito.component';
 import { ItemCarritoComponent } from './components/item-carrito/item-carrito.component';
 import { PedidosComponent } from './components/pages/pedidos/pedidos.component';
+import { GuardAGuard } from './guards/guard-a.guard';
 const routes: Routes = [
   {path: '', component:ContainerAppComponent,
 
@@ -22,7 +23,12 @@ const routes: Routes = [
         
       },
 
-      {path: 'carrito', component: NewCarritoComponent},
+      {path: 'carrito', component: NewCarritoComponent,
+    
+      canActivateChild:[GuardAGuard]
+    }
+      ,
+      
 
             
 
@@ -74,7 +80,8 @@ children:[
 
 { path: 'sendEmail', loadChildren: () => import('./components/auth/send-email/send-email.module').then(m => m.SendEmailModule) },
 
-{path:'mispedidos', component: PedidosComponent},
+{path:'mispedidos', component: PedidosComponent,
+canActivateChild:[GuardAGuard]},
 
 { path: 'pedidos', loadChildren: () => import('./components/pages/pedidos-admin/pedidos-admin.module').then(m => m.PedidosAdminModule) },
  

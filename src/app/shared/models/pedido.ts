@@ -13,6 +13,8 @@ export interface Pedido{
     estado: string;
     fecha: any;
     valoracion: number;
+    CorreoClient?:string;
+   
 }
 
 
@@ -20,6 +22,10 @@ export interface ProductoPedido{
 
     producto: Product;
     cantidad: number;
+   
+  
+
+  
 
 
 }

@@ -7,6 +7,7 @@ export interface Product {
      id?: string;
      image?: any;
      vendedor?: Vendedor;
+    
 
 
 }

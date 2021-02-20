@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Router } from '@angular/router';
+import { AuthService } from '@app/components/auth/auth.service';
 import { User } from '@app/shared/models/user.interface';
-import { Vendedor } from '@app/shared/models/vendedor';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
-import { from, Observable, Subscription } from 'rxjs';
-import {AuthService} from '../components/auth/auth.service';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
-export class GuardGuard implements CanActivate {
+export class GuardAGuard implements CanActivate {
 
   public active: boolean = false;
 
@@ -18,6 +17,7 @@ export class GuardGuard implements CanActivate {
 
   constructor(private authSvc: AuthService,private firestoreSvc: AuthCrudService){
 
+
     this.authSvc.afAuth.user.subscribe(res => {
 
       this.uid = res.uid;
@@ -25,18 +25,20 @@ export class GuardGuard implements CanActivate {
 
 
 
+
   }
 
 
-comprobarVendedor(){
+comprobarCliente(){
 
-  const path = 'vendedores';
+  const path = 'clientes';
 
-  this.firestoreSvc.getDoc<Vendedor>(path,this.uid).subscribe(user => {
+  this.firestoreSvc.getDoc<User>(path,this.uid).subscribe(user => {
 
     if(user){
 
       this.active = true;
+
     }else{
       this.active = false;
     }
@@ -46,19 +48,12 @@ comprobarVendedor(){
   
   
 
-
-    canActivate(
+  canActivate(
     route: ActivatedRouteSnapshot,
-   state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> |  boolean {
-
-    this.comprobarVendedor();
- 
-  
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
+    
+      return this.active;
+  }
   
- 
-
-  return this.active;
- 
-         }
 }

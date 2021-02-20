@@ -5,6 +5,7 @@ import { Pedido } from '@app/shared/models/pedido';
 import { User } from '@app/shared/models/user.interface';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { CarritoService } from '@app/shared/services/carrito.service';
+import { ProductoService } from '@app/shared/services/producto.service';
 import { from, Observable, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import {ValorService} from '../../../shared/services/valor.service';
@@ -24,19 +25,21 @@ uid1 = '';
  carritoTotal: number;
 
  carritoSuscriber: Subscription;
+
+ total: number;
   
 uid= '';
   constructor(public carritoSvc: CarritoService,
     private firestoreSvc: AuthCrudService,
     private firesore: AngularFirestore,
     private authSvc: AuthService, 
-      private totalSvc: ValorService) {
+      private totalSvc: ValorService,private productoSvc: ProductoService) {
 
       this.authSvc.afAuth.authState.subscribe( res => {
       
         this.uid = res.uid;
       
-      })
+      });
 
 
 
@@ -115,7 +118,7 @@ this.pedido.productos.forEach( producto => {
 
 this.carritoTotal =   (producto.producto.valor) * producto.cantidad + this.carritoTotal; 
 
-
+this.total = (producto.producto.valor) * producto.cantidad + this.carritoTotal; 
 
 
 })
@@ -158,12 +161,28 @@ this.pedido.precioTotal = this.carritoTotal;
     Swal.fire('guardado con exito');
     this.totalSvc.setValorTotal(this.carritoTotal);
 
+   
+
+    this.producto();
+
+   
+
    this.carritoSvc.clearCarrito();
+
 
   
  
  
   });
+
+
+}
+
+producto(){
+
+  
+  this.pedido.precioTotal = this.total;
+  this.productoSvc.setProducto(this.pedido);
 
 
 }

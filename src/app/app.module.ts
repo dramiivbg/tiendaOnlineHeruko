@@ -45,6 +45,7 @@ import { ModalEditComponent } from './shared/components/modal-edit/modal-edit.co
 
 import {PedidosComponent} from './components/pages/pedidos/pedidos.component';
 import { FilterProductPipe } from './pipe/filter-product.pipe';
+import { MessageService } from './shared/services/message.service';
 
 
 
@@ -100,7 +101,7 @@ import { FilterProductPipe } from './pipe/filter-product.pipe';
   ],
   entryComponents:[ModalComponent],
   providers: [ 
-    
+    MessageService,
     AuthCrudService,
     {provide: BUCKET, useValue: 'gs://ngblogventa.appspot.com' }],
   bootstrap: [AppComponent]

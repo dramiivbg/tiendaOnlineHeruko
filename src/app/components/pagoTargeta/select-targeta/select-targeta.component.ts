@@ -13,7 +13,10 @@ import { Pago } from '@app/shared/models/pago';
 import { CdkNoDataRow } from '@angular/cdk/table';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-
+import { MessageService } from '@app/shared/services/message.service';
+import { ProductoService } from '@app/shared/services/producto.service';
+import { User } from '@app/shared/models/user.interface';
+import {Pedido} from '../../../shared/models/pedido';
 @Component({
   selector: 'app-select-targeta',
   templateUrl: './select-targeta.component.html',
@@ -25,6 +28,10 @@ uid = '';
   stripeTest: FormGroup;
 
   pago:Pago;
+
+  cliente: User;
+
+  pedido: Pedido;
 
   cardOptions: StripeCardElementOptions = {
     style: {
@@ -51,13 +58,15 @@ uid = '';
   constructor(private fb: FormBuilder, private stripeService: StripeService,
     private stripSvc: stripeService,private cantidaSvc: ValorService,
     private authAf: AuthService, private firestore: AuthCrudService,
-    private router: Router) {
+    private router: Router,private message: MessageService,private productoSvc: ProductoService) {
 
       this.authAf.afAuth.user.subscribe(res => {
 
         this.uid = res.uid;
 
-      })
+      });
+
+      this.initCarrito();
      }
 
 
@@ -82,6 +91,12 @@ createToken(): void {
 
         console.log(valor);
 
+        const path = 'clientes';
+        this.firestore.getDoc<User>(path,this.uid).subscribe(res => {
+
+          this.cliente = res;
+        });
+
        this.stripSvc.charge(valor, result.token.id).then(() => {
 
         const path = 'pagos';
@@ -96,6 +111,21 @@ createToken(): void {
 
        Swal.fire('transiccion exitosa');
        this.router.navigate(['/envio']);
+
+        
+        
+      this.pedido = this.productoSvc.getProducto();
+
+      this.pedido.CorreoClient = this.cliente.gmail;
+
+  
+      
+       this.message.sendMessage(this.pedido).subscribe(() => {
+
+        console.log('message enviado correctamente');
+       });
+       
+
        
         this.firestore.doc<Pago>(this.pago,path).then(res => {
 
@@ -116,6 +146,20 @@ createToken(): void {
     
       }
     });
+
+}
+
+initCarrito(){
+
+  this.pedido = {
+    id: '',
+    cliente: null,
+    productos:[],
+    precioTotal: null,
+    estado: 'enviado',
+    fecha: new Date(),
+    valoracion: null,
+}
 }
 
 }
