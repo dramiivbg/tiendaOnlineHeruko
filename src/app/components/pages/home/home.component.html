@@ -3,21 +3,40 @@
 
 
 <div class="container" *ngIf="products$  | async as products; else loading" >
+   
 
 
+ 
+
+   
+       
     <mat-card class="post-card"  *ngFor="let product of products ">
-        <mat-card-header>
+
+
+
+
+        
+
+    <mat-card-header>
+
+
+
+
+    
             
             {{product.tipo_producto}}
 
-       <div class="circulo">
-        <ion-icon color="primary" *ngIf="admin"  name="cart" (click)="addCarrito(product)"></ion-icon>
-       </div> 
+            <div class="circulo">
+                <ion-icon color="primary" *ngIf="admin"  name="cart" (click)="addCarrito(product)"></ion-icon>
+               </div> 
        
        
              
+       
           
         </mat-card-header >
+
+
         &nbsp;
         &nbsp;
         <img   matCardImage   [src]="product.image" />
@@ -49,8 +68,10 @@
         <mat-divider></mat-divider>
 
       
+    
 
     </mat-card>
+
     </div>
     <ng-template #loading>
     <div class="container-spinner">

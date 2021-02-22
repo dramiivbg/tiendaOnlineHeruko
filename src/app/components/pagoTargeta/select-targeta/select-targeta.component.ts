@@ -17,6 +17,9 @@ import { MessageService } from '@app/shared/services/message.service';
 import { ProductoService } from '@app/shared/services/producto.service';
 import { User } from '@app/shared/models/user.interface';
 import {Pedido} from '../../../shared/models/pedido';
+import { ProductService } from '@app/components/posts/product.service';
+import { Product } from '@app/shared/models/product.interface';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-select-targeta',
   templateUrl: './select-targeta.component.html',
@@ -32,6 +35,8 @@ uid = '';
   cliente: User;
 
   pedido: Pedido;
+
+  products$: Observable<Product[]>;
 
   cardOptions: StripeCardElementOptions = {
     style: {
@@ -58,8 +63,12 @@ uid = '';
   constructor(private fb: FormBuilder, private stripeService: StripeService,
     private stripSvc: stripeService,private cantidaSvc: ValorService,
     private authAf: AuthService, private firestore: AuthCrudService,
+    private postSvc: ProductService,
     private router: Router,private message: MessageService,private productoSvc: ProductoService) {
 
+
+            
+      this.products$ = this.postSvc.getAllPosts();
       this.authAf.afAuth.user.subscribe(res => {
 
         this.uid = res.uid;
@@ -109,8 +118,14 @@ createToken(): void {
 
        }
 
-       Swal.fire('transiccion exitosa');
-       this.router.navigate(['/envio']);
+       Swal.fire('transiccion exitosa').then(() => {
+
+
+
+        this.router.navigate(['/home']);
+
+       });
+    
 
         
         

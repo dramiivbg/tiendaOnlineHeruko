@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Pedido } from '@app/shared/models/pedido';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
@@ -22,7 +22,7 @@ interface Rol {
   templateUrl: './pedidos-admin.component.html',
   styleUrls: ['./pedidos-admin.component.scss']
 })
-export class PedidosAdminComponent implements OnInit {
+export class PedidosAdminComponent implements OnInit, OnDestroy {
 
 
 
@@ -86,7 +86,7 @@ public  rol: string = '';
 
 
     
-    this.userActive();
+ 
 
    this.getPedidosNuevos();
 
@@ -98,57 +98,8 @@ public  rol: string = '';
  
 
 
-  userActive(){
+  
 
-      
-    this.authSvc.getCurrentUser().then(res1 => {
-  
-    
-  
-      if(res1 == null){
-  
-        this.router.navigate(['/home']);
-        
-        
-      }else{
-        this.comprobarUser(res1.uid);
-      }
-
-    });
-   
-  }
-
-
-  comprobarUser(id: string){
-
- 
-
-    const path = 'vendedores';
-
-      this.firestore.getDoc<Vendedor>(path,id).subscribe(res => {
-  
-  
-  
-        if(res != null){
-  
-        this.router.navigate(['/pedidos']);
-  
-          
-        }else{
-  
-          this.router.navigate(['/home']);
-  
-        }
-         
-        
-  
-        
-        
-        
-      });
-  
-  
-      }
 
 
 
@@ -161,6 +112,11 @@ public  rol: string = '';
 
     if(this.culminadoSuscriber){
       this.culminadoSuscriber.unsubscribe();
+    }
+
+    if(this.caminoSuscriber){
+
+      this.caminoSuscriber.unsubscribe();
     }
   }
 
@@ -241,7 +197,7 @@ public  rol: string = '';
 
       
        
-      })
+      });
 
 
 
@@ -281,7 +237,7 @@ public  rol: string = '';
 
     }
 
- })
+ });
 
 
   }
@@ -295,7 +251,7 @@ let startAt = null;
 
    startAt = this.pedidosCul[this.pedidosCul.length -1].fecha;
  }
-this.newSuscriber =  this.firestoreSvc.getCollectionAll<Pedido>(path, 'estado','==','entregado',startAt).subscribe(res => {
+this.culminadoSuscriber =  this.firestoreSvc.getCollectionAll<Pedido>(path, 'estado','==','entregado',startAt).subscribe(res => {
 
 
 
@@ -303,7 +259,7 @@ this.newSuscriber =  this.firestoreSvc.getCollectionAll<Pedido>(path, 'estado','
     res.forEach( pedido => {
  
      this.pedidosCul.push(pedido);
-    })
+    });
 
 console.log(this.pedidosCul);
 
@@ -315,7 +271,7 @@ console.log(this.pedidosCul);
 
   }
 
-})
+});
 
 
 

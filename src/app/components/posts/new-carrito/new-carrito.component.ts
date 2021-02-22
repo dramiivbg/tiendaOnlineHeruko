@@ -5,6 +5,7 @@ import { Pedido } from '@app/shared/models/pedido';
 import { User } from '@app/shared/models/user.interface';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { CarritoService } from '@app/shared/services/carrito.service';
+import { ProductoRecientesService } from '@app/shared/services/producto-recientes.service';
 import { ProductoService } from '@app/shared/services/producto.service';
 import { from, Observable, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -32,7 +33,8 @@ uid= '';
   constructor(public carritoSvc: CarritoService,
     private firestoreSvc: AuthCrudService,
     private firesore: AngularFirestore,
-    private authSvc: AuthService, 
+    private authSvc: AuthService,
+    private pedidoSvc: ProductoRecientesService, 
       private totalSvc: ValorService,private productoSvc: ProductoService) {
 
       this.authSvc.afAuth.authState.subscribe( res => {
@@ -158,7 +160,6 @@ this.pedido.precioTotal = this.carritoTotal;
 
   this.firestoreSvc.createDoc(this.pedido, path,this.pedido.id).then(( ) => {
 
-    Swal.fire('guardado con exito');
     this.totalSvc.setValorTotal(this.carritoTotal);
 
    
@@ -183,6 +184,8 @@ producto(){
   
   this.pedido.precioTotal = this.total;
   this.productoSvc.setProducto(this.pedido);
+  this.pedidoSvc.setPedido(this.pedido);
+
 
 
 }

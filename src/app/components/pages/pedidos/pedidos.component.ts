@@ -14,10 +14,10 @@ import { Subscription } from 'rxjs';
 export class PedidosComponent implements OnInit, OnDestroy {
 
 
- newSuscriber: Subscription;
+  newSuscriber: Subscription;
 
 
- culminadoSuscriber: Subscription;
+  culminadoSuscriber: Subscription;
   uid = '';
 
   pedidos: Pedido[];
@@ -129,7 +129,7 @@ export class PedidosComponent implements OnInit, OnDestroy {
    
       }
    
-    })
+    });
    
    
 

@@ -50,8 +50,6 @@ import { MessageService } from './shared/services/message.service';
 
 
 
-
-
 //pipe
 
 
@@ -72,8 +70,9 @@ import { MessageService } from './shared/services/message.service';
     EditPostComponent,
     ModalEditComponent,
     PedidosComponent,
-    FilterProductPipe
- 
+    FilterProductPipe,
+  
+   
 
       
   

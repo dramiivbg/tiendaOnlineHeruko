@@ -10,6 +10,8 @@ import { NewCarritoComponent } from './components/posts/new-carrito/new-carrito.
 import { ItemCarritoComponent } from './components/item-carrito/item-carrito.component';
 import { PedidosComponent } from './components/pages/pedidos/pedidos.component';
 import { GuardAGuard } from './guards/guard-a.guard';
+
+
 const routes: Routes = [
   {path: '', component:ContainerAppComponent,
 
@@ -83,19 +85,20 @@ children:[
 {path:'mispedidos', component: PedidosComponent,
 canActivateChild:[GuardAGuard]},
 
+
+
 { path: 'pedidos', loadChildren: () => import('./components/pages/pedidos-admin/pedidos-admin.module').then(m => m.PedidosAdminModule) },
  
 
-{ path: 'envio', loadChildren: () => import('./components/pages/envio/envio.module').then(m => m.EnvioModule) },
+
+
 ]
 
-},
   
 
  
 
-
-
+},
 
 ];
 
