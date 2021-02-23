@@ -3,13 +3,15 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Pedido } from '@app/shared/models/pedido';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from '@app/components/auth/auth.service';
 import { Vendedor } from '@app/shared/models/vendedor';
 import { DataService } from '@app/shared/services/data.service';
 import { ContadorService } from '@app/shared/services/contador.service';
 import { User } from '@app/shared/models/user.interface';
-import { Product } from '@app/shared/models/product.interface';
+import {ProductService} from '../../../components/posts/product.service';
+import { SendProductService } from '@app/shared/services/sendProduct';
+import { templateJitUrl } from '@angular/compiler';
 
 
 interface Rol {
@@ -71,7 +73,9 @@ public  rol: string = '';
     private firesore: AngularFirestore,
     private authSvc: AuthService,private router: Router,
     private firestore: AuthCrudService,
-    private dataSvc: ContadorService) {
+    private dataSvc: ContadorService,
+    private pedidoSvc: ProductService,
+    private sendProductSvc: SendProductService) {
 
       authSvc.afAuth.user.subscribe(res => {
 
@@ -131,6 +135,9 @@ public  rol: string = '';
     console.log('change()', $event.value);
 
     this.getPedidosCamino();
+
+    
+  
 
 
   }
@@ -310,7 +317,7 @@ console.log(this.pedidosCamino);
 
   }
 
-})
+});
 
 
 
@@ -384,9 +391,25 @@ cambiarEstado(pedido: Pedido){
 
  if(item !== undefined){
 
-  console.log()
+ 
 
  item.estado = this.rol;
+
+ if(item.estado == 'camino'){
+ this.sendProductSvc.sendEstadoProduct(item).subscribe(() => 
+ 
+ console.log('producto mandado')
+ );
+}else
+ 
+ if(item.estado == 'entregado'){
+this.sendProductSvc.sendEntregadoProduct(item).subscribe(() => 
+
+console.log('producto entregado'));
+
+ }
+
+
 
  const id = item.cliente.id;
 
@@ -395,9 +418,10 @@ cambiarEstado(pedido: Pedido){
 
  this.firestore.createDoc(item,path,item.id).then(() => {
     
+
   console.log('añadido con exito');
   
- 
+  
 
   });
   
@@ -435,11 +459,15 @@ cambiarEstado(pedido: Pedido){
  const path2 = 'pedidos';
  const path1 = `clientes/${id1}/${path2}`;
 
+
+
+
+
  this.firestore.createDoc(item1,path1,item1.id).then(() => {
-    
+
+  
   console.log('añadido con exito');
   
- 
 
   });
   
@@ -452,6 +480,7 @@ cambiarEstado(pedido: Pedido){
 
 
 }
+
 
 }
 
