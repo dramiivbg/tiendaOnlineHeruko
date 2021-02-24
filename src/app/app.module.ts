@@ -47,7 +47,10 @@ import {PedidosComponent} from './components/pages/pedidos/pedidos.component';
 import { FilterProductPipe } from './pipe/filter-product.pipe';
 import { MessageService } from './shared/services/message.service';
 
+//paypal
 
+import { NgxPayPalModule } from 'ngx-paypal';
+import { PaypalComponent } from './components/paypal/paypal.component';
 
 
 //pipe
@@ -71,6 +74,7 @@ import { MessageService } from './shared/services/message.service';
     ModalEditComponent,
     PedidosComponent,
     FilterProductPipe,
+   
   
    
 
@@ -92,6 +96,7 @@ import { MessageService } from './shared/services/message.service';
     HttpClientModule,
     NewCarritoModule,
     EditPostModule,
+    NgxPayPalModule 
    
  
    

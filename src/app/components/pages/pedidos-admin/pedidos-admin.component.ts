@@ -58,6 +58,9 @@ export class PedidosAdminComponent implements OnInit, OnDestroy {
 
 public  rol: string = '';
 
+contadorNew: number = 0;
+pedidoNew: Pedido;
+
 
 
 
@@ -77,19 +80,11 @@ public  rol: string = '';
     private pedidoSvc: ProductService,
     private sendProductSvc: SendProductService) {
 
-      authSvc.afAuth.user.subscribe(res => {
-
-        this.uid = res.uid;
-
-
-      })
+     
      };
 
   ngOnInit() {
 
-
-
-    
  
 
    this.getPedidosNuevos();
@@ -193,9 +188,16 @@ public  rol: string = '';
 
     if(res.length){
       res.forEach( pedido => {
+  
    
+  
       
-       this.pedidosNew.push(pedido);
+       
+   this.pedidosNew.push(pedido);
+   
+});
+   }
+      
 
 
        
@@ -205,6 +207,8 @@ public  rol: string = '';
       
        
       });
+
+    
 
 
 
@@ -241,10 +245,10 @@ public  rol: string = '';
  
 
 
+    
+  
 
-    }
 
- });
 
 
   }
@@ -265,6 +269,7 @@ this.culminadoSuscriber =  this.firestoreSvc.getCollectionAll<Pedido>(path, 'est
   if(res.length){
     res.forEach( pedido => {
  
+
      this.pedidosCul.push(pedido);
     });
 
@@ -400,14 +405,7 @@ cambiarEstado(pedido: Pedido){
  
  console.log('producto mandado')
  );
-}else
- 
- if(item.estado == 'entregado'){
-this.sendProductSvc.sendEntregadoProduct(item).subscribe(() => 
-
-console.log('producto entregado'));
-
- }
+}
 
 
 
@@ -454,7 +452,17 @@ console.log('producto entregado'));
 
  item1.estado = this.rol;
 
+
+ if(item.estado == 'entregado'){
+  this.sendProductSvc.sendEntregadoProduct(item).subscribe(() => 
+  
+  console.log('producto entregado'));
+  
+   }
+
  const id1 = item1.cliente.id;
+
+ 
 
  const path2 = 'pedidos';
  const path1 = `clientes/${id1}/${path2}`;

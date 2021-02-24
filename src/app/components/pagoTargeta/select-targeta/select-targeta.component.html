@@ -1,3 +1,16 @@
+<div class="container">
+  <br>
+
+  <mat-card>
+
+    <p style="text-align: center;"><strong> Paypal </strong></p>
+
+ <app-paypal></app-paypal>
+
+</mat-card>
+
+</div>
+
 <div class="container "  *ngIf="products$  | async as products; else loading" >
   
   <br>
@@ -5,14 +18,13 @@
 
   
 
-  <div>
-
-    <img src="https://static.vecteezy.com/system/resources/previews/000/886/974/non_2x/person-holding-credit-card-using-laptop-photo.jpg">
-  </div>
+ 
   &nbsp;
   &nbsp;
  
  <mat-card>
+
+  <p style="text-align: center;"><strong> Stripe </strong></p>
   <form novalidate [formGroup]="stripeTest"  (ngSubmit)="createToken()" >
 
    
@@ -32,6 +44,9 @@
 </mat-card>
 
 </div>
+
+
+
 
 
 <ng-template #loading>

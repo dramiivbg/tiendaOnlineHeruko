@@ -1,6 +1,8 @@
 
-
-
+       
+ <br>
+ 
+<mat-card class="ancho">
 
 <div class="container" *ngIf="products$  | async as products; else loading" >
    
@@ -8,14 +10,17 @@
 
  
 
+      
    
-       
+
     <mat-card class="post-card"  *ngFor="let product of products ">
 
 
 
 
         
+        <mat-card class="dimension">
+
 
     <mat-card-header>
 
@@ -44,9 +49,9 @@
          <p>
     
             {{ product.nombre }}
-         </p><br>
+         </p>
 
-         <p>
+         <p style="background: cornsilk;">
     
             {{ product.valor }}
          </p>
@@ -62,17 +67,19 @@
 
 
       
-        </mat-card-content>
+        </mat-card-content>&nbsp;
      
-
+    </mat-card> 
         <mat-divider></mat-divider>
 
       
-    
 
     </mat-card>
 
+
     </div>
+
+</mat-card>
     <ng-template #loading>
     <div class="container-spinner">
     

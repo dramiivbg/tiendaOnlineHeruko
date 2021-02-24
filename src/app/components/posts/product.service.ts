@@ -53,21 +53,10 @@ export class ProductService {
 
   }
   
+public getOnePost(id: string){
 
-  public getAllPostsVendedor(path: string):Observable<Product[]>{
-    return this.afs.collection(path)
-    .snapshotChanges()
-    .pipe(
-      map(actions =>
-        actions.map(a => {
-          const data = a.payload.doc.data() as Product;
-          const id = a.payload.doc.id;
-           return { id, ...data };
-        })
-      )
-    );
-
-  }
+  return this.postCollection.doc(id).valueChanges();
+}
 
 
   public getAllPedidos(path: string):Observable<Pedido[]>{
@@ -85,37 +74,17 @@ export class ProductService {
 
   }
 
-  public getOnePostVendedor(idVendedor:string, product: Product):Observable<Product>{
-
-
-    const path = `vendedores/${idVendedor}/producto`;
-
-    return this.afs.collection<Product>(path).doc(product.id).valueChanges();
-  }
 
  
 
-  public deletePostVendedor(product: Product, idVendedor: string){
 
-
-    const path = `vendedores/${idVendedor}/producto`
-
-    const result = this.afs.collection<Product>(path).doc(product.id).delete();
-    
-    
-    this.deletePostById(product);
-
-    return result;
-
-  }
-
-  private deletePostById(product:Product){
+  public deletePostById(product:Product){
 
     return this.postCollection.doc(product.id).delete();
 
   }
 
-  private editPostVendedor(product: Product, path: string,id: string,img: string,vendedor: Vendedor){
+  private editPostVendedor(product: Product,img: string,){
 
 
     const producto = {
@@ -124,14 +93,11 @@ export class ProductService {
       image: img,
       tipo_producto: product.tipo_producto,
       valor: product.valor,
-      vendedor: vendedor
+      
     }
 
-    const result = this.afs.collection<Product>(path).doc(id).set(
-    producto
-    );
 
-    this.postCollection.doc<Product>(id).set(
+const result =     this.postCollection.doc<Product>(product.id).set(
       producto
     )
 
@@ -143,7 +109,7 @@ export class ProductService {
 
 
 
-  private editPostVendedor1(product: Product, path: string,id: string,vendedor: Vendedor){
+  private editPostVendedor1(product: Product){
 
 
     const producto = {
@@ -152,14 +118,10 @@ export class ProductService {
       image: this.downloadURL1,
       tipo_producto: product.tipo_producto,
       valor: product.valor,
-      vendedor: vendedor
+      
     }
 
-    const result = this.afs.collection<Product>(path).doc(id).set(
-    producto
-    );
-
-    this.postCollection.doc<Product>(id).set(
+  const result =   this.postCollection.doc<Product>(product.id).set(
       producto
     )
 
@@ -172,25 +134,25 @@ export class ProductService {
 
 
 
-  public preAddAndUpdate(product: Product, image:FileI , path: string,vendedor: Vendedor){
+  public preAddAndUpdate(product: Product, image:FileI){
 
-  this.uploadImage(product,image,path,vendedor);
+  this.uploadImage(product,image);
   }
 
 
-  public preUpdate(product: Product , path: string,id: string,img: string,img2: FileI,vendedor: Vendedor){
+  public preUpdate(product: Product , img: string,img2: FileI){
 
 
     if(img2 != null){
 
-      this.uploadImage1(product,path,id,img2,vendedor)
+      this.uploadImage1(product,img2)
     }else{
-    this.editPostVendedor(product,path,id,img,vendedor);
+    this.editPostVendedor(product,img);
   }
 
   }
 
-  private saveProduct(product: Product,path: string,vendedor: Vendedor){
+  private saveProduct(product: Product){
 
    this.id = this.afs.createId();
     const producObj = {
@@ -199,16 +161,9 @@ export class ProductService {
       tipo_producto: product.tipo_producto,
       image: this.downloadURL,
       valor: product.valor,
-      vendedor: vendedor
+      id: this.id
 
     }
-
-
-
-    this.afs.collection<Product>(path).doc(this.id).set( 
-
-      producObj
-    )
 
     this.postCollection.doc<Product>(this.id).set(
 
@@ -217,7 +172,7 @@ export class ProductService {
 
   }
 
- private  uploadImage(product:Product,image:FileI,path:string,vendedor: Vendedor){
+ private  uploadImage(product:Product,image:FileI){
   this.filePath = `images/${image.name}`;
    const fileRef = this.storage.ref(this.filePath);
    const task = this.storage.upload(this.filePath, image);
@@ -226,7 +181,7 @@ export class ProductService {
      finalize(() =>{
        fileRef.getDownloadURL().subscribe( urlImage => {
        this.downloadURL = urlImage;
-       this.saveProduct(product,path,vendedor);
+       this.saveProduct(product);
 
        //call addPost()
 
@@ -238,7 +193,7 @@ export class ProductService {
 
 
 
- private  uploadImage1(product:Product,path:string,id:string, image:FileI,vendedor: Vendedor){
+ private  uploadImage1(product:Product, image:FileI){
   this.filePath = `images/${image.name}`;
    const fileRef = this.storage.ref(this.filePath);
    const task = this.storage.upload(this.filePath, image);
@@ -247,7 +202,7 @@ export class ProductService {
      finalize(() =>{
        fileRef.getDownloadURL().subscribe( urlImage => {
        this.downloadURL1 = urlImage;
-       this.editPostVendedor1(product,path,id,vendedor);
+       this.editPostVendedor1(product);
 
        //call addPost()
 

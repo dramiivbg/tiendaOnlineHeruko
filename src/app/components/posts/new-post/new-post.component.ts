@@ -15,12 +15,8 @@ export class NewPostComponent implements OnInit {
   private image:any;
   private product:any;
 
-  uid = '';
 
-  producto: Product;
-
-  vendedor: Vendedor;
-
+  
   constructor(private productSvc: ProductService,  private authSvc: AuthService,
    private firestoreSvc: AuthCrudService){
 
@@ -42,32 +38,16 @@ export class NewPostComponent implements OnInit {
 
   addNewPost(data: Product){
 
-
-    this.authSvc.getCurrentUser().then( res => {
-
-
-
-      if(res !== null){
-     
-        this.uid = res.uid;
-
-        const path1 = 'vendedores'
         
-        this.firestoreSvc.getDoc<Vendedor>(path1,this.uid).subscribe(user => {
-          this.vendedor = user;
-      
-
-        console.log('New post',data);
-        const path =  `vendedores/${this.uid}/producto`;
-         this.product =  console.log(this.productSvc.preAddAndUpdate(data, this.image,path,this.vendedor));
+    
+    this.product =  console.log(this.productSvc.preAddAndUpdate(data, this.image));
       
      
-        });
+        
      
       }
       
-      })
-
+    
 
 
   
@@ -76,7 +56,7 @@ export class NewPostComponent implements OnInit {
 
 
  
-  }
+  
 
   handleImage(event:any): void{
  

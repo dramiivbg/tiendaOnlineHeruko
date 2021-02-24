@@ -39,28 +39,21 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
   
-    this.authSvc.getCurrentUser().then( res => {
+   
 
 
 
-      if(res !== null){
-     
-        this.uid = res.uid;
-
-        const path = `vendedores/${this.uid}/producto`;
-  
-        console.log(this.uid);
-    
-       this.productSvc.getAllPostsVendedor(path)
+      
+       this.productSvc.getAllPosts()
        .subscribe(posts => (this.dataSource.data = posts));
       
   
      
        
      
-      }
       
-      })
+      
+      
 
 
 
@@ -105,7 +98,7 @@ oneDeletePost(post: Product){
 
       
 
-      this.productSvc.deletePostVendedor(post, this.uid).then(() => {
+      this.productSvc.deletePostById(post).then(() => {
 
         Swal.fire('Deleted!, Your post has been deleted.','sucessfull');
         

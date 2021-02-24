@@ -78,10 +78,9 @@ try {
 
   verifyAdmin(){
 
-    const path = 'vendedores';
-    this.firestore.getDoc<Vendedor>(path,this.uid).subscribe(res => {
 
-      if(res){
+
+      if(this.uid = 'Dik2UyFl6wQ0EamZoHrDIKGQj1e2'){
 
         this.admin = true;
 
@@ -89,7 +88,7 @@ try {
 
         this.admin = false;
       }
-    })
+    
     
   }
 

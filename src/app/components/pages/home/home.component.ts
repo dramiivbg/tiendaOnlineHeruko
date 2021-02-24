@@ -120,15 +120,9 @@ producto: any;
 
   comprobarUser(id: string){
 
- 
-
-    const path = 'vendedores';
-
-      this.firestore.getDoc<Vendedor>(path,id).subscribe(res => {
   
   
-  
-        if(res == null){
+        if(id !== 'Dik2UyFl6wQ0EamZoHrDIKGQj1e2'){
   
         this.admin = true;
   
@@ -144,8 +138,7 @@ producto: any;
         
         
         
-      });
-  
+      
   
       }
 

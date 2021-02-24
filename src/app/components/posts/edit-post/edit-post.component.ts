@@ -53,15 +53,11 @@ export class EditPostComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.authSvc.getCurrentUser().then( res => {
-
-
-
-      if(res !== null){
+    
      
-        this.uid = res.uid;
+       
 
-        const path = `vendedores/${this.uid}/producto`;
+        
   
     
     
@@ -69,35 +65,29 @@ export class EditPostComponent implements OnInit {
 
 
       
-     this.productSvc.getOnePostVendedor(this.uid,this.product).subscribe(post => {
+     this.productSvc.getOnePost(this.product.id).subscribe(post => {
        
       
       this.product$ = post
     
      
     
+     });
     
     }
      
      
-       );
-
-    
-
+       
       
      
        
      
-      }
       
-      })
 
-
-
-
+     
 
     
-  }
+  
 
 
 
@@ -110,37 +100,12 @@ export class EditPostComponent implements OnInit {
     
 
 
-    this.authSvc.getCurrentUser().then( res => {
 
 
 
-      if(res !== null){
-     
-        this.uid = res.uid;
+      this.productSvc.preUpdate(data,this.product$.image,this.image);
 
-        const path1 = 'vendedores'
-        
-        this.firestoreSvc.getDoc<Vendedor>(path1,this.uid).subscribe(user => {
-          this.vendedor = user;
-       
-
-
-        console.log('New post',data);
-
-        const path = `vendedores/${this.uid}/producto`;
-
-     
     
-      this.productSvc.preUpdate(data,path,this.product.id,this.product$.image,this.image,this.vendedor);
-
-    });
-      
-     
-       
-     
-      }
-      
-      })
 
 
 

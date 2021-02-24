@@ -33,6 +33,7 @@
     "firebase": "^7.0 || ^8.0",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
+    "ngx-paypal": "^7.0.0",
     "ngx-stripe": "^7.6.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.6.0",

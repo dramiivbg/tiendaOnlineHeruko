@@ -30,17 +30,13 @@ export class GuardGuard implements CanActivate {
 
 comprobarVendedor(){
 
-  const path = 'vendedores';
-
-  this.firestoreSvc.getDoc<Vendedor>(path,this.uid).subscribe(user => {
-
-    if(user){
+    if(this.uid == 'Dik2UyFl6wQ0EamZoHrDIKGQj1e2'){
 
       this.active = true;
     }else{
       this.active = false;
     }
-  })
+  
 }
 
   

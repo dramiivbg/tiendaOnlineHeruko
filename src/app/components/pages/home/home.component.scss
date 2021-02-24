@@ -1,3 +1,7 @@
+.ancho{
+    height: 100%;
+
+
 .container{
 
     margin-top: 25px;
@@ -9,12 +13,22 @@
     justify-content: center;
 
 
+
+.dimension{
+
+    height: 40%;
+
+}
+
     a{
 
         cursor: pointer;
         color: #fff;
         text-decoration: none;
     }
+
+  
+
 .post-card{
 
     background: black;
@@ -22,6 +36,7 @@
     border-radius: 5px;
     padding: 20px;
     font-size: 150%;
+    height: 82%;
 
 
     img{
@@ -52,11 +67,6 @@ ion-icon{
 
 }
 
-button{
-
-    width: 100% !important;
-
-   
 }
 
 p{
@@ -76,3 +86,4 @@ p{
     width: 100%;
     text-align: center;
   }
+

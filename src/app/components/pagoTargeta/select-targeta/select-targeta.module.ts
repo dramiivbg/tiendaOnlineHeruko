@@ -7,9 +7,10 @@ import {MaterialModule} from '../../../material.module';
 import {NgxStripeModule} from 'ngx-stripe';
 import {ReactiveFormsModule} from '@angular/forms';
 import { from } from 'rxjs';
+import {PaypalComponent} from '../../paypal/paypal.component';
 
 @NgModule({
-  declarations: [SelectTargetaComponent],
+  declarations: [SelectTargetaComponent,PaypalComponent],
   imports: [
     CommonModule,
     SelectTargetaRoutingModule,
