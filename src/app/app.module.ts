@@ -51,6 +51,8 @@ import { MessageService } from './shared/services/message.service';
 
 import { NgxPayPalModule } from 'ngx-paypal';
 import { PaypalComponent } from './components/paypal/paypal.component';
+import { AnalityClientsComponent } from './components/pages/anality-clients/anality-clients.component';
+
 
 
 //pipe
@@ -74,6 +76,7 @@ import { PaypalComponent } from './components/paypal/paypal.component';
     ModalEditComponent,
     PedidosComponent,
     FilterProductPipe,
+    AnalityClientsComponent,
    
   
    
@@ -96,7 +99,8 @@ import { PaypalComponent } from './components/paypal/paypal.component';
     HttpClientModule,
     NewCarritoModule,
     EditPostModule,
-    NgxPayPalModule 
+    NgxPayPalModule,
+  
    
  
    
