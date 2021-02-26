@@ -57,8 +57,7 @@ import { AnalityClientsComponent } from './components/pages/anality-clients/anal
 
 import {ChartsModule} from 'ng2-charts';
 
-//pipe
-
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -112,6 +111,7 @@ import {ChartsModule} from 'ng2-charts';
   ],
   entryComponents:[ModalComponent],
   providers: [ 
+    DatePipe,
     MessageService,
     AuthCrudService,
     {provide: BUCKET, useValue: 'gs://ngblogventa.appspot.com' }],

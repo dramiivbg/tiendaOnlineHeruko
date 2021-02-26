@@ -23,6 +23,9 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSliderModule} from '@angular/material/slider';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
 const myModule =[
   MatCardModule,
   MatButtonModule,
@@ -45,7 +48,8 @@ const myModule =[
   MatProgressBarModule,
   MatButtonToggleModule,
   MatBadgeModule,
-  MatSliderModule
+  MatSliderModule,
+  MatSnackBarModule
 
 
 
