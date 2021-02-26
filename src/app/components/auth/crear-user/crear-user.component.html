@@ -9,8 +9,13 @@
   <mat-card>
 
 
-
+    <mat-form-field>
+      <input matInput [(ngModel)]="name" type="text"  placeholder=" name" required>
+  </mat-form-field><br>
   
+  <mat-form-field>
+    <input matInput [(ngModel)]="apellido" type="text"  placeholder=" apellido" required>
+</mat-form-field><br>
   
     <mat-form-field>
         <input matInput [(ngModel)]="gmail" type="email" placeholder=" gmail" required>
@@ -25,7 +30,7 @@
     </mat-form-field><br>
 
     <mat-form-field>
-      <input matInput [(ngModel)]="cedula" maxlength="10" minlength="10" type="number" placeholder=" Cc:" required>
+      <input matInput [(ngModel)]="cedula" maxlength="10" minlength="10" type="text" placeholder=" Cc:" required>
   </mat-form-field><br>
 
 

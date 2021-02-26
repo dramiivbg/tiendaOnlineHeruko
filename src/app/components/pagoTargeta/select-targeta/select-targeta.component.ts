@@ -30,6 +30,8 @@ export class SelectTargetaComponent implements OnInit {
 uid = '';
   stripeTest: FormGroup;
 
+  
+
   pago:Pago;
 
   cliente: User;

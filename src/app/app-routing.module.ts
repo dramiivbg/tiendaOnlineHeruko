@@ -11,6 +11,7 @@ import { ItemCarritoComponent } from './components/item-carrito/item-carrito.com
 import { PedidosComponent } from './components/pages/pedidos/pedidos.component';
 import { GuardAGuard } from './guards/guard-a.guard';
 import { PaypalComponent } from './components/paypal/paypal.component';
+import { AnalityClientsComponent } from './components/pages/anality-clients/anality-clients.component';
 
 
 const routes: Routes = [
@@ -70,7 +71,7 @@ children:[
 
 
 
-{ path: 'loginVendedor', loadChildren: () => import('./components/auth/login-vendedor/login-vendedor.module').then(m => m.LoginVendedorModule) },
+
 
 
 { path: 'login', loadChildren: () => import('./components/auth/login/login.module').then(m => m.LoginModule) },
@@ -86,6 +87,7 @@ children:[
 {path:'mispedidos', component: PedidosComponent,
 canActivateChild:[GuardAGuard]},
 
+{path: 'anality-client', component: AnalityClientsComponent},
 
 
 { path: 'pedidos', loadChildren: () => import('./components/pages/pedidos-admin/pedidos-admin.module').then(m => m.PedidosAdminModule) },

@@ -1,6 +1,8 @@
 
 
 export interface User {
+   name: string;
+   apellido: string;
    cedula: number;
    gmail: string;
    direccion: string;

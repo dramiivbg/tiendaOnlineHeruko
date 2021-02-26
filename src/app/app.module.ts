@@ -53,7 +53,9 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { PaypalComponent } from './components/paypal/paypal.component';
 import { AnalityClientsComponent } from './components/pages/anality-clients/anality-clients.component';
 
+//ng2-charts
 
+import {ChartsModule} from 'ng2-charts';
 
 //pipe
 
@@ -100,6 +102,7 @@ import { AnalityClientsComponent } from './components/pages/anality-clients/anal
     NewCarritoModule,
     EditPostModule,
     NgxPayPalModule,
+    ChartsModule
   
    
  

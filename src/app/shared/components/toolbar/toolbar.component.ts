@@ -80,7 +80,7 @@ try {
 
 
 
-      if(this.uid = 'Dik2UyFl6wQ0EamZoHrDIKGQj1e2'){
+      if(this.uid == 'Dik2UyFl6wQ0EamZoHrDIKGQj1e2'){
 
         this.admin = true;
 

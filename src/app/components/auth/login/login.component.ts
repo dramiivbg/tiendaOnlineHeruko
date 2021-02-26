@@ -47,10 +47,10 @@ this.authSvc.login(emial.value, password.value).then(res =>{
 
   if(res && res.user.emailVerified){
 
-   this.verifyIfClient();
+   this.router.navigate(['/home']);
     
   }else if(res){
-
+    this.authSvc.logout();
     this.router.navigate(['/sendEmail']);
 
   }
@@ -63,36 +63,5 @@ this.authSvc.login(emial.value, password.value).then(res =>{
 
 }
 
-
-verifyIfClient(){
-
-  this.authSvc.afAuth.user.subscribe(res1 => {
-
-
-    this.uid = res1.uid;
-
-   })
-
-  const path = 'clientes';
-
-this.firestore.getDoc<User>(path,this.uid).subscribe(res => {
-
-  if(res){
-
-    console.log(res);
-    Swal.fire('login successfully');
-    this.router.navigate(['/home']);
-  }else{
-
-    this.router.navigate(['/loginVendedor']);
-    this.authSvc.logout();
- 
-
-    return;
-
-  }
-})
-
-}
 
 }

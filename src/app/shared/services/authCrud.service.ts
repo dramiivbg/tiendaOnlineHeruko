@@ -20,14 +20,18 @@ private usersCollection: AngularFirestoreCollection<User>;
 private vendedorCollection: AngularFirestoreCollection<Vendedor>;
 private docCollection: AngularFirestoreCollection<Product>;
 
+private pedidosCollection: AngularFirestoreCollection<Pedido>;
+
   constructor(private afs: AngularFirestore ){
 
 
     this.usersCollection = afs.collection<User>('clientes');
 
     this.vendedorCollection = afs.collection<Vendedor>('vendedores');
+
   
-    this.getUsers();
+  
+    
 
 
 
@@ -51,14 +55,15 @@ private docCollection: AngularFirestoreCollection<Product>;
   }
 
 
-  onSaveUser(gmail: string,cedula:number,direccion: string,pais: string,rol:string, userId: string,telefono:number) /*: Promise<void>*/{
+  onSaveUser(name: string, apellido: string,gmail: string,cedula:number,direccion: string,pais: string,rol:string, userId: string,telefono:number) /*: Promise<void>*/{
 
     
 
      
 
   var user = {
-
+    name: name,
+    apellido: apellido,
     gmail : gmail,
     cedula :  cedula,
     direccion : direccion,
@@ -89,60 +94,50 @@ private docCollection: AngularFirestoreCollection<Product>;
   }
 
 
-  onSaveVendedor(gmail: string,cedula:number,direccion: string,pais: string,rol:string, userId: string,telefono: number) /*: Promise<void>*/{
-
-    
-
-     
-
-    var vendedor = {
-  
-      gmail : gmail,
-      cedula :  cedula,
-      direccion : direccion,
-      pais :  pais,
-      role :  rol,
-      telefono: telefono
-      
-      
-    }
-      
-    
-  
-  
-  
-  
-       
-          
-   
-       this.vendedorCollection.doc<Vendedor>(userId).set(
-        vendedor
-        
-       );
-  
-  
-       
-      
-  
-      
-  
-    }
-  
-  
-  
-
-
-
  
-private getUsers(){
+public getUsers(): Observable<User[]>{
 
-  this.users = this.usersCollection.snapshotChanges().pipe(
-    map(actions => actions.map(a => a.payload.doc.data() as User))
-  );
+  
+  return   this.usersCollection
+    .snapshotChanges()
+    .pipe(
+      map(actions =>
+        actions.map(a => {
+          const data = a.payload.doc.data() as User;
+          const id = a.payload.doc.id;
+           return { id, ...data };
+        })
+      )
+    );
 
+  
+}
+
+
+public getPedidos(path: string): Observable<Pedido[]>{
+
+   this.pedidosCollection = this.afs.collection<Pedido>(path);
+  
+  return   this.pedidosCollection
+    .snapshotChanges()
+    .pipe(
+      map(actions =>
+        actions.map(a => {
+          const data = a.payload.doc.data() as Pedido;
+          const id = a.payload.doc.id;
+           return { id, ...data };
+        })
+      )
+    );
+
+  
+
+    
 
 
 }
+
+
 
  getDoc<tipo>(path: string, uid: string){
 

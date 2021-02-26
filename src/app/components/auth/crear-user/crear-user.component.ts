@@ -21,10 +21,12 @@ interface Rol {
 
 export class CrearUserComponent implements OnInit {
   public  appName = 'ngOnline';
+  public name: string = '';
+  public apellido: string = '';
  public gmail: string = '';
  public  password: string = '';
  public direccion: string = '';
- public  cedula:number = 0;
+ public  cedula:string = '';
  public  pais: string = '';
  public  rol: string = '';
  public telefono: number = 0;
@@ -83,7 +85,7 @@ try {
   
 
  
- this.authCrud.onSaveUser(this.gmail, this.cedula,this.direccion,this.pais,this.rol,id,this.telefono);
+ this.authCrud.onSaveUser(this.name,this.apellido,this.gmail, Number(this.cedula),this.direccion,this.pais,this.rol,id,this.telefono);
 
 
 } catch (error) {
