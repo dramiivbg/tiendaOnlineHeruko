@@ -8,6 +8,8 @@ import { promise } from 'protractor';
 import { Pedido } from '../models/pedido';
 import { Product } from '../models/product.interface';
 import { Vendedor } from '../models/vendedor';
+import { Chat } from '../models/chat';
+import { AuthService } from '@app/components/auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,21 +18,28 @@ export class AuthCrudService {
   users: Observable<User[]>;
   public user: User
 
+  uid = '';
+
+chats:  Observable<Chat[]>
+
 private usersCollection: AngularFirestoreCollection<User>;
 private vendedorCollection: AngularFirestoreCollection<Vendedor>;
 private docCollection: AngularFirestoreCollection<Product>;
 
 private pedidosCollection: AngularFirestoreCollection<Pedido>;
 
-  constructor(private afs: AngularFirestore ){
+private chatsCollection: AngularFirestoreCollection<Chat>;
+
+  constructor(private afs: AngularFirestore,private authSvc: AuthService ){
+
+ 
 
 
     this.usersCollection = afs.collection<User>('clientes');
 
     this.vendedorCollection = afs.collection<Vendedor>('vendedores');
 
-  
-  
+    
     
 
 
@@ -113,6 +122,37 @@ public getUsers(): Observable<User[]>{
   
 }
 
+
+public getChats(path: string): Observable<Chat[]>{
+
+
+  return this.afs.collection<Chat>(path)
+    .snapshotChanges()
+    .pipe(
+      map(actions =>
+        actions.map(a => {
+          const data = a.payload.doc.data() as Chat;
+          const id = a.payload.doc.id;
+           return { id, ...data };
+        })
+
+      )
+    )
+  
+  }
+    
+
+  
+
+
+
+
+        
+      
+  
+
+  
+      
 
 public getPedidos(path: string): Observable<Pedido[]>{
 

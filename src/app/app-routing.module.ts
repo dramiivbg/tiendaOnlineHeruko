@@ -12,6 +12,11 @@ import { PedidosComponent } from './components/pages/pedidos/pedidos.component';
 import { GuardAGuard } from './guards/guard-a.guard';
 import { PaypalComponent } from './components/paypal/paypal.component';
 import { AnalityClientsComponent } from './components/pages/anality-clients/anality-clients.component';
+import { LoginComponent } from './components/chat/login/login.component';
+import { RoomlistComponent } from './components/chat/roomlist/roomlist.component';
+import { AddroomComponent } from './components/chat/addroom/addroom.component';
+import { ChatroomComponent } from './components/chat/chatroom/chatroom.component';
+
 
 
 const routes: Routes = [
@@ -88,6 +93,13 @@ children:[
 canActivateChild:[GuardAGuard]},
 
 {path: 'anality-client', component: AnalityClientsComponent},
+
+{path: 'loginChat', component: LoginComponent},
+{path: 'roomlist', component: RoomlistComponent},
+{path: 'addroom', component: AddroomComponent},
+{path: 'chatroom/:roomname',component: ChatroomComponent},
+
+
 
 
 { path: 'pedidos', loadChildren: () => import('./components/pages/pedidos-admin/pedidos-admin.module').then(m => m.PedidosAdminModule) },

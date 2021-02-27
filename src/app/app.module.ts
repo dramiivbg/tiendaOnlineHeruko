@@ -59,6 +59,14 @@ import {ChartsModule} from 'ng2-charts';
 
 import { DatePipe } from '@angular/common';
 
+
+import { LoginComponent } from './components/chat/login/login.component';
+import { RoomlistComponent } from './components/chat/roomlist/roomlist.component';
+import { AddroomComponent } from './components/chat/addroom/addroom.component';
+import { ChatroomComponent } from './components/chat/chatroom/chatroom.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +86,20 @@ import { DatePipe } from '@angular/common';
     PedidosComponent,
     FilterProductPipe,
     AnalityClientsComponent,
+  
+ 
+  
+    LoginComponent,
+  
+    RoomlistComponent,
+  
+    AddroomComponent,
+  
+    ChatroomComponent,
+   
+
+ 
+  
    
   
    
