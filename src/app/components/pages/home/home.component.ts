@@ -64,7 +64,7 @@ producto: any;
  
  this.userActive();
 
-    this.postSvc.getAllPosts().subscribe(res => console.log('POSTS',res));
+this.postSvc.getAllPosts().subscribe(res => console.log('POSTS',res));
 
 
       

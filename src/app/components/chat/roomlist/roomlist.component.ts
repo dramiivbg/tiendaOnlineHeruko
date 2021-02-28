@@ -73,7 +73,7 @@ export class RoomlistComponent implements OnInit {
 
 logout(): void {
   localStorage.removeItem('nickname');
-  this.router.navigate(['/login']);
+  this.router.navigate(['/loginChat']);
 }
 
 }

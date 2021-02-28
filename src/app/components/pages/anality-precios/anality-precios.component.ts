@@ -5,14 +5,12 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Observable } from 'rxjs';
 
-
 @Component({
-  selector: 'app-anality-clients',
-  templateUrl: './anality-clients.component.html',
-  styleUrls: ['./anality-clients.component.scss']
+  selector: 'app-anality-precios',
+  templateUrl: './anality-precios.component.html',
+  styleUrls: ['./anality-precios.component.scss']
 })
-export class AnalityClientsComponent implements OnInit {
-
+export class AnalityPreciosComponent implements OnInit {
 
   user$: Observable<User[]>;
   public barChartOptions: ChartOptions = {
@@ -22,6 +20,7 @@ export class AnalityClientsComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [];
+  public precioTotalPedidos: number = 0;
 
   public barChartData: ChartDataSets[] = [
    
@@ -63,10 +62,10 @@ getAllClient(){
 
       if(pedido.length){
 
-
+      this.precioTotalPedidos += pedido[index].precioTotal;
 
       
-        this.barChartData[index] = { data: [pedido.length], label: 'pedidos'}
+        this.barChartData[index] = { data: [this.precioTotalPedidos], label: 'precio total de pedidos'}
      
    
       
@@ -91,4 +90,8 @@ getAllClient(){
     
 }
 
-}
+
+  }
+
+  // events
+ 

@@ -64,6 +64,7 @@ import { LoginComponent } from './components/chat/login/login.component';
 import { RoomlistComponent } from './components/chat/roomlist/roomlist.component';
 import { AddroomComponent } from './components/chat/addroom/addroom.component';
 import { ChatroomComponent } from './components/chat/chatroom/chatroom.component';
+import { AnalityPreciosComponent } from './components/pages/anality-precios/anality-precios.component';
 
 
 
@@ -96,6 +97,8 @@ import { ChatroomComponent } from './components/chat/chatroom/chatroom.component
     AddroomComponent,
   
     ChatroomComponent,
+  
+    AnalityPreciosComponent,
    
 
  

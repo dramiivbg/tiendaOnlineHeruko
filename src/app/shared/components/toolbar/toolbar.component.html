@@ -94,10 +94,26 @@
        </a>
      </mat-nav-list>
 
+     <mat-divider> </mat-divider>
+
+    
+ 
+     <mat-nav-list  *ngIf="admin">
+         
+      <a mat-list-item routerLink="/precios" >
+        <span class="material-icons">
+          signal_cellular_alt
+          </span><p> Precio total de 
+            Pedidos</p>
+     </a>
+   </mat-nav-list>
+    
+
+ 
      
      <mat-divider> </mat-divider>
 
-
+    
  
      <mat-nav-list  *ngIf="admin">
          
@@ -112,8 +128,16 @@
  
    <mat-divider> </mat-divider>
 
-
-     
+   <mat-nav-list >
+         
+    <a mat-list-item routerLink="/loginChat" >
+      <span class="material-icons">
+        chat
+        </span><p> chat</p>
+   </a>
+ </mat-nav-list>
+  
+ 
 
 
 <mat-nav-list *ngIf="admin">
