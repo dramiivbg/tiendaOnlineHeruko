@@ -1,40 +1,53 @@
- 
 
-    
-        <div #chatcontent [scrollTop]="scrolltop" class="chat-content">
-          <div *ngIf="chats | async as chats">
-          <div class="message-box" *ngFor="let chat of chats">
-            <div class="chat-status" >
-
-              
-
-              <span class="chat-content-center">{{chat.message}}</span>
-            </div>
-            <ng-template #message>
-              <div class="chat-message">
-                <div class="right-bubble" >
-                  <span class="msg-name" >{{chat.cliente.name}}</span>
-                  <p text-wrap>{{chat.message}}</p>
+        <div class="example-container mat-elevation-z8">
+          <mat-drawer-container class="drawer-container">
+            <mat-drawer mode="side" opened class="left-drawer">
+              <div class="users-pane">
+                <div *ngIf="chats | async as chats">
+                <mat-card class="users-card" *ngFor="let chat of chats">
+                  <mat-icon>person</mat-icon> <span class="username">{{chat.cliente.name}}</span>
+                </mat-card>
                 </div>
               </div>
-            </ng-template>
-          </div>
+            </mat-drawer>
+            <mat-drawer-content class="chat-pane">
+              <div #chatcontent [scrollTop]="scrolltop" class="chat-content">
+                <div *ngIf="chats | async as chats">
+                <div class="message-box" *ngFor="let chat of chats">
+                  <div class="chat-status" text-center >
+                    <span class="msg-name" >{{chat.cliente.name}} &nbsp; {{chat.cliente.apellido}}</span><br>  
+                    <span class="chat-content-center">{{chat.message}}</span>
+                  </div>
+                  <ng-template #message>
+                    <div class="chat-message">
+                      <div class="right-bubble" >
+   
+                        <span class="msg-name" >{{chat.cliente.name}}</span>
+                        <p text-wrap>{{chat.message}}</p>
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+              </div>
+              <footer class="sticky-footer">
+                <form class="message-form" [formGroup]="chatForm" (ngSubmit)="onFormSubmit(chatForm.value)">
+                  <mat-form-field class="message-form-field">
+                    <input matInput placeholder="Enter comment here" formControlName="message"
+                            [errorStateMatcher]="matcher">
+                    <mat-error>
+                      <span *ngIf="!chatForm.get('message').valid && chatForm.get('message').touched">Enter your message</span>
+                    </mat-error>
+                    <button type="submit" [disabled]="!chatForm.valid" mat-button matSuffix mat-icon-button aria-label="Send">
+                      <mat-icon>send</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </form>
+              </footer>
+            </mat-drawer-content>
+          </mat-drawer-container>
         </div>
-      </div>
-        <footer class="sticky-footer">
-          <form class="message-form" [formGroup]="chatForm" (ngSubmit)="onFormSubmit(chatForm.value)">
-            <mat-form-field class="message-form-field">
-              <input matInput placeholder="Enter message here" formControlName="message"
-                      [errorStateMatcher]="matcher">
-              <mat-error>
-                <span *ngIf="!chatForm.get('message').valid && chatForm.get('message').touched">Enter your message</span>
-              </mat-error>
-              <button type="submit" [disabled]="!chatForm.valid" mat-button matSuffix mat-icon-button aria-label="Send">
-                <mat-icon>send</mat-icon>
-              </button>
-            </mat-form-field>
-          </form>
-        </footer>
-  
   
  
+
+

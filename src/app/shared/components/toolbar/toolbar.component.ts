@@ -33,7 +33,7 @@ export class ToolbarComponent implements OnInit {
       this.verifyAdmin();
       this.verifyClient();
 
-    })
+    });
    }
 
  async ngOnInit() {

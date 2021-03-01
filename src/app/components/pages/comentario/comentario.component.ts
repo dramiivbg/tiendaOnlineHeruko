@@ -18,8 +18,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
-
-
 @Component({
   selector: 'app-comentario',
   templateUrl: './comentario.component.html',
@@ -78,11 +76,14 @@ export class ComentarioComponent implements OnInit {
     const path1 = `productos/${this.producto.id}/comentarios`;
     
     this.chats = this.firestoreSvc.getChats(path1);
+
   }
 
   onFormSubmit(form: any) {
 
   const date = new Date;
+
+
 
   this.chat.fecha = date;
 

@@ -95,14 +95,16 @@ children:[
 {path:'mispedidos', component: PedidosComponent,
 canActivateChild:[GuardAGuard]},
 
-{path: 'anality-client', component: AnalityClientsComponent},
+{path: 'anality-client', component: AnalityClientsComponent,
+canActivateChild:[GuardGuard],},
 
 {path: 'loginChat', component: LoginComponent},
 {path: 'roomlist', component: RoomlistComponent},
 {path: 'addroom', component: AddroomComponent},
 {path: 'chatroom/:roomname',component: ChatroomComponent},
 
-{path: 'precios', component: AnalityPreciosComponent},
+{path: 'precios', component: AnalityPreciosComponent,
+canActivate: [GuardGuard] },
 
 {path: 'calificar', component: CalificarPedidoComponent},
 

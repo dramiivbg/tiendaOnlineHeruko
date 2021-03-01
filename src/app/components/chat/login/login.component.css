@@ -4,13 +4,21 @@
   }
   
   .example-form {
-    min-width: 150px;
-    max-width: 500px;
     width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+
+   
   }
   
   .example-full-width {
     width: 100%;
+    text-align: center;
   }
   
   .example-full-width:nth-last-child(0) {
@@ -24,3 +32,4 @@
   .mat-flat-button {
     margin: 5px;
   }
+

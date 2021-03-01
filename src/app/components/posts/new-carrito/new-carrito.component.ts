@@ -38,7 +38,11 @@ uid= '';
 
       this.authSvc.afAuth.authState.subscribe( res => {
       
-        this.uid = res.uid;
+        const path = 'clientes';
+        this.firestoreSvc.getDoc<User>(path,res.uid).subscribe(user => {
+    
+          this.cliente = user;
+        });
       
       });
 
@@ -57,14 +61,7 @@ uid= '';
 
   ngOnInit(): void {
 
-    this.authSvc.getCurrentUser().then(res => {
-
-      const path = 'clientes';
-    this.firestoreSvc.getDoc<User>(path,res.uid).subscribe(user => {
-
-      this.cliente = user;
-    })
-    })
+   
 
     this.loadPedido(); 
  

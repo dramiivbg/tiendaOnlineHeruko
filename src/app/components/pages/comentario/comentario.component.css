@@ -52,6 +52,7 @@
     float: left;
     width: 98%;
     margin: 5px 0 0 2%;
+    background-color: aquamarine;
   }
   
   .chat-message {
@@ -92,7 +93,7 @@
     margin-top: -13.5px;
     margin-right: -27px;
   }
-  .chat-message .left-bubble {
+  .chat-message  {
     position: relative;
     background: lightblue;
     border-top-right-radius: .4em;
@@ -101,7 +102,7 @@
     padding: 5px 10px 10px;
     left: 5%;
   }
-  .chat-message .left-bubble span.msg-name {
+  .chat-message span.msg-name {
     font-size: 12px;
     font-weight: bold;
     color: blue;
@@ -126,6 +127,8 @@
   
   .chat-message .chat-status {
     min-height: 49px;
+
+    
   }
   
   .chat-message .chat-status .chat-date {
