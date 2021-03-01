@@ -17,6 +17,8 @@ import { RoomlistComponent } from './components/chat/roomlist/roomlist.component
 import { AddroomComponent } from './components/chat/addroom/addroom.component';
 import { ChatroomComponent } from './components/chat/chatroom/chatroom.component';
 import { AnalityPreciosComponent } from './components/pages/anality-precios/anality-precios.component';
+import { CalificarPedidoComponent } from './components/pages/calificar-pedido/calificar-pedido.component';
+import { ComentarioComponent } from './components/pages/comentario/comentario.component';
 
 
 
@@ -101,6 +103,13 @@ canActivateChild:[GuardAGuard]},
 {path: 'chatroom/:roomname',component: ChatroomComponent},
 
 {path: 'precios', component: AnalityPreciosComponent},
+
+{path: 'calificar', component: CalificarPedidoComponent},
+
+{path: 'comentarios', component: ComentarioComponent},
+
+
+
 
 
 

@@ -9,6 +9,7 @@ import { ProductoPedido } from '@app/shared/models/pedido';
 import { Router } from '@angular/router';
 import { Vendedor } from '@app/shared/models/vendedor';
 import { FilterProductPipe } from '../../../pipe/filter-product.pipe';
+import { ComentProductService } from '@app/shared/services/coment-product.service';
 
 
 @Component({
@@ -35,7 +36,8 @@ producto: any;
   constructor(private postSvc: ProductService, private authCrud: AuthCrudService,
     private carritoSvc: CarritoService,
     private authSvc: AuthService,
-    private router: Router,private firestore: AuthCrudService
+    private router: Router,private firestore: AuthCrudService,
+    private comentSvc: ComentProductService
       ) { 
 
 
@@ -94,7 +96,18 @@ this.postSvc.getAllPosts().subscribe(res => console.log('POSTS',res));
 
   
     this.carritoSvc.addProduct(product);
-   }
+}
+
+productoComent(producto: Product){
+
+  this.comentSvc.setProduct(producto);
+
+  
+}
+
+
+
+
 
 
    userActive(){

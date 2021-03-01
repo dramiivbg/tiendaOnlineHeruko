@@ -54,6 +54,7 @@ getAllClient(){
       this.barChartLabels[index] = user[index].name;
      
     
+    
 
       const path = `clientes/${user[index].id}/pedidos`
 

@@ -31,15 +31,21 @@
             
             {{product.tipo_producto}}
 
-            <div class="circulo">
-                <ion-icon color="primary" *ngIf="admin"  name="cart" (click)="addCarrito(product)"></ion-icon>
-               </div> 
+ 
+        
+               
+
+           
+  <ion-icon class="icon" color="primary" *ngIf="admin"  name="cart" (click)="addCarrito(product)"></ion-icon>
+               
        
        
              
        
           
         </mat-card-header >
+
+        
 
 
         &nbsp;
@@ -51,11 +57,25 @@
             {{ product.nombre }}
          </p>
 
+          
+
          <p style="background: cornsilk;">
     
             {{ product.valor }}
+
+            
          </p>
 
+         <p>
+
+            <span routerLink="/comentarios" (click)="productoComent(product)" class="material-icons">
+                comment
+                </span>
+         
+        </p>
+        
+
+        
         
       
          &nbsp;

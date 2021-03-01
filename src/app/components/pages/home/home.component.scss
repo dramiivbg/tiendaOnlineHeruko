@@ -54,7 +54,7 @@
 
 
 
-ion-icon{
+.icon{
     position:absolute;
     padding: 1px;
     right: 20px;
@@ -63,6 +63,12 @@ ion-icon{
     cursor: pointer;
 }
 
+span{
+
+    cursor: pointer;
+
+    background-color: #fff;
+}
 
 
 }
