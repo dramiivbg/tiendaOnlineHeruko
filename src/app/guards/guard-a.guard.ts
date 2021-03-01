@@ -23,7 +23,7 @@ export class GuardAGuard implements CanActivate {
 
 
 
-
+      this.comprobarCliente();
 
 
   }
@@ -64,7 +64,7 @@ comprobarCliente(){
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
     
-      this.comprobarCliente();
+    return this.active;
      
   }
   

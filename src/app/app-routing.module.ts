@@ -37,7 +37,7 @@ const routes: Routes = [
 
       {path: 'carrito', component: NewCarritoComponent,
     
-      canActivateChild:[GuardAGuard]
+      canActivate:[GuardAGuard]
     }
       ,
       
@@ -93,10 +93,10 @@ children:[
 { path: 'sendEmail', loadChildren: () => import('./components/auth/send-email/send-email.module').then(m => m.SendEmailModule) },
 
 {path:'mispedidos', component: PedidosComponent,
-canActivateChild:[GuardAGuard]},
+canActivate:[GuardAGuard]},
 
 {path: 'anality-client', component: AnalityClientsComponent,
-canActivateChild:[GuardGuard],},
+canActivate:[GuardGuard],},
 
 {path: 'loginChat', component: LoginComponent},
 {path: 'roomlist', component: RoomlistComponent},

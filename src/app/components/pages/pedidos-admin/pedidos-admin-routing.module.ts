@@ -6,7 +6,7 @@ import { GuardGuard } from '@app/guards/guard.guard';
 import { PedidosAdminComponent } from './pedidos-admin.component';
 
 const routes: Routes = [{ path: '', component: PedidosAdminComponent,
-canActivateChild:[GuardGuard] }];
+canActivate:[GuardGuard] }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

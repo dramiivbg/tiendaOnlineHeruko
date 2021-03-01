@@ -22,7 +22,7 @@ export class GuardGuard implements CanActivate {
 
    
 
-
+  this.comprobarVendedor();
 
   }
   
@@ -63,11 +63,11 @@ comprobarVendedor(){
 
  canActivate(
    route: ActivatedRouteSnapshot,
-   state: RouterStateSnapshot): Observable<any> | Promise<any> |  any {
+   state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> |  boolean {
 
     
     
-this.comprobarVendedor();
+    return this.active;
  
   
     

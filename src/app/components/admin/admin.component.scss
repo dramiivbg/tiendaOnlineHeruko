@@ -4,11 +4,29 @@
     top: 0;
     z-index: 1000;
 
-    mat-icon{
+    span{
 
         cursor: pointer;
-    }
-}
+      }
+     }
+  
+     mat-icon{
+  
+      font-size: 50px;
+      width: 50px;
+  
+  
+     }
+  
+  
+  
+  
+     span{
+  
+       font-size: 50px;
+       width: 50px;
+     }
+
 
 mat-sidenav{
    
@@ -34,4 +52,17 @@ mat-sidenav{
 .yellow{
 
     background:darkslateblue;
+
+    span{
+  
+        font-size: 60px;
+        cursor: pointer;
+       
+        
+        
+      }
+
+    
+
+     
 }
