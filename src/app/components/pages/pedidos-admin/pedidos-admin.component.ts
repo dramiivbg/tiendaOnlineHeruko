@@ -12,6 +12,7 @@ import { User } from '@app/shared/models/user.interface';
 import {ProductService} from '../../../components/posts/product.service';
 import { SendProductService } from '@app/shared/services/sendProduct';
 import { templateJitUrl } from '@angular/compiler';
+import { Product } from '@app/shared/models/product.interface';
 
 
 interface Rol {
@@ -485,6 +486,11 @@ cambiarEstado(pedido: Pedido){
 
 
   }
+
+
+}
+
+producto(producto: Product){
 
 
 }

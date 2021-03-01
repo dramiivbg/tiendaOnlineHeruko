@@ -23,6 +23,8 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSliderModule} from '@angular/material/slider';
 
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -50,7 +52,9 @@ const myModule =[
   MatButtonToggleModule,
   MatBadgeModule,
   MatSliderModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatNativeDateModule,
+  MatMomentDateModule
 
 
 

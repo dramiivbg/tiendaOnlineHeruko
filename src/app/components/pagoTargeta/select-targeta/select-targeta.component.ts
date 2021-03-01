@@ -119,18 +119,8 @@ createToken(): void {
         idCliente: this.uid
 
        }
-
-       Swal.fire('transiccion exitosa').then(() => {
-
-
-
-        this.router.navigate(['/home']);
-
-       });
-    
-
-        
-        
+       
+          
       this.pedido = this.productoSvc.getProducto();
 
       this.pedido.CorreoClient = this.cliente.gmail;

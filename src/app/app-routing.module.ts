@@ -113,6 +113,7 @@ canActivate: [GuardGuard] },
 
 
 
+{ path: 'fecha-calificacion', loadChildren: () => import('./components/pages/fecha-calificacion/fecha-calificacion.module').then(m => m.FechaCalificacionModule) },
 
 
 
@@ -126,7 +127,7 @@ canActivate: [GuardGuard] },
  
 
 },
-  
+    
 
 ];
 
