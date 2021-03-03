@@ -193,6 +193,15 @@ createDoc(data: Pedido, path: string, id: string){
 
 }
 
+
+createPro(data: Product, path: string, id: string){
+
+  const collection = this.afs.collection<Product>(path).doc(id).set( data);
+
+  return collection;
+
+}
+
 doc<type>(data:any ,path: string){
 
   const id = this.afs.createId();
@@ -215,9 +224,9 @@ deleteDoc(path: string, id:string){
 
 }
         
-updateDoc(data:any, path: string, id: string){
+updateDoc<type>(data:any, path: string, id: string){
 
-  const collection = this.afs.collection(path).doc(id).update(data);
+  const collection = this.afs.collection<type>(path).doc(id).update(data);
 
 
   return collection;

@@ -13,6 +13,9 @@ import {ProductService} from '../../../components/posts/product.service';
 import { SendProductService } from '@app/shared/services/sendProduct';
 import { templateJitUrl } from '@angular/compiler';
 import { Product } from '@app/shared/models/product.interface';
+import { ProductoProgramadoService } from '@app/shared/services/producto-programado.service';
+import { MessageService } from '@app/shared/services/message.service';
+import { PedidoCalificarService } from '@app/shared/services/pedido-calificar.service';
 
 
 interface Rol {
@@ -79,7 +82,9 @@ pedidoNew: Pedido;
     private firestore: AuthCrudService,
     private dataSvc: ContadorService,
     private pedidoSvc: ProductService,
-    private sendProductSvc: SendProductService) {
+    private sendProductSvc: SendProductService,
+    private pedidoCalificarService:PedidoCalificarService,
+    private messageService: MessageService) {
 
      
      };
@@ -211,32 +216,11 @@ pedidoNew: Pedido;
 
     
 
-
-
-  const  fecha =     this.pedidosNew[this.pedidosNew.length -1].fecha;
-
-  const fecha1 = new Date(parseInt(fecha.seconds)*1000);
-
  
 
  
 
 
-
-  const date = new Date();
-
-     if( fecha == date){
-   
-      contador++;
-   
-     }
-   
-     console.log('hora1',date);
-     console.log('hora2', fecha1 );
-
-
-   this.dataSvc.setContador(contador);
-   this.dataSvc.getContador();
 
 
  console.log(this.pedidosNew);
@@ -490,8 +474,25 @@ cambiarEstado(pedido: Pedido){
 
 }
 
-producto(producto: Product){
+productoP(pedido: Pedido){
 
+  
+
+
+
+this.pedidoCalificarService.setPedido(pedido);
+  
+  this.messageService.sendMessageCalificar(pedido).subscribe( () => {
+
+    console.log('message mandado');
+
+
+
+  });
+
+
+
+ 
 
 }
 

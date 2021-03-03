@@ -161,7 +161,8 @@ const result =     this.postCollection.doc<Product>(product.id).set(
       tipo_producto: product.tipo_producto,
       image: this.downloadURL,
       valor: product.valor,
-      id: this.id
+      id: this.id,
+      calificacion: 0
 
     }
 

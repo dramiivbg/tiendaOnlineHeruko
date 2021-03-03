@@ -1,23 +1,75 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<div class="container">
-<div style="text-align: center;">
-<div class="ec-stars-wrapper " >
-	<a routerLink="/home"    (click)=" valorarPedido(valoracion[0])" value="1" title="Votar con 1 estrellas">&#9733;</a>
-	<a routerLink="/home"    (click)=" valorarPedido(valoracion[1])" value="2" title="Votar con 2 estrellas">&#9733;</a>
-	<a routerLink="/home"    (click)=" valorarPedido(valoracion[2])" value="3" title="Votar con 3 estrellas">&#9733;</a>
-	<a routerLink="/home"    (click)=" valorarPedido(valoracion[3])" value="4" title="Votar con 4 estrellas">&#9733;</a>
-	<a routerLink="/home"    (click)=" valorarPedido(valoracion[4])" value="5" title="Votar con 5 estrellas">&#9733;</a>    
-</div>
 
-</div>
 
-</div>
-<noscript>Necesitas tener habilitado javascript para poder votar</noscript>
+
+
+
+	<div  *ngFor=" let product of pedido.productos" style="text-align: center;">
+  
+  
+  
+  
+		&nbsp;
+		&nbsp;
+	
+	  <div  *ngFor="let producto of pedido.productos">
+	 
+	 
+	&nbsp;
+	&nbsp;
+	&nbsp;
+	&nbsp;
+	&nbsp;
+	
+	
+	
+	
+	<mat-card >
+	
+	 
+	
+		<mat-card-content>
+	
+	
+	
+	<div class="flexp ">
+	
+		
+		 <img [src]=" producto.producto.image" />
+	
+	<br>
+	<br>
+	
+	
+	
+	<div style="text-align: center;">
+		<div class="ec-stars-wrapper " >
+			<a routerLink="/home"    (click)=" valorarPedido(valoracion[0],producto.producto)" value="1" title="Votar con 1 estrellas">&#9733;</a>
+			<a routerLink="/home"    (click)=" valorarPedido(valoracion[1],producto.producto)" value="2" title="Votar con 2 estrellas">&#9733;</a>
+			<a routerLink="/home"    (click)=" valorarPedido(valoracion[2],producto.producto)" value="3" title="Votar con 3 estrellas">&#9733;</a>
+			<a routerLink="/home"    (click)=" valorarPedido(valoracion[3],producto.producto)" value="4" title="Votar con 4 estrellas">&#9733;</a>
+			<a routerLink="/home"    (click)=" valorarPedido(valoracion[4],producto.producto)" value="5" title="Votar con 5 estrellas">&#9733;</a>    
+		</div>
+		
+		</div>
+
+
+	
+   
+	
+		  </div>
+	
+	
+	 
+	
+	</mat-card-content>
+	
+	</mat-card>
+	
+	
+		</div>
+	</div>
+	
+	
+	
+	

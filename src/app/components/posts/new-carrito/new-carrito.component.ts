@@ -35,9 +35,12 @@ uid= '';
     private authSvc: AuthService,
 
       private totalSvc: ValorService,private productoSvc: ProductoService) {
-
+ 
+        this.initCarrito();
       this.authSvc.afAuth.authState.subscribe( res => {
       
+        this.uid = res.uid;
+        
         const path = 'clientes';
         this.firestoreSvc.getDoc<User>(path,res.uid).subscribe(user => {
     
@@ -48,7 +51,7 @@ uid= '';
 
 
 
-    this.initCarrito();
+    
 
 
   

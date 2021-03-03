@@ -17,11 +17,10 @@
     <mat-button-toggle class="boton1"   (change)="change1($event)" value="nuevos" ><strong>nuevos</strong></mat-button-toggle>
 
 
-
     
 
 
-    <mat-button-toggle class="boton2"  (change)="change($event)" value="culminados"><strong>culminados</strong></mat-button-toggle>
+    <mat-button-toggle class="boton2"  (change)="change($event)" value="culminados"><strong>entregados</strong></mat-button-toggle>
 
 
     <mat-button-toggle class="boton3"  (change)="change2($event)" value="camino"><strong>camino</strong></mat-button-toggle>
@@ -379,7 +378,7 @@
 </mat-form-field>
 
   
-<button routerLink="/fecha-calificacion" (click)="producto(producto)" class="boton" mat-raised-button color="primary">programar</button>
+<button  (click)="productoP(pedido)" class="boton" mat-raised-button color="primary">programar</button>
     
 
       </div>

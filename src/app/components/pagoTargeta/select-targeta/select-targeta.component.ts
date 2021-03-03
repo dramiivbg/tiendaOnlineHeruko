@@ -137,6 +137,8 @@ createToken(): void {
         this.firestore.doc<Pago>(this.pago,path).then(res => {
 
           console.log(res);
+
+          this.router.navigate(['/home']);
         });
 
 

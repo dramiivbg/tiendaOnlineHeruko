@@ -11,6 +11,11 @@ export class MessageService {
   sendMessage(body: any) {
     return this.http.post('http://localhost:4000/formulario', body);
     }
+
+  sendMessageCalificar(body: any){
+
+    return this.http.post('http://localhost:1000/calificarPedido',body);
+  }  
 }
 
 

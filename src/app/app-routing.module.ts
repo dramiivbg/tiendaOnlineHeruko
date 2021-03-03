@@ -37,7 +37,7 @@ const routes: Routes = [
 
       {path: 'carrito', component: NewCarritoComponent,
     
-      canActivate:[GuardAGuard]
+    
     }
       ,
       

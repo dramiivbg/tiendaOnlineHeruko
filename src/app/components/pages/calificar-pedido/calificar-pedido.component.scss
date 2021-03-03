@@ -17,7 +17,7 @@
 
 	/* Volver a dar tamaño al texto */
 	font-size: 42px;
-	font-size: 10rem;
+	font-size: 2rem;
 	
 
 	color: #888;
@@ -34,6 +34,23 @@
 	color: #888;
 }
   
+
+
+
 mat-card{
-    height: 50vh;
+
+    height: 40vh;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+$rowHeight: 40px;
+.flexp {
+
+
+
+    column-count: 2;
+max-height: calc(5 * #{$rowHeight});
+}
 }
