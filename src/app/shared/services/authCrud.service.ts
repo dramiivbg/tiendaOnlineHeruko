@@ -194,9 +194,9 @@ createDoc(data: Pedido, path: string, id: string){
 }
 
 
-createPro(data: Product, path: string, id: string){
+createPro(data: Pedido, path: string, id: string){
 
-  const collection = this.afs.collection<Product>(path).doc(id).set( data);
+  const collection = this.afs.collection<Pedido>(path).doc(id).set( data);
 
   return collection;
 

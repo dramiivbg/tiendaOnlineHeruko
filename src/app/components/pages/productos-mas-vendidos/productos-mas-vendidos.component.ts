@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Pedido } from '@app/shared/models/pedido';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+
+
+import { ChartType } from 'chart.js';
+import { MultiDataSet, Label } from 'ng2-charts';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,22 +13,20 @@ import { Observable } from 'rxjs';
   styleUrls: ['./productos-mas-vendidos.component.css']
 })
 export class ProductosMasVendidosComponent implements OnInit {
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-  };
-  public barChartLabels: Label[] = [];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
-  public barChartPlugins = [];
+
  private product$: Observable<Pedido[]>
  public contador: number = 0;
  public vector: string[] = [];
  pos: number[] = [];
  posi: number = 0;
-  public barChartData: ChartDataSets[] = [
-   
-   {data: [], label: 'pedidos'}
-  ];
+
+
+
+public doughnutChartLabels: Label[] = [];
+public doughnutChartData: MultiDataSet = []; 
+
+public doughnutChartType: ChartType = 'doughnut';
+
 
 
 
@@ -83,19 +83,21 @@ getAllClient(){
 
       if(producto != ''){
 
-        this.barChartLabels.push(producto);
+        this.doughnutChartLabels.push(producto);
   
       }
     });
 
 
-    while( this.posi < this.barChartLabels.length) {
+    while( this.posi < this.doughnutChartLabels.length) {
+
+      this.contador = 0;
 
       for (let index1 = 0; index1 < pedidos.length; index1++) {
 
         for (let index2 = 0; index2 < pedidos[index1].productos.length; index2++) {
           
-          if(pedidos[index1].productos[index2].producto.tipo_producto  == this.barChartLabels[this.posi]){
+          if(pedidos[index1].productos[index2].producto.tipo_producto  == this.doughnutChartLabels[this.posi]){
 
                this.contador += pedidos[index1].productos[index2].cantidad;
 
@@ -107,6 +109,9 @@ getAllClient(){
        
         
       }
+
+
+      this.doughnutChartData[this.posi] = [this.contador];
 
       this.posi++;
      

@@ -367,7 +367,7 @@
  
  }}</p>
 
-
+<div *ngIf="activar">
  <mat-form-field class="tamaño" appearance="fill">
   <mat-label>estado</mat-label>
   <mat-select [(ngModel)]="estado">
@@ -376,10 +376,9 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
-
+</div>
   
-<button  (click)="productoP(pedido)" class="boton" mat-raised-button color="primary">programar</button>
-    
+
 
       </div>
 

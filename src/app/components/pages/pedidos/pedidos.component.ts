@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { AuthService } from '@app/components/auth/auth.service';
 import { ProductService } from '@app/components/posts/product.service';
 import { Pedido } from '@app/shared/models/pedido';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
+import { MessageService } from '@app/shared/services/message.service';
+import { PedidoCalificarService } from '@app/shared/services/pedido-calificar.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -22,10 +25,14 @@ export class PedidosComponent implements OnInit, OnDestroy {
 
   pedidos: Pedido[];
 
+activar: boolean = false;
 
   constructor(private firestoreSvc: AuthCrudService,
     private authSvc: AuthService,
-    private firesore: AngularFirestore) { 
+    private firesore: AngularFirestore,
+    
+    private pedidoCalificarService:PedidoCalificarService,
+    private router: Router) { 
 
 
 
@@ -60,6 +67,7 @@ export class PedidosComponent implements OnInit, OnDestroy {
 
   change($event: any){
 
+    this.activar = true;
     console.log('change()', $event.value);
 
     this.getPedidosCulminados()
@@ -68,6 +76,8 @@ export class PedidosComponent implements OnInit, OnDestroy {
 
 
   change1($event: any){
+
+    this.activar = false;
 
     console.log('change()', $event.value);
   
@@ -134,4 +144,21 @@ export class PedidosComponent implements OnInit, OnDestroy {
    
 
   }
+
+
+productoP(pedido: Pedido){
+
+  
+
+
+
+  this.pedidoCalificarService.setPedido(pedido);
+
+  this.router.navigate(['/calificar']);
+    
+   
+  
+  }
+  
+  
 }

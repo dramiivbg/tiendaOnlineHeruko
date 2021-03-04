@@ -19,6 +19,7 @@ export class CalificarPedidoComponent implements OnInit {
   pedidoV: Pedido[] = [];
 
   constructor(private firestoreSvc: AuthCrudService,
+    private authSvc: AuthService,
     private messageService: MessageService, private pedidoCalificarService:PedidoCalificarService) { 
 
       this.initCarrito();
@@ -41,24 +42,50 @@ export class CalificarPedidoComponent implements OnInit {
 
   valorarPedido(numero: number, producto: Product){
 
-    const path = 'productos';
+
+this.authSvc.afAuth.user.subscribe(id => {
   
-  this.firestoreSvc.getDoc<Product>(path,producto.id).subscribe(producto => {
+  if(id){
 
-    if(producto){
+    
 
-      producto.calificacion = numero;
+    const path = `clientes/${id.uid}/pedidos`;
+  
+    
+  this.firestoreSvc.getDoc<Pedido>(path,this.pedido.id).subscribe(pedido => {
 
-      const path = 'productos';
+    if(pedido){
 
-      this.firestoreSvc.createPro(producto,path,producto.id).then(() => {
+      
+
+    for (let index = 0; index < pedido.productos.length; index++) {
+      
+      if(pedido.productos[index].producto.id == producto.id){
+
+        pedido.productos[index].producto.calificacion = numero;
+
+      }else{
+        console.log('producto no encontrado')
+      }
+      
+    }
+
+     
+
+      
+
+      this.firestoreSvc.createPro(pedido,path,pedido.id).then(() => {
 
         console.log('calificacion echa');
       });
     }
-  })
+  });
+  
+}
+
+});
    
-    
+
   }
 
   initCarrito(){

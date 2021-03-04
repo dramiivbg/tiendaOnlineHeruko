@@ -35,7 +35,8 @@ export class PedidosAdminComponent implements OnInit, OnDestroy {
   newSuscriber: Subscription;
 
  datoCliente: User[] = [];
-
+ 
+ activar: boolean = false;
 
   culminadoSuscriber: Subscription;
 
@@ -67,7 +68,6 @@ pedidoNew: Pedido;
 
 
 
-
   roles: Rol[] = [
 
 
@@ -82,9 +82,7 @@ pedidoNew: Pedido;
     private firestore: AuthCrudService,
     private dataSvc: ContadorService,
     private pedidoSvc: ProductService,
-    private sendProductSvc: SendProductService,
-    private pedidoCalificarService:PedidoCalificarService,
-    private messageService: MessageService) {
+    private sendProductSvc: SendProductService) {
 
      
      };
@@ -128,10 +126,11 @@ pedidoNew: Pedido;
 
   change2($event: any){
 
-
+    this.activar = true;
     this.culminados = false;
     this.nuevos = false;
     this.camino = true;
+    
 
     console.log('change()', $event.value);
 
@@ -149,7 +148,7 @@ pedidoNew: Pedido;
     this.nuevos = false;
     this.camino = false;
     
-
+  this.activar = false;
  
     console.log('change()', $event.value);
    
@@ -165,7 +164,7 @@ pedidoNew: Pedido;
     this.culminados = false;
     this.camino = false;
     this.nuevos = true;
-    
+    this.activar = true;
 
     console.log('change()', $event.value);
    
@@ -473,29 +472,6 @@ cambiarEstado(pedido: Pedido){
 
 
 }
-
-productoP(pedido: Pedido){
-
-  
-
-
-
-this.pedidoCalificarService.setPedido(pedido);
-  
-  this.messageService.sendMessageCalificar(pedido).subscribe( () => {
-
-    console.log('message mandado');
-
-
-
-  });
-
-
-
- 
-
-}
-
 
 }
 
