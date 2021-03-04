@@ -229,7 +229,7 @@ updateDoc<type>(data:any, path: string, id: string){
   const collection = this.afs.collection<type>(path).doc(id).update(data);
 
 
-  return collection;
+  return collection
 
 }
 
@@ -240,6 +240,13 @@ getCollectionQuery<tipo>(path: string, parametro: string, condicion: any, busque
 
  return collection.valueChanges();
 
+}
+
+getPedidosAll<tipo>(path: string){
+
+ const collection =  this.afs.collectionGroup<tipo>(path);
+
+ return collection.valueChanges();
 }
 
 getCollectionAll<tipo>(path: string, parametro: string, condicion: any, busqueda: string,

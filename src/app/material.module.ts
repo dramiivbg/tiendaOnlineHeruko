@@ -54,7 +54,8 @@ const myModule =[
   MatSliderModule,
   MatSnackBarModule,
   MatNativeDateModule,
-  MatMomentDateModule
+  MatMomentDateModule,
+  
 
 
 

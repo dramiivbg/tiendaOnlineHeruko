@@ -1,5 +1,10 @@
 
 
+
+
+
+ 
+
 <mat-toolbar color="primary" class="yellow">
   <span color="primary" (click)="opened = !opened">
 
@@ -126,7 +131,48 @@
    </mat-nav-list>
     
 
+   <mat-divider> </mat-divider>
+
+    
  
+   <mat-nav-list  *ngIf="admin">
+       
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+   
+      <a mat-list-item >
+        <span class="material-icons">
+          show_chart
+    
+    
+          </span><p>Anality</p>
+        </a>
+
+    </button>
+    <mat-menu #menu="matMenu">
+      <a routerLink="anality-full-pedidos">
+     <button  mat-menu-item>
+        <span class="material-icons">
+          shopping_cart
+          </span>
+        <span>Pedidos</span>
+      </button>
+    </a>
+
+    
+
+    
+      <a routerLink="anality-full-clients" routerLinkActive="active">
+      
+      <button mat-menu-item>
+        <span class="material-icons">
+          person
+          </span>
+        <span>Clientes</span>
+      </button>
+      </a>
+    </mat-menu>
+   </mat-nav-list>
+
    <mat-divider> </mat-divider>
 
    <mat-nav-list >
@@ -179,7 +225,7 @@
   </mat-sidenav>
   
 
-</mat-sidenav-container>
+</mat-sidenav-container> 
 
 
 

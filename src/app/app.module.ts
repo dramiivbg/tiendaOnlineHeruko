@@ -67,7 +67,9 @@ import { ChatroomComponent } from './components/chat/chatroom/chatroom.component
 import { AnalityPreciosComponent } from './components/pages/anality-precios/anality-precios.component';
 import { CalificarPedidoComponent } from './components/pages/calificar-pedido/calificar-pedido.component';
 import { ComentarioComponent } from './components/pages/comentario/comentario.component';
-
+import { AnalityClientComponent } from './components/anality-client/anality-client.component';
+import { AnalityPedidoComponent } from './components/anality-pedido/anality-pedido.component';
+import { ProductosMasVendidosComponent } from './components/pages/productos-mas-vendidos/productos-mas-vendidos.component';
 
 
 @NgModule({
@@ -105,6 +107,12 @@ import { ComentarioComponent } from './components/pages/comentario/comentario.co
     CalificarPedidoComponent,
   
     ComentarioComponent,
+  
+    AnalityClientComponent,
+  
+    AnalityPedidoComponent,
+  
+    ProductosMasVendidosComponent,
    
 
  
@@ -132,8 +140,8 @@ import { ComentarioComponent } from './components/pages/comentario/comentario.co
     NewCarritoModule,
     EditPostModule,
     NgxPayPalModule,
-    ChartsModule
-  
+    ChartsModule,
+    
    
  
    

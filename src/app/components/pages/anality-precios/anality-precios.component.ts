@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
   templateUrl: './anality-precios.component.html',
   styleUrls: ['./anality-precios.component.scss']
 })
+
 export class AnalityPreciosComponent implements OnInit {
 
   user$: Observable<User[]>;

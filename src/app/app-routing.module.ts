@@ -19,6 +19,8 @@ import { ChatroomComponent } from './components/chat/chatroom/chatroom.component
 import { AnalityPreciosComponent } from './components/pages/anality-precios/anality-precios.component';
 import { CalificarPedidoComponent } from './components/pages/calificar-pedido/calificar-pedido.component';
 import { ComentarioComponent } from './components/pages/comentario/comentario.component';
+import { AnalityClientComponent } from './components/anality-client/anality-client.component';
+import { AnalityPedidoComponent } from './components/anality-pedido/anality-pedido.component';
 
 
 
@@ -95,8 +97,7 @@ children:[
 {path:'mispedidos', component: PedidosComponent,
 canActivate:[GuardAGuard]},
 
-{path: 'anality-client', component: AnalityClientsComponent,
-canActivate:[GuardGuard],},
+
 
 {path: 'loginChat', component: LoginComponent},
 {path: 'roomlist', component: RoomlistComponent},
@@ -110,8 +111,9 @@ canActivate: [GuardGuard] },
 
 {path: 'comentarios', component: ComentarioComponent},
 
+{path: 'anality-full-clients', component: AnalityClientComponent},
 
-
+{path: 'anality-full-pedidos', component: AnalityPedidoComponent},
 
 { path: 'fecha-calificacion', loadChildren: () => import('./components/pages/fecha-calificacion/fecha-calificacion.module').then(m => m.FechaCalificacionModule) },
 
@@ -128,6 +130,7 @@ canActivate: [GuardGuard] },
 
 },
     
+
 
 ];
 

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Vendedor } from '@app/shared/models/vendedor';
 import { FilterProductPipe } from '../../../pipe/filter-product.pipe';
 import { ComentProductService } from '@app/shared/services/coment-product.service';
+import { User } from '@app/shared/models/user.interface';
 
 
 @Component({
@@ -31,7 +32,7 @@ producto: any;
   products$: Observable<Product[]>;
 
 
-
+  users$: Observable<User[]>;
 
   constructor(private postSvc: ProductService, private authCrud: AuthCrudService,
     private carritoSvc: CarritoService,
@@ -43,6 +44,10 @@ producto: any;
 
             
         this.products$ = this.postSvc.getAllPosts();
+
+        this.users$ = firestore.getUsers();
+
+      
 
 
 
@@ -67,30 +72,12 @@ producto: any;
  this.userActive();
 
 this.postSvc.getAllPosts().subscribe(res => console.log('POSTS',res));
+this.users$.subscribe(res => console.log('users->', res));
 
-
-      
-
-         
-
-
-        
-
-        
-  
-
-
-       
-        
- 
-
-    
-
-
-
-
-   
   }
+
+
+  
 
    addCarrito(product: Product){
 
