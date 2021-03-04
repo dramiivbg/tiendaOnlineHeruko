@@ -31,9 +31,8 @@ public doughnutChartType: ChartType = 'doughnut';
 
 
   constructor(private firestoreSvc: AuthCrudService) {
-const path = 'pedidos'
 
-this.product$ = this.firestoreSvc.getPedidosAll(path);
+this.product$ = this.firestoreSvc.getPedidosAll<Pedido>();
 
 
 
@@ -72,7 +71,8 @@ getAllClient(){
         if(this.vector[index] == this.vector[index1]){
   
           this.vector[index1] = '';
-        }} 
+        }
+      } 
   
        
       }

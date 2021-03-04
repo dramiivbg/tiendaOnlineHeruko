@@ -194,9 +194,9 @@ createDoc(data: Pedido, path: string, id: string){
 }
 
 
-createPro(data: Pedido, path: string, id: string){
+create<type>(data: any, path: string, id: string){
 
-  const collection = this.afs.collection<Pedido>(path).doc(id).set( data);
+  const collection = this.afs.collection<type>(path).doc(id).set( data);
 
   return collection;
 
@@ -242,8 +242,9 @@ getCollectionQuery<tipo>(path: string, parametro: string, condicion: any, busque
 
 }
 
-getPedidosAll<tipo>(path: string){
+getPedidosAll<tipo>(){
 
+  const path = 'pedidos';
  const collection =  this.afs.collectionGroup<tipo>(path);
 
  return collection.valueChanges();
