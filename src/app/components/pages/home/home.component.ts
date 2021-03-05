@@ -11,6 +11,7 @@ import { Vendedor } from '@app/shared/models/vendedor';
 import { FilterProductPipe } from '../../../pipe/filter-product.pipe';
 import { ComentProductService } from '@app/shared/services/coment-product.service';
 import { User } from '@app/shared/models/user.interface';
+import { tick } from '@angular/core/testing';
 
 
 @Component({
@@ -31,10 +32,14 @@ public vector: string[] = [];
   posi: number = 0;
   products$: Observable<Product[]>;
 
-
+ porcentajeC: number = 0;
   users$: Observable<User[]>;
   pedidos$: Observable<Pedido[]>;
   product: string[] = [];
+  pedidoCalificado: number = 0;
+  calificaciones: number[] = [];
+
+  calificacionGlobal: number = 0;
 
   constructor(private postSvc: ProductService, private authCrud: AuthCrudService,
     private carritoSvc: CarritoService,
@@ -77,6 +82,8 @@ public vector: string[] = [];
 this.postSvc.getAllPosts().subscribe(res => console.log('POSTS',res));
 this.users$.subscribe(res => console.log('users->', res));
 this.pedidos$.subscribe(res => console.log('pedidos->', res));
+
+this.contador = 0;
 
 this.calificacionGlobalProducto();
 
@@ -121,41 +128,58 @@ calificacionGlobalProducto(){
       if(this.vector[index] == this.vector[index1]){
 
         this.vector[index1] = '';
-      }} 
+      }
+    } 
 
      
     }
 
+  
 
 
 
    
 
-  this.vector.find( producto => {
+ for (let index = 0; index < this.vector.length; index++) {
+  
 
-    if(producto != ''){
+  if(this.vector[index] !== ''){
 
-      this.product.push(producto);
+    
+    this.product.push(this.vector[index]);
+    this.product[this.vector[index]] = this.vector[this.vector[index]];
 
-    }
+    
+  }
 
-    console.log(this.product);
-  });
+  
+
+   
+ }
+
+    
+  
 
 
-  while( this.posi < this.product.length) {
+  for( let index = 0; index < this.product.length; index++) {
 
-    this.contador = 0;
+    
 
     for (let index1 = 0; index1 < pedidos.length; index1++) {
 
       for (let index2 = 0; index2 < pedidos[index1].productos.length; index2++) {
         
-        if(pedidos[index1].productos[index2].producto.tipo_producto  == this.product[this.posi]){
+        if(pedidos[index1].productos[index2].producto.tipo_producto  == this.product[index]){
 
-             this.contador = pedidos[index1].productos[index2].producto.calificacion + this.contador/ pedidos[index1].productos.length;
+             this.contador =  this.contador + pedidos[index1].productos[index2].producto.calificacion;
 
-            
+            this.pedidoCalificado = this.contador/pedidos[index1].productos.length;
+            this.calificaciones.push(this.pedidoCalificado);
+            console.log('pedido->', this.calificaciones);
+
+            this.contador = 0;
+            this.pedidoCalificado = 0;
+
         }
 
         
@@ -165,25 +189,40 @@ calificacionGlobalProducto(){
     }
 
 
-    const path = 'productos';
 
-    this.firestore.getDoc<Product>(path,this.vector[this.vector[this.posi]]).subscribe(
-     producto => {
-
-      producto.calificacion = this.contador;
-      
-      this.firestore.create<Product>(producto,path,producto.id).then(res => {
-
-        console.log(res);
-      });
-
-     });
-
-    this.posi++;
    
+
+  for (let index = 0; index < this.calificaciones.length; index++) {
+    
+    this.calificacionGlobal += this.calificaciones[index];
+
+    this.porcentajeC = this.calificacionGlobal/this.calificaciones.length;
+
     
   }
 
+
+
+
+  const path = 'productos';
+
+  console.log(this.product[this.product[index]]);
+
+  this.firestore.getDoc<Product>(path,this.product[this.product[index]]).subscribe(
+   producto => {
+
+    producto.calificacion = this.porcentajeC;
+    
+    this.firestore.create<Product>(producto,path,producto.id).then(res => {
+
+      console.log(res);
+    });
+
+   });
+
+  
+ 
+    }
 
   });
 }

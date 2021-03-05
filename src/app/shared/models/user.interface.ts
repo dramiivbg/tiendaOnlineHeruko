@@ -10,5 +10,6 @@ export interface User {
    role: string;
    telefono: number;
    id?: string;
+   active?: boolean;
 
 }

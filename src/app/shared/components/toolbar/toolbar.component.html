@@ -101,6 +101,17 @@
      </mat-nav-list>
 
     
+     <mat-divider> </mat-divider>
+
+ 
+     <mat-nav-list  *ngIf="admin">
+        
+       <a mat-list-item routerLink="/sendMail" >
+        <span class="material-icons">
+          mail
+          </span><p>Send Mail</p>
+      </a>
+    </mat-nav-list>
 
    <mat-divider> </mat-divider>
 

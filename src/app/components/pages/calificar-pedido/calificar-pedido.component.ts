@@ -43,13 +43,13 @@ export class CalificarPedidoComponent implements OnInit {
   valorarPedido(numero: number, producto: Product){
 
 
-this.authSvc.afAuth.user.subscribe(id => {
+this.authSvc.afAuth.user.subscribe(user => {
   
-  if(id){
+  if(user){
 
     
 
-    const path = `clientes/${id.uid}/pedidos`;
+    const path = `clientes/${user.uid}/pedidos`;
   
     
   this.firestoreSvc.getDoc<Pedido>(path,this.pedido.id).subscribe(pedido => {
@@ -65,7 +65,7 @@ this.authSvc.afAuth.user.subscribe(id => {
         pedido.productos[index].producto.calificacion = numero;
 
       }else{
-        console.log('producto no encontrado')
+        console.log('producto no encontrado');
       }
       
     }
@@ -74,7 +74,7 @@ this.authSvc.afAuth.user.subscribe(id => {
 
       
 
-      this.firestoreSvc.createPro(pedido,path,pedido.id).then(() => {
+      this.firestoreSvc.create<Pedido>(pedido,path,pedido.id).then(() => {
 
         console.log('calificacion echa');
       });

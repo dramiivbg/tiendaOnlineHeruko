@@ -70,6 +70,7 @@ import { ComentarioComponent } from './components/pages/comentario/comentario.co
 import { AnalityClientComponent } from './components/anality-client/anality-client.component';
 import { AnalityPedidoComponent } from './components/anality-pedido/anality-pedido.component';
 import { ProductosMasVendidosComponent } from './components/pages/productos-mas-vendidos/productos-mas-vendidos.component';
+import { SendMailComponent } from './components/send-mail/send-mail.component';
 
 
 @NgModule({
@@ -113,6 +114,8 @@ import { ProductosMasVendidosComponent } from './components/pages/productos-mas-
     AnalityPedidoComponent,
   
     ProductosMasVendidosComponent,
+  
+    SendMailComponent,
    
 
  

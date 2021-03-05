@@ -21,6 +21,8 @@ import { CalificarPedidoComponent } from './components/pages/calificar-pedido/ca
 import { ComentarioComponent } from './components/pages/comentario/comentario.component';
 import { AnalityClientComponent } from './components/anality-client/anality-client.component';
 import { AnalityPedidoComponent } from './components/anality-pedido/anality-pedido.component';
+import { SendEmailComponent } from './components/auth/send-email/send-email.component';
+import { SendMailComponent } from './components/send-mail/send-mail.component';
 
 
 
@@ -114,6 +116,7 @@ canActivate: [GuardGuard] },
 {path: 'anality-full-clients', component: AnalityClientComponent},
 
 {path: 'anality-full-pedidos', component: AnalityPedidoComponent},
+{path: 'sendMail', component: SendMailComponent},
 
 { path: 'fecha-calificacion', loadChildren: () => import('./components/pages/fecha-calificacion/fecha-calificacion.module').then(m => m.FechaCalificacionModule) },
 
