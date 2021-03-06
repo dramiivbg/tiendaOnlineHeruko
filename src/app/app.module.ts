@@ -71,6 +71,7 @@ import { AnalityClientComponent } from './components/anality-client/anality-clie
 import { AnalityPedidoComponent } from './components/anality-pedido/anality-pedido.component';
 import { ProductosMasVendidosComponent } from './components/pages/productos-mas-vendidos/productos-mas-vendidos.component';
 import { SendMailComponent } from './components/send-mail/send-mail.component';
+import { EstadoClienteComponent } from './components/pages/estado-cliente/estado-cliente.component';
 
 
 @NgModule({
@@ -116,6 +117,8 @@ import { SendMailComponent } from './components/send-mail/send-mail.component';
     ProductosMasVendidosComponent,
   
     SendMailComponent,
+  
+    EstadoClienteComponent,
    
 
  

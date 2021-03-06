@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SendMailComponent } from './send-mail.component';
+import { EstadoClienteComponent } from './estado-cliente.component';
 
-describe('SendMailComponent', () => {
-  let component: SendMailComponent;
-  let fixture: ComponentFixture<SendMailComponent>;
+describe('EstadoClienteComponent', () => {
+  let component: EstadoClienteComponent;
+  let fixture: ComponentFixture<EstadoClienteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SendMailComponent ]
+      declarations: [ EstadoClienteComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SendMailComponent);
+    fixture = TestBed.createComponent(EstadoClienteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
