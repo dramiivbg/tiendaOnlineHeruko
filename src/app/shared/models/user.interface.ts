@@ -13,3 +13,11 @@ export interface User {
    active?: boolean;
 
 }
+
+
+interface Encuesta{
+
+   productosPreferidos: string;
+
+   
+}

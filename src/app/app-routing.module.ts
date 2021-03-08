@@ -23,6 +23,7 @@ import { AnalityClientComponent } from './components/anality-client/anality-clie
 import { AnalityPedidoComponent } from './components/anality-pedido/anality-pedido.component';
 import { SendEmailComponent } from './components/auth/send-email/send-email.component';
 import { SendMailComponent } from './components/send-mail/send-mail.component';
+import { EncuestaComponent } from './components/pages/encuesta/encuesta.component';
 
 
 
@@ -86,6 +87,8 @@ children:[
 
 
 
+
+
 { path: 'login', loadChildren: () => import('./components/auth/login/login.module').then(m => m.LoginModule) },
 { path: 'crearUser', loadChildren: () => import('./components/auth/crear-user/crear-user.module').then(m => m.CrearUserModule) },
 
@@ -108,6 +111,8 @@ canActivate:[GuardAGuard]},
 
 {path: 'precios', component: AnalityPreciosComponent,
 canActivate: [GuardGuard] },
+
+{path: 'encuesta', component: EncuestaComponent},
 
 {path: 'calificar', component: CalificarPedidoComponent},
 

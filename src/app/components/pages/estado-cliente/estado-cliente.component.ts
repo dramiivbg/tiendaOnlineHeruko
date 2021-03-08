@@ -56,9 +56,9 @@ export class EstadoClienteComponent implements OnInit {
 
      }
 
-     this.doughnutChartData[1] = [this.activo];
+     this.doughnutChartData[0] = [this.activo];
 
-     this.doughnutChartData[2] = [this.inactivo];
+     this.doughnutChartData[1] = [this.inactivo];
   
   });
 

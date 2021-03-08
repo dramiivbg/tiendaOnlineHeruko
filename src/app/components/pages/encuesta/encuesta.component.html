@@ -1,0 +1,94 @@
+
+
+<div class="contenedor">
+
+    <mat-card>
+  
+  <p><strong> ¿Cuantos años tienes?</strong> </p>
+        <mat-form-field class="example-form-field">
+           
+            <input matInput type="text" [(ngModel)]="value">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <br>
+          <p><strong> ¿Cual es tu genero?</strong> </p>
+          <mat-form-field class="example-form-field">
+          
+            <input matInput type="text" [(ngModel)]="value">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <br>
+    
+          <p><strong> ¿Cual es el ingreso de tu familia?</strong> </p>
+          <mat-form-field class="example-form-field">
+           
+            <input matInput type="text" [(ngModel)]="value">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <br>
+      
+          <p><strong> ¿A que te dedicas?</strong> </p>
+          <mat-form-field class="example-form-field">
+           
+            <input matInput type="text" [(ngModel)]="value">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <br>
+  
+          <p><strong> ¿Cual es tu nivel escolar?</strong> </p>
+          <mat-form-field class="example-form-field">
+          
+            <input matInput type="text" [(ngModel)]="value">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <br>
+          <p><strong> ¿Cual o cuales son tus productos preferidos?</strong> </p>
+        <mat-form-field class="example-form-field">
+         
+            <input matInput type="text" [(ngModel)]="value">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <br>
+  
+          <p><strong> ¿Esperas que tu producto favorezca tu vida en mas de una forma?</strong> </p>
+          <ul>
+            <li>
+            <section class="example-section">
+            <label class="example-margin">Align:</label>
+            <mat-radio-group [(ngModel)]="labelPosition">
+              <mat-radio-button class="example-margin" value="after">After</mat-radio-button>
+              <mat-radio-button class="example-margin" value="before">Before</mat-radio-button>
+            </mat-radio-group>
+          </section>
+            </li>
+          </ul>
+          <br>
+  
+   
+  
+     
+  
+     
+  
+     
+    
+      <button mat-raised-button color="primary" >Register</button>
+  
+    
+    
+  
+    </mat-card>
+      
+    </div>

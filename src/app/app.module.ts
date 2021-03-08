@@ -72,6 +72,9 @@ import { AnalityPedidoComponent } from './components/anality-pedido/anality-pedi
 import { ProductosMasVendidosComponent } from './components/pages/productos-mas-vendidos/productos-mas-vendidos.component';
 import { SendMailComponent } from './components/send-mail/send-mail.component';
 import { EstadoClienteComponent } from './components/pages/estado-cliente/estado-cliente.component';
+import { NewSendComponent } from './components/posts/new-send/new-send.component';
+import { ModalMessageComponent } from './shared/components/modal-message/modal-message.component';
+import { EncuestaComponent } from './components/pages/encuesta/encuesta.component';
 
 
 @NgModule({
@@ -119,6 +122,12 @@ import { EstadoClienteComponent } from './components/pages/estado-cliente/estado
     SendMailComponent,
   
     EstadoClienteComponent,
+  
+    NewSendComponent,
+  
+    ModalMessageComponent,
+  
+    EncuestaComponent,
    
 
  

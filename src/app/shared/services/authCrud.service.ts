@@ -185,6 +185,9 @@ public getPedidos(path: string): Observable<Pedido[]>{
 
 }
 
+
+
+
 createDoc(data: Pedido, path: string, id: string){
 
   const collection = this.afs.collection<Pedido>(path).doc(id).set( data);
