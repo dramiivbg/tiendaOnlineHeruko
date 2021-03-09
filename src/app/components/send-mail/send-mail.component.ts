@@ -7,6 +7,7 @@ import { ModalMessageComponent } from '@app/shared/components/modal-message/moda
 import { User } from '@app/shared/models/user.interface';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { UserService } from '@app/shared/services/user.service';
+import Swal from 'sweetalert2';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class SendMailComponent implements OnInit,AfterViewInit  {
   @ViewChild(MatPaginator,{static: true})paginator: MatPaginator;
   @ViewChild(MatSort,{static:true})sort: MatSort;
   constructor(private firestoreSvc: AuthCrudService, public dialog: MatDialog,
-    private userSvc: UserService,
+    private userSvc: UserService
     ){
 
 
@@ -71,6 +72,36 @@ sendEncuesta(user: User){
 
   this.userSvc.setUserEncuesta(user);
   
+}
+
+
+oneDeletePost(user: User){
+  Swal.fire({
+
+    title:'Are you sure',
+    text:`You won't be able to revert this!`,
+    icon:'warning',
+    showCancelButton:true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor:'#d33',
+    confirmButtonText:'Yes, delete it!'
+  }).then(result => {
+
+    if(result.value){
+
+      const path = 'clientes';
+
+      this.firestoreSvc.deleteDoc(path,user.id).then(() => {
+
+        Swal.fire('Deleted!, Your post has been deleted.','sucessfull');
+        
+      }).catch((error) => {
+
+        Swal.fire('Error!, There was an error deleting this post','error');
+      })
+      
+    }
+  });
 }
 oneMessageDialog(): void{
 

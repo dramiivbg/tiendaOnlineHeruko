@@ -64,19 +64,33 @@ export class NewSendComponent implements OnInit {
   addNewMessage(data: Message){
 
 data.gmail = this.user.gmail;
+
+
     
+if(this.file !== undefined){
 
- this.archSvc.storageA(this.file).subscribe(res => {;
+  data.file = null;
+const url =  this.archSvc.storageA(this.file);
 
- 
+url.subscribe(UrlImage => {
+  data.file =  UrlImage;
+console.log(data);
+  this.messageSvc.sendMessageUser(data).subscribe(() => {
 
-  console.log(res);
- })
+  
+  });  
+
+});
+
+}else{
 
   this.messageSvc.sendMessageUser(data).subscribe(() => {
 
   
   });  
+
+}
+  
    
      
  }

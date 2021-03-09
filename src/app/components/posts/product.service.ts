@@ -183,21 +183,10 @@ const result =     this.postCollection.doc<Product>(product.id).set(
     this.filePath = `archivos/${archivo.name}`;
      const fileRef = this.storage.ref(this.filePath);
      const task = this.storage.upload(this.filePath, archivo);
-     task.snapshotChanges()
-     .pipe(
-       finalize(() =>{
-         fileRef.getDownloadURL().subscribe( urlImage => {
-         this.downloadURL2 = urlImage;
-        
-  
-         //call addPost()
-  
-  
-         });
-       })
-     )
+    
+     const url = fileRef.getDownloadURL();
 
-     return this.downloadURL2;
+     return url;
     }
   
   
