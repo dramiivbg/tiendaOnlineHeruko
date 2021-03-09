@@ -24,6 +24,7 @@ import { AnalityPedidoComponent } from './components/anality-pedido/anality-pedi
 import { SendEmailComponent } from './components/auth/send-email/send-email.component';
 import { SendMailComponent } from './components/send-mail/send-mail.component';
 import { EncuestaComponent } from './components/pages/encuesta/encuesta.component';
+import { UserEncuestaComponent } from './components/pages/user-encuesta/user-encuesta.component';
 
 
 
@@ -113,6 +114,9 @@ canActivate:[GuardAGuard]},
 canActivate: [GuardGuard] },
 
 {path: 'encuesta', component: EncuestaComponent},
+
+{path: 'miencuesta', component: UserEncuestaComponent},
+
 
 {path: 'calificar', component: CalificarPedidoComponent},
 

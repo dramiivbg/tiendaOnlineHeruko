@@ -9,6 +9,9 @@ import { AuthService } from '../auth/auth.service';
 import { promise } from 'protractor';
 import { Pedido } from '@app/shared/models/pedido';
 import { Vendedor } from '@app/shared/models/vendedor';
+import { FileA } from '@app/shared/models/fileA';
+import { Message } from '@app/shared/models/message';
+import { UrlArchivoService } from '@app/shared/services/url-archivo.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +24,12 @@ export class ProductService {
   private filePath: any;
   private downloadURL: Observable<string>;
   private downloadURL1: Observable<string>;
+
+  private downloadURL2: Observable<string>;
   
   constructor(private afs: AngularFirestore,
   private storage: AngularFireStorage, 
-
+  private urlArchivoService: UrlArchivoService
 
     
     ) { 
@@ -173,6 +178,31 @@ const result =     this.postCollection.doc<Product>(product.id).set(
 
   }
 
+
+  public storageA(archivo:FileA){
+    this.filePath = `archivos/${archivo.name}`;
+     const fileRef = this.storage.ref(this.filePath);
+     const task = this.storage.upload(this.filePath, archivo);
+     task.snapshotChanges()
+     .pipe(
+       finalize(() =>{
+         fileRef.getDownloadURL().subscribe( urlImage => {
+         this.downloadURL2 = urlImage;
+        
+  
+         //call addPost()
+  
+  
+         });
+       })
+     )
+
+     return this.downloadURL2;
+    }
+  
+  
+  
+
  private  uploadImage(product:Product,image:FileI){
   this.filePath = `images/${image.name}`;
    const fileRef = this.storage.ref(this.filePath);
@@ -193,27 +223,32 @@ const result =     this.postCollection.doc<Product>(product.id).set(
   }
 
 
+  public Archivo(){
 
- private  uploadImage1(product:Product, image:FileI){
-  this.filePath = `images/${image.name}`;
-   const fileRef = this.storage.ref(this.filePath);
-   const task = this.storage.upload(this.filePath, image);
-   task.snapshotChanges()
-   .pipe(
-     finalize(() =>{
-       fileRef.getDownloadURL().subscribe( urlImage => {
-       this.downloadURL1 = urlImage;
-       this.editPostVendedor1(product);
+    return this.downloadURL2;
 
-       //call addPost()
-
-
-       });
-     })
-   ).subscribe();
   }
 
  
+  private  uploadImage1(product:Product, image:FileI){
+    this.filePath = `images/${image.name}`;
+     const fileRef = this.storage.ref(this.filePath);
+     const task = this.storage.upload(this.filePath, image);
+     task.snapshotChanges()
+     .pipe(
+       finalize(() =>{
+         fileRef.getDownloadURL().subscribe( urlImage => {
+         this.downloadURL1 = urlImage;
+         this.editPostVendedor1(product);
+  
+         //call addPost()
+  
+  
+         });
+       })
+     ).subscribe();
+    }
+  
  
 
 }

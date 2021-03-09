@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Encuesta } from '../models/encuesta';
 import { User } from '../models/user.interface';
 
 @Injectable({
@@ -7,6 +8,7 @@ import { User } from '../models/user.interface';
 export class UserService {
 
   User: User;
+  user: User;
   constructor() { }
 
 
@@ -20,5 +22,14 @@ export class UserService {
     return this.User;
   }
 
-  
+  setUserEncuesta(user: User){
+
+    this.user = user;
+    
+  }
+
+  getUserEncuesta(){
+
+    return this.user;
+  }
 }

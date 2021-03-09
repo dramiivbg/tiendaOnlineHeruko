@@ -10,6 +10,7 @@ import { Product } from '../models/product.interface';
 import { Vendedor } from '../models/vendedor';
 import { Chat } from '../models/chat';
 import { AuthService } from '@app/components/auth/auth.service';
+import { Encuesta } from '../models/encuesta';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,6 +31,8 @@ private pedidosCollection: AngularFirestoreCollection<Pedido>;
 
 private chatsCollection: AngularFirestoreCollection<Chat>;
 
+
+
   constructor(private afs: AngularFirestore,private authSvc: AuthService ){
 
  
@@ -39,7 +42,7 @@ private chatsCollection: AngularFirestoreCollection<Chat>;
 
     this.vendedorCollection = afs.collection<Vendedor>('vendedores');
 
-    
+   
     
 
 
@@ -123,6 +126,14 @@ public getUsers(): Observable<User[]>{
 }
 
 
+ 
+public getEncuesta(path: string): Observable<Encuesta[]>{
+
+
+  return this.afs.collection<Encuesta>(path).valueChanges();
+  
+  }
+
 public getChats(path: string): Observable<Chat[]>{
 
 
@@ -197,7 +208,7 @@ createDoc(data: Pedido, path: string, id: string){
 }
 
 
-create<type>(data: any, path: string, id: string){
+create<type>(data: any, path: string, id?: string){
 
   const collection = this.afs.collection<type>(path).doc(id).set( data);
 

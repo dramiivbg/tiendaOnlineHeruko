@@ -66,6 +66,12 @@ sendEmail(user: User){
 
 }
 
+
+sendEncuesta(user: User){
+
+  this.userSvc.setUserEncuesta(user);
+  
+}
 oneMessageDialog(): void{
 
   const dialogRef= this.dialog.open(ModalMessageComponent);

@@ -75,6 +75,8 @@ import { EstadoClienteComponent } from './components/pages/estado-cliente/estado
 import { NewSendComponent } from './components/posts/new-send/new-send.component';
 import { ModalMessageComponent } from './shared/components/modal-message/modal-message.component';
 import { EncuestaComponent } from './components/pages/encuesta/encuesta.component';
+import { UserEncuestaComponent } from './components/pages/user-encuesta/user-encuesta.component';
+
 
 
 @NgModule({
@@ -128,6 +130,8 @@ import { EncuestaComponent } from './components/pages/encuesta/encuesta.componen
     ModalMessageComponent,
   
     EncuestaComponent,
+  
+    UserEncuestaComponent,
    
 
  

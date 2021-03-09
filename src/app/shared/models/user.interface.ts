@@ -1,3 +1,4 @@
+import { Encuesta } from "./encuesta";
 
 
 export interface User {
@@ -11,13 +12,9 @@ export interface User {
    telefono: number;
    id?: string;
    active?: boolean;
+   encuesta?: Encuesta;
 
 }
 
 
-interface Encuesta{
 
-   productosPreferidos: string;
-
-   
-}

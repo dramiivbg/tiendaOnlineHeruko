@@ -1,9 +1,7 @@
-export interface FileI{
+export interface FileA{
 
     name: string;
-    imagFile: File;
+    ArchFile: File;
     size: string;
     type: string;
 }
-
-

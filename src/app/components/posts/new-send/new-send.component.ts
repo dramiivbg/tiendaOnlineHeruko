@@ -6,9 +6,11 @@ import { Pedido } from '@app/shared/models/pedido';
 import { User } from '@app/shared/models/user.interface';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { MessageService } from '@app/shared/services/message.service';
+import {ProductService} from '../product.service';
 import { UserService } from '@app/shared/services/user.service';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+import { UrlArchivoService } from '@app/shared/services/url-archivo.service';
 
 @Component({
   selector: 'app-new-send',
@@ -19,11 +21,12 @@ export class NewSendComponent implements OnInit {
 
 
   private file:any;
-
+  private downloadURL: Observable<string>;
   user: User;
   User$: Observable<User[]>;
   constructor(private firestoreSvc: AuthCrudService, private userSvc: UserService,
-    private messageSvc: MessageService ) { 
+    private messageSvc: MessageService, private archSvc: ProductService,
+    private urlArchivoService: UrlArchivoService) { 
 
    
 
@@ -60,9 +63,16 @@ export class NewSendComponent implements OnInit {
 
   addNewMessage(data: Message){
 
-    data.gmail = this.user.gmail;
+data.gmail = this.user.gmail;
     
-    
+
+ this.archSvc.storageA(this.file).subscribe(res => {;
+
+ 
+
+  console.log(res);
+ })
+
   this.messageSvc.sendMessageUser(data).subscribe(() => {
 
   
