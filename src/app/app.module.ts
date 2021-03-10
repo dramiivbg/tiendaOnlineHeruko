@@ -76,6 +76,13 @@ import { NewSendComponent } from './components/posts/new-send/new-send.component
 import { ModalMessageComponent } from './shared/components/modal-message/modal-message.component';
 import { EncuestaComponent } from './components/pages/encuesta/encuesta.component';
 import { UserEncuestaComponent } from './components/pages/user-encuesta/user-encuesta.component';
+import { NewVehiculoComponent } from './components/pages/new-vehiculo/new-vehiculo.component';
+import { ModalVehiculoComponent } from './shared/components/modal-vehiculo/modal-vehiculo.component';
+import { TableVehiculoComponent } from './shared/components/table-vehiculo/table-vehiculo.component';
+import { EditVehiculoComponent } from './components/pages/edit-vehiculo/edit-vehiculo.component';
+import { ModalEidtVehiculoComponent } from './shared/components/modal-eidt-vehiculo/modal-eidt-vehiculo.component';
+import { ListVehiculoComponent } from './components/pages/list-vehiculo/list-vehiculo.component';
+import { ModalListVehiculoComponent } from './shared/components/modal-list-vehiculo/modal-list-vehiculo.component';
 
 
 
@@ -132,6 +139,20 @@ import { UserEncuestaComponent } from './components/pages/user-encuesta/user-enc
     EncuestaComponent,
   
     UserEncuestaComponent,
+  
+    NewVehiculoComponent,
+  
+    ModalVehiculoComponent,
+  
+    TableVehiculoComponent,
+  
+    EditVehiculoComponent,
+  
+    ModalEidtVehiculoComponent,
+  
+    ListVehiculoComponent,
+  
+    ModalListVehiculoComponent,
    
 
  

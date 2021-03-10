@@ -16,6 +16,8 @@ import { Product } from '@app/shared/models/product.interface';
 import { ProductoProgramadoService } from '@app/shared/services/producto-programado.service';
 import { MessageService } from '@app/shared/services/message.service';
 import { PedidoCalificarService } from '@app/shared/services/pedido-calificar.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalListVehiculoComponent } from '@app/shared/components/modal-list-vehiculo/modal-list-vehiculo.component';
 
 
 interface Rol {
@@ -82,7 +84,9 @@ pedidoNew: Pedido;
     private firestore: AuthCrudService,
     private dataSvc: ContadorService,
     private pedidoSvc: ProductService,
-    private sendProductSvc: SendProductService) {
+    private sendProductSvc: SendProductService,
+    private dataService: DataService,
+    public dialog: MatDialog) {
 
      
      };
@@ -385,10 +389,11 @@ cambiarEstado(pedido: Pedido){
  item.estado = this.rol;
 
  if(item.estado == 'camino'){
- this.sendProductSvc.sendEstadoProduct(item).subscribe(() => 
+
+  this.dataService.setPedido(item);
+  this.oneditDialog();
+
  
- console.log('producto mandado')
- );
 }
 
 
@@ -471,6 +476,16 @@ cambiarEstado(pedido: Pedido){
   }
 
 
+}
+
+
+oneditDialog(): void{
+
+  const dialogRef= this.dialog.open(ModalListVehiculoComponent);
+  dialogRef.afterClosed().subscribe(result => {
+
+    console.log(`Dialog result ${result}`);
+  })
 }
 
 }

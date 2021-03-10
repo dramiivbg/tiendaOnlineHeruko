@@ -25,6 +25,7 @@ import { SendEmailComponent } from './components/auth/send-email/send-email.comp
 import { SendMailComponent } from './components/send-mail/send-mail.component';
 import { EncuestaComponent } from './components/pages/encuesta/encuesta.component';
 import { UserEncuestaComponent } from './components/pages/user-encuesta/user-encuesta.component';
+import { TableVehiculoComponent } from './shared/components/table-vehiculo/table-vehiculo.component';
 
 
 
@@ -116,6 +117,8 @@ canActivate: [GuardGuard] },
 {path: 'encuesta', component: EncuestaComponent},
 
 {path: 'miencuesta', component: UserEncuestaComponent},
+
+{path: 'crear-vehiculo', component: TableVehiculoComponent},
 
 
 {path: 'calificar', component: CalificarPedidoComponent},
