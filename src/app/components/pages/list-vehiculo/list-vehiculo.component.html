@@ -1,9 +1,98 @@
-<h4>select vehiculo</h4>
-<mat-form-field appearance="fill">
-  <mat-label>Vehiculos</mat-label>
-  <mat-select [(ngModel)]="selectedValue" name="vehiculo">
-    <mat-option  *ngFor="let vehiculo of vehiculos" [value]="vehiculo.value">
-      {{vehiculo.viewValue}}
-    </mat-option >
-  </mat-select>
-</mat-form-field>
+
+<div *ngIf="vehiculo$ | async as vehiculos ; else loading">
+<div *ngFor="let vehiculo of   vehiculos " style="text-align: center;">
+
+  &nbsp;
+  &nbsp;
+
+
+
+
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+
+
+<mat-card >
+
+
+
+  <mat-card-content>
+
+
+
+<div class="flexp ">
+
+  
+   <img [src]=" vehiculo.image" />
+
+<br>
+<br>
+
+
+
+<p> <strong>nombre:{{
+
+  vehiculo.nombre
+
+}}
+
+</strong>
+</p>
+
+
+
+<p> marca: {{
+
+  vehiculo.marca
+
+}}</p>
+
+
+<p>placa: {{
+
+  vehiculo.placa
+
+}}</p>
+
+
+
+<button (click)="sendNotify(vehiculo)"  class="boton" mat-raised-button color="primary">seleccionar</button>
+
+    </div>
+
+   
+
+
+  
+
+</mat-card-content>
+
+</mat-card>
+
+
+  
+
+</div>
+</div>
+
+
+<ng-template #loading>
+  <div class="container-spinner">
+  
+      <mat-spinner></mat-spinner>
+  </div>
+      
+  
+  </ng-template>
+
+
+  
+
+

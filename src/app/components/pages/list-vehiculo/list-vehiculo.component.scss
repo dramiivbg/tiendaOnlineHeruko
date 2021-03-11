@@ -1,0 +1,58 @@
+
+
+.boton1{
+
+    float: right;
+    width: 50%;
+}
+
+.boton2{
+
+    float: left;
+    width: 50%;
+}
+
+
+
+mat-card{
+
+    height: 40vh;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+$rowHeight: 40px;
+.flexp {
+
+
+
+    column-count: 2;
+max-height: calc(5 * #{$rowHeight});
+
+
+span{
+
+    cursor: pointer;
+    width: 20%;
+}
+    }
+
+
+    img{
+
+        width: 70%;
+
+    }
+
+
+
+
+}
+
+
+.ancho{
+
+    height: 10%;
+}
+
