@@ -83,6 +83,8 @@ import { EditVehiculoComponent } from './components/pages/edit-vehiculo/edit-veh
 import { ModalEidtVehiculoComponent } from './shared/components/modal-eidt-vehiculo/modal-eidt-vehiculo.component';
 import { ListVehiculoComponent } from './components/pages/list-vehiculo/list-vehiculo.component';
 import { ModalListVehiculoComponent } from './shared/components/modal-list-vehiculo/modal-list-vehiculo.component';
+import { UserActiveComponent } from './components/pages/user-active/user-active.component';
+import { ModalActiveComponent } from './shared/components/modal-active/modal-active.component';
 
 
 
@@ -153,6 +155,10 @@ import { ModalListVehiculoComponent } from './shared/components/modal-list-vehic
     ListVehiculoComponent,
   
     ModalListVehiculoComponent,
+  
+    UserActiveComponent,
+  
+    ModalActiveComponent,
    
 
  
