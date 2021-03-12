@@ -59,7 +59,6 @@ public vector: string[] = [];
 
 
 
-        
 
        
 
@@ -88,6 +87,9 @@ this.contador = 0;
 this.calificacionGlobalProducto();
 
   }
+
+
+
 
 
   

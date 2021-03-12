@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ModalAnalityUserComponent } from '@app/shared/components/modal-anality-user/modal-anality-user.component';
 import { ModalMessageComponent } from '@app/shared/components/modal-message/modal-message.component';
 import { User } from '@app/shared/models/user.interface';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
@@ -67,10 +68,20 @@ sendEmail(user: User){
 
 }
 
+anality(user: User){
+
+  this.userSvc.setAnality(user);
+
+  this.oneAnalityClient();
+
+
+}
+
 
 sendEncuesta(user: User){
 
   this.userSvc.setUserEncuesta(user);
+
   
 }
 
@@ -112,7 +123,14 @@ oneMessageDialog(): void{
   })
 }
 
+oneAnalityClient(): void{
 
+  const dialogRef= this.dialog.open(ModalAnalityUserComponent);
+  dialogRef.afterClosed().subscribe(result => {
+
+    console.log(`Dialog result ${result}`);
+  })
+}
   
 
 }

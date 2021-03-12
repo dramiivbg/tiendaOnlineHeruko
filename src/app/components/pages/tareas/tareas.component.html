@@ -1,0 +1,47 @@
+<div  class="new-post-container">
+
+    
+ <mat-card>
+    <form [formGroup]="newPostForm" (ngSubmit)="addWork(newPostForm.value)" >
+
+
+        <mat-form-field>
+            <mat-label>cedula del cliente</mat-label>
+           <input type="number" matInput placeholder="cedula" formControlName="cedula_cliente">   
+        </mat-form-field>
+        
+          
+
+        <mat-form-field>
+            <mat-label>Tipo_tarea</mat-label>
+           <input matInput placeholder="tipo" formControlName="tipo_tarea">   
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Tarea</mat-label>
+            <textarea matInput placeholder="" formControlName="tarea"></textarea>
+          </mat-form-field>
+        
+
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input formControlName="fecha" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          
+
+         
+              
+        <div class="container-button">
+  
+            <input  type="submit" class="mat-flat-button" value="save" (click)="create()" >
+            
+        </div>
+
+
+
+    </form>
+</mat-card>
+
+</div>

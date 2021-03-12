@@ -85,6 +85,10 @@ import { ListVehiculoComponent } from './components/pages/list-vehiculo/list-veh
 import { ModalListVehiculoComponent } from './shared/components/modal-list-vehiculo/modal-list-vehiculo.component';
 import { UserActiveComponent } from './components/pages/user-active/user-active.component';
 import { ModalActiveComponent } from './shared/components/modal-active/modal-active.component';
+import { TareasComponent } from './components/pages/tareas/tareas.component';
+import { VerTareasComponent } from './components/pages/ver-tareas/ver-tareas.component';
+import { AnalityProductComponent } from './components/anality-product/anality-product.component';
+import { ModalAnalityUserComponent } from './shared/components/modal-anality-user/modal-anality-user.component';
 
 
 
@@ -159,6 +163,14 @@ import { ModalActiveComponent } from './shared/components/modal-active/modal-act
     UserActiveComponent,
   
     ModalActiveComponent,
+  
+    TareasComponent,
+  
+    VerTareasComponent,
+  
+    AnalityProductComponent,
+  
+    ModalAnalityUserComponent,
    
 
  

@@ -100,18 +100,48 @@
        </a>
      </mat-nav-list>
 
-     <mat-divider> </mat-divider>
+     >
 
+     <mat-divider> </mat-divider>
+  
  
      <mat-nav-list  *ngIf="admin">
         
-       <a mat-list-item routerLink="/crear-vehiculo" >
+       <a mat-list-item routerLink="/ver-tareas" >
         <span class="material-icons">
-          local_shipping
-          </span><p>crear vehiculo</p>
+          event_note
+          </span>
+          <span class="material-icons">
+            remove_red_eye
+            </span><p>ver tareas</p>
       </a>
     </mat-nav-list>
 
+     <mat-divider> </mat-divider>
+  
+ 
+     <mat-nav-list  *ngIf="admin">
+        
+       <a mat-list-item routerLink="/crear-tareas" >
+        <span class="material-icons">
+          event_note
+          </span>
+          <span class="material-icons">
+            create
+            </span><p>crear tareas</p>
+      </a>
+    </mat-nav-list>
+
+    <mat-divider> </mat-divider>
+
+    <mat-nav-list  *ngIf="admin">
+        
+      <a mat-list-item routerLink="/crear-vehiculo" >
+       <span class="material-icons">
+         local_shipping
+         </span><p>crear vehiculo</p>
+     </a>
+   </mat-nav-list>
 
     
      <mat-divider> </mat-divider>
@@ -121,8 +151,8 @@
         
        <a mat-list-item routerLink="/sendMail" >
         <span class="material-icons">
-          mail
-          </span><p>Send Mail</p>
+          person
+          </span><p>Gestion de cliente</p>
       </a>
     </mat-nav-list>
 

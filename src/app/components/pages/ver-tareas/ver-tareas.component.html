@@ -1,0 +1,58 @@
+
+<div class="contenedor" *ngIf="tarea$ | async as tareas; else loading">
+
+    <mat-card *ngFor= "let tarea of tareas">
+  <div style="text-align: center;">
+  <p><strong> cedula del cliente</strong> </p>
+
+           
+             {{tarea.cedula_cliente}}
+        
+          <br>
+          <p><strong> tipo de tarea</strong> </p>
+        
+          
+           {{tarea.tipo_tarea}}
+          
+          
+          <br>
+    
+          <p><strong> tarea a hacer</strong> </p>
+       
+           
+
+              {{tarea.tarea}}
+           
+        
+          <br>
+      
+          <p><strong> fecha de la tarea</strong> </p>
+        
+           
+           
+
+         
+              {{tarea.fecha}}
+
+          
+  </div>     
+     <br>
+    
+      <button mat-raised-button color="primary" (click)=" eliminarTarea(tarea)" >cumplida</button>
+  
+    
+    
+  
+    </mat-card>
+      
+    </div> 
+
+    <ng-template #loading>
+        <div class="container-spinner">
+        
+            <mat-spinner></mat-spinner>
+        </div>
+            
+        
+        </ng-template>
+    

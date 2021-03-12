@@ -9,6 +9,7 @@ export class UserService {
 
   User: User;
   user: User;
+  userA: User;
   constructor() { }
 
 
@@ -31,5 +32,16 @@ export class UserService {
   getUserEncuesta(){
 
     return this.user;
+  }
+
+  setAnality(user: User){
+
+    this.userA = user;
+
+  }
+
+  getAnality(){
+
+    return this.userA;
   }
 }

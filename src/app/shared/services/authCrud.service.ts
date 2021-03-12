@@ -11,6 +11,7 @@ import { Vendedor } from '../models/vendedor';
 import { Chat } from '../models/chat';
 import { AuthService } from '@app/components/auth/auth.service';
 import { Encuesta } from '../models/encuesta';
+import { Tarea } from '../models/tarea';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +33,9 @@ private pedidosCollection: AngularFirestoreCollection<Pedido>;
 private chatsCollection: AngularFirestoreCollection<Chat>;
 
 
+private tareasCollection: AngularFirestoreCollection<Tarea>;
+
+
 
   constructor(private afs: AngularFirestore,private authSvc: AuthService ){
 
@@ -42,7 +46,6 @@ private chatsCollection: AngularFirestoreCollection<Chat>;
 
     this.vendedorCollection = afs.collection<Vendedor>('vendedores');
 
-   
     
 
 
@@ -158,6 +161,30 @@ public getChats(path: string): Observable<Chat[]>{
 
 
 
+  public getTareas(): Observable<Tarea[]>{
+
+   
+    this.tareasCollection = this.afs.collection<Tarea>('tareas');
+    
+   return   this.tareasCollection
+     .snapshotChanges()
+     .pipe(
+       map(actions =>
+         actions.map(a => {
+           const data = a.payload.doc.data() as Tarea;
+           const id = a.payload.doc.id;
+            return { id, ...data };
+         })
+       )
+     );
+ 
+   
+ 
+     
+ 
+ 
+ }
+ 
         
       
   
@@ -215,6 +242,18 @@ create<type>(data: any, path: string, id?: string){
   return collection;
 
 }
+
+docT(data:Tarea ,path: string){
+
+  const id = this.afs.createId();
+
+  data.id = id;
+  
+  const collection = this.afs.collection<Tarea>(path).doc(id).set(data);
+
+  return collection;
+}
+
 
 doc<type>(data:any ,path: string){
 

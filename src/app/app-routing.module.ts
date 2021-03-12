@@ -26,6 +26,8 @@ import { SendMailComponent } from './components/send-mail/send-mail.component';
 import { EncuestaComponent } from './components/pages/encuesta/encuesta.component';
 import { UserEncuestaComponent } from './components/pages/user-encuesta/user-encuesta.component';
 import { TableVehiculoComponent } from './shared/components/table-vehiculo/table-vehiculo.component';
+import { TareasComponent } from './components/pages/tareas/tareas.component';
+import { VerTareasComponent } from './components/pages/ver-tareas/ver-tareas.component';
 
 
 
@@ -119,6 +121,10 @@ canActivate: [GuardGuard] },
 {path: 'miencuesta', component: UserEncuestaComponent},
 
 {path: 'crear-vehiculo', component: TableVehiculoComponent},
+
+{path: 'crear-tareas', component: TareasComponent},
+{path: 'ver-tareas', component: VerTareasComponent},
+
 
 
 {path: 'calificar', component: CalificarPedidoComponent},
