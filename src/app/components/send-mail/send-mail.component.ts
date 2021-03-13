@@ -18,7 +18,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class SendMailComponent implements OnInit,AfterViewInit  {
 
-  displayedColumns: string[] = ['name','apellido', 'correo','telefono','actios'];
+  displayedColumns: string[] = ['name','apellido', 'correo','telefono','cedula','actios'];
   dataSource = new MatTableDataSource<User>();
   @ViewChild(MatPaginator,{static: true})paginator: MatPaginator;
   @ViewChild(MatSort,{static:true})sort: MatSort;

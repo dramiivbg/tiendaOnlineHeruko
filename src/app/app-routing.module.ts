@@ -28,6 +28,7 @@ import { UserEncuestaComponent } from './components/pages/user-encuesta/user-enc
 import { TableVehiculoComponent } from './shared/components/table-vehiculo/table-vehiculo.component';
 import { TareasComponent } from './components/pages/tareas/tareas.component';
 import { VerTareasComponent } from './components/pages/ver-tareas/ver-tareas.component';
+import { VentasRealesComponent } from './components/pages/ventas-reales/ventas-reales.component';
 
 
 
@@ -124,6 +125,8 @@ canActivate: [GuardGuard] },
 
 {path: 'crear-tareas', component: TareasComponent},
 {path: 'ver-tareas', component: VerTareasComponent},
+
+{path: 'ventas', component: VentasRealesComponent},
 
 
 

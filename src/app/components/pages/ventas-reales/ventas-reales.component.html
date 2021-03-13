@@ -1,0 +1,17 @@
+
+<mat-card>
+<div style="display: block;">
+    <canvas baseChart 
+      [data]="doughnutChartData"
+      [labels]="doughnutChartLabels"
+      [chartType]="doughnutChartType">
+    </canvas>
+  </div>
+</mat-card>
+
+<mat-card>
+  <span> paises con mas pedidos</span>
+  <app-paises-mas-vendidos></app-paises-mas-vendidos>
+  
+
+</mat-card>

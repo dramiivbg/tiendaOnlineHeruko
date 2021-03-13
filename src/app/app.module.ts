@@ -89,6 +89,8 @@ import { TareasComponent } from './components/pages/tareas/tareas.component';
 import { VerTareasComponent } from './components/pages/ver-tareas/ver-tareas.component';
 import { AnalityProductComponent } from './components/anality-product/anality-product.component';
 import { ModalAnalityUserComponent } from './shared/components/modal-anality-user/modal-anality-user.component';
+import { VentasRealesComponent } from './components/pages/ventas-reales/ventas-reales.component';
+import { PaisesMasVendidosComponent } from './components/pages/paises-mas-vendidos/paises-mas-vendidos.component';
 
 
 
@@ -171,6 +173,10 @@ import { ModalAnalityUserComponent } from './shared/components/modal-anality-use
     AnalityProductComponent,
   
     ModalAnalityUserComponent,
+  
+    VentasRealesComponent,
+  
+    PaisesMasVendidosComponent,
    
 
  
