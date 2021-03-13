@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class PaisesMasVendidosComponent implements OnInit {
 
+
   pedido$: Observable<Pedido[]>;
   sumaTotal: number = 0;
   public contador: number = 0;
@@ -75,9 +76,13 @@ getPais(){
     if(pais != ''){
   
       this.doughnutChartLabels.push(pais);
+      
+   
   
     }
   });
+
+
   
   
   while( this.posi < this.doughnutChartLabels.length) {
@@ -102,12 +107,18 @@ getPais(){
     }
   
   
+  
     this.doughnutChartData[this.posi] = [this.contador];
+    
+   
+  
   
     this.posi++;
    
     
   }
+
+
   });   
   
   

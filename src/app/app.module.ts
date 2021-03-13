@@ -50,15 +50,18 @@ import { MessageService } from './shared/services/message.service';
 //paypal
 
 import { NgxPayPalModule } from 'ngx-paypal';
-import { PaypalComponent } from './components/paypal/paypal.component';
+
 import { AnalityClientsComponent } from './components/pages/anality-clients/anality-clients.component';
 
+//ngx-charts
+
+
 //ng2-charts
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import {ChartsModule} from 'ng2-charts';
 
 import { DatePipe } from '@angular/common';
-
 
 import { LoginComponent } from './components/chat/login/login.component';
 import { RoomlistComponent } from './components/chat/roomlist/roomlist.component';
@@ -91,7 +94,6 @@ import { AnalityProductComponent } from './components/anality-product/anality-pr
 import { ModalAnalityUserComponent } from './shared/components/modal-anality-user/modal-anality-user.component';
 import { VentasRealesComponent } from './components/pages/ventas-reales/ventas-reales.component';
 import { PaisesMasVendidosComponent } from './components/pages/paises-mas-vendidos/paises-mas-vendidos.component';
-
 
 
 @NgModule({
@@ -205,7 +207,8 @@ import { PaisesMasVendidosComponent } from './components/pages/paises-mas-vendid
     EditPostModule,
     NgxPayPalModule,
     ChartsModule,
-    
+   
+    NgxChartsModule
    
  
    

@@ -70,6 +70,8 @@ activar: boolean = false;
     this.activar = true;
     console.log('change()', $event.value);
 
+    this.pedidos = [];
+
     this.getPedidosCulminados()
 
   }
@@ -81,7 +83,7 @@ activar: boolean = false;
 
     console.log('change()', $event.value);
   
-  
+    this.pedidos = [];
     this.getPedidosNuevos();
   
   }

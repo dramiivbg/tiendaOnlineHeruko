@@ -138,6 +138,8 @@ pedidoNew: Pedido;
 
     console.log('change()', $event.value);
 
+    this.pedidosCamino = [];
+
     this.getPedidosCamino();
 
     
@@ -148,6 +150,7 @@ pedidoNew: Pedido;
 
   change($event: any){
 
+
     this.culminados = true;
     this.nuevos = false;
     this.camino = false;
@@ -156,7 +159,7 @@ pedidoNew: Pedido;
  
     console.log('change()', $event.value);
    
-   
+   this.pedidosCul = [];
    this.getPedidosCulminados();
   
     
@@ -172,6 +175,7 @@ pedidoNew: Pedido;
 
     console.log('change()', $event.value);
    
+    this.pedidosNew = [];
 
     this.getPedidosNuevos();
 

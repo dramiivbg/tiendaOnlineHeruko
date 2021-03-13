@@ -34,6 +34,9 @@ export class AnalityProductComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.doughnutChartLabels = [''];
+    this.doughnutChartData = [];
+    
     this.product();
   }
 
