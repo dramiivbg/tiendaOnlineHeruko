@@ -1,12 +1,11 @@
 
 <mat-card>
-<div style="display: block;">
-    <canvas baseChart 
-      [data]="doughnutChartData"
-      [labels]="doughnutChartLabels"
-      [chartType]="doughnutChartType">
-    </canvas>
-  </div>
+  <ngx-charts-pie-grid
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="single"
+  (select)="onSelect($event)">
+</ngx-charts-pie-grid>
 </mat-card>
 
 <mat-card>

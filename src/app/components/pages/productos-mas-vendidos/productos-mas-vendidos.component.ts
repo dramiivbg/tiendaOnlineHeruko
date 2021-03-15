@@ -20,14 +20,11 @@ export class ProductosMasVendidosComponent implements OnInit {
  pos: number[] = [];
  posi: number = 0;
 
+ public doughnutChartLabels: Label[] = [];
+ public doughnutChartData: MultiDataSet = [
 
-
-public doughnutChartLabels: Label[] = [];
-public doughnutChartData: MultiDataSet = []; 
-
-public doughnutChartType: ChartType = 'doughnut';
-
-
+ ];
+ public doughnutChartType: ChartType = 'doughnut';
 
 
   constructor(private firestoreSvc: AuthCrudService) {
@@ -84,14 +81,23 @@ getAllClient(){
       if(producto != ''){
 
         this.doughnutChartLabels.push(producto);
+
+        
   
       }
     });
 
+   
 
-    while( this.posi < this.doughnutChartLabels.length) {
+  
 
-      this.contador = 0;
+
+    for (this.posi = 0; this.posi < this.doughnutChartLabels.length; this.posi++) {
+     
+      
+    
+
+   
 
       for (let index1 = 0; index1 < pedidos.length; index1++) {
 
@@ -102,18 +108,33 @@ getAllClient(){
                this.contador += pedidos[index1].productos[index2].cantidad;
 
               
+              
           }
+
+         
 
           
         }
-       
+
         
+       
       }
 
-
+   
       this.doughnutChartData[this.posi] = [this.contador];
 
-      this.posi++;
+      
+   
+      
+
+    
+
+      this.contador = 0;
+
+    
+
+    
+    
      
       
     }
@@ -133,5 +154,9 @@ getAllClient(){
 
   }
 
+
+onSelect(event) {
+  console.log(event);
+}
 }
 

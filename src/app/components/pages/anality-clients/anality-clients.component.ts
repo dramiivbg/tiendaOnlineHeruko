@@ -12,14 +12,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./anality-clients.component.scss']
 })
 export class AnalityClientsComponent implements OnInit {
-
+  public doughnutChartLabels: Label[] = [];
+  public doughnutChartData: MultiDataSet = [
+ 
+  ];
+  public doughnutChartType: ChartType = 'doughnut';
 
   user$: Observable<User[]>;
 
-  public doughnutChartLabels: Label[] = [];
-  public doughnutChartData: MultiDataSet = []; 
-  
-  public doughnutChartType: ChartType = 'doughnut';
+ 
   
   
   
@@ -45,6 +46,7 @@ getAllClient(){
   this.user$.subscribe(user => {
     for (let index = 0; index < user.length; index++) {
 
+     
       this.doughnutChartLabels[index] = user[index].name;
      
     
@@ -61,9 +63,11 @@ getAllClient(){
 
 
       
+      
         this.doughnutChartData[index] = [pedido.length];
-     
-   
+        
+        
+
       
     
      
@@ -85,5 +89,7 @@ getAllClient(){
 
     
 }
+
+
 
 }

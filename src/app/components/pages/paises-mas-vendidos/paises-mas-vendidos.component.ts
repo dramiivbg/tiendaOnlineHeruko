@@ -12,6 +12,14 @@ import { Observable } from 'rxjs';
 })
 export class PaisesMasVendidosComponent implements OnInit {
 
+  public doughnutChartLabels: Label[] = [];
+  public doughnutChartData: MultiDataSet = [
+ 
+  ];
+  public doughnutChartType: ChartType = 'doughnut';
+
+
+
 
   pedido$: Observable<Pedido[]>;
   sumaTotal: number = 0;
@@ -19,14 +27,10 @@ export class PaisesMasVendidosComponent implements OnInit {
   public vector: string[] = [];
   pos: number[] = [];
   posi: number = 0;
-  public doughnutChartLabels: Label[] = [];
-  public doughnutChartData: MultiDataSet = []; 
-  
-  public doughnutChartType: ChartType = 'doughnut';
-  
   
   constructor(private pedidosSvc: AuthCrudService
     ) {
+     
   
       this.pedido$ = pedidosSvc.getPedidosAll();
   
@@ -75,9 +79,9 @@ getPais(){
   
     if(pais != ''){
   
-      this.doughnutChartLabels.push(pais);
+    
       
-   
+     this.doughnutChartLabels.push(pais);
   
     }
   });
@@ -106,12 +110,8 @@ getPais(){
       
     }
   
-  
-  
+      
     this.doughnutChartData[this.posi] = [this.contador];
-    
-   
-  
   
     this.posi++;
    
@@ -120,7 +120,8 @@ getPais(){
 
 
   });   
-  
+
+
   
   
   
@@ -136,6 +137,4 @@ getPais(){
   
   }
   
-  
-
 }

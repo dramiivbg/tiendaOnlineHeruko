@@ -17,10 +17,22 @@ export class EstadoClienteComponent implements OnInit {
   activo: number = 0;
   inactivo: number = 0;
 
-  public doughnutChartLabels: Label[] = ['activo', 'inactivo'];
-  public doughnutChartData: MultiDataSet = []; 
-  
-  public doughnutChartType: ChartType = 'doughnut';
+  single: any[];
+  view: any[] = [700, 400];
+
+  // options
+  data: number[] = [];
+  label: string[] = ['activo','inactivo']
+  gradient: boolean = true;
+  showLegend: boolean = true;
+  showLabels: boolean = true;
+  isDoughnut: boolean = false;
+  legendPosition: string = 'below';
+
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+
   
   
   
@@ -56,14 +68,40 @@ export class EstadoClienteComponent implements OnInit {
 
      }
 
-     this.doughnutChartData[0] = [this.activo];
+     this.data[0] = this.activo;
 
-     this.doughnutChartData[1] = [this.inactivo];
+     this.data[1] = this.inactivo;
+
+     this.single = [
+
+      {
+        "name": this.label[0],
+        "value": this.data[0]
+      },
+
+      {
+        "name": this.label[1],
+        "value": this.data[1]
+      }
+     ]
   
   });
 
 
 
 }
+
+onSelect(data): void {
+  console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+}
+
+onActivate(data): void {
+  console.log('Activate', JSON.parse(JSON.stringify(data)));
+}
+
+onDeactivate(data): void {
+  console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+}
+
 
 }

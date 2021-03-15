@@ -15,10 +15,11 @@ export class AnalityPreciosComponent implements OnInit {
 
   user$: Observable<User[]>;
   public doughnutChartLabels: Label[] = [];
-  public doughnutChartData: MultiDataSet = []; 
-  
+  public doughnutChartData: MultiDataSet = [
+ 
+  ];
   public doughnutChartType: ChartType = 'doughnut';
-  
+
   public precioTotalPedidos: number = 0;
   
 
@@ -61,8 +62,7 @@ getAllClient(){
         this.doughnutChartData[index] = [this.precioTotalPedidos];
      
    
-      
-    
+        
      
     
   }
@@ -82,6 +82,7 @@ getAllClient(){
 
     
 }
+
 
 
   }

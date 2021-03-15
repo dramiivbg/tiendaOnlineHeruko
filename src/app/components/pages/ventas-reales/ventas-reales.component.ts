@@ -12,7 +12,19 @@ import { Observable } from 'rxjs';
 })
 export class VentasRealesComponent implements OnInit {
 
+  single: any[];
+  view: any[] = [500, 400];
+
+  // options
+  showLegend: boolean = true;
+  showLabels: boolean = true;
+
+  colorScheme = {
+    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+  };
   pedido$: Observable<Pedido[]>;
+  label: string[] = ['venta global'];
+  data: number[] = [];
   sumaTotal: number = 0;
   public contador: number = 0;
   public vector: string[] = [];
@@ -63,7 +75,22 @@ export class VentasRealesComponent implements OnInit {
 
 
       this.doughnutChartData[0] = [this.sumaTotal];
+      this.data.push(this.sumaTotal);
+
+
+    this.single = [
+      {
+        "name": this.label,
+        "value": this.data[0]
+    }
+    ]
+      
     });
+
+  }
+
+  onSelect(event) {
+    console.log(event);
   }
 
 
