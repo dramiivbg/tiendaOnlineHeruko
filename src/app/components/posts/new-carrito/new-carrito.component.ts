@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '@app/components/auth/auth.service';
+import { ServiceTService } from '@app/serviceT/service-t.service';
 import { Pedido } from '@app/shared/models/pedido';
 import { User } from '@app/shared/models/user.interface';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
@@ -34,7 +35,8 @@ uid= '';
     private firesore: AngularFirestore,
     private authSvc: AuthService,
 
-      private totalSvc: ValorService,private productoSvc: ProductoService) {
+      private totalSvc: ValorService,private productoSvc: ProductoService,
+      private serviceTService: ServiceTService) {
  
         this.initCarrito();
       this.authSvc.afAuth.authState.subscribe( res => {
@@ -151,13 +153,16 @@ pedir(){
 
 this.pedido.fecha = new Date();
 this.pedido.precioTotal = this.carritoTotal;
-    const path = `clientes/${this.uid}/pedidos`;
+
+
+ 
  this.pedido.id = this.firesore.createId();
 
+ this.serviceTService.setPedidoT(this.pedido);
 
 
 
-  this.firestoreSvc.createDoc(this.pedido, path,this.pedido.id).then(( ) => {
+
 
     this.totalSvc.setValorTotal(this.carritoTotal);
 
@@ -173,7 +178,7 @@ this.pedido.precioTotal = this.carritoTotal;
   
  
  
-  });
+
 
 
 }

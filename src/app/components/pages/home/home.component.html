@@ -36,9 +36,7 @@
                
 
            
-  <button ion-button class="icon" color="primary" *ngIf="admin"  name="cart" (click)="addCarrito(product)"></button>
-               
-       
+
        
              
        
@@ -66,6 +64,13 @@
             
          </p>
 
+
+        
+         <div *ngIf="admin">
+
+            <button   (click)="addCarrito(product)"  class="btn-flotante" >añadir al carrito</button>
+         
+        </div>
          <p>
 
             <span routerLink="/comentarios" (click)="productoComent(product)" class="material-icons">

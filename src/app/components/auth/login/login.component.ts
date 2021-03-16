@@ -55,10 +55,10 @@ this.authSvc.login(emial.value, password.value).then(res =>{
 
   }
   
-  else{
+ 
+}).catch(() => {
 
-    Swal.fire('user and password incorrect');
-  }
+  Swal.fire('password and user incorrect');
 })
 
 }

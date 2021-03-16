@@ -1,6 +1,6 @@
 .ancho{
     height: 100%;
-
+    text-align: center;
 
 .container{
 
@@ -50,19 +50,37 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-}
 
 
-
-.icon{
-    position:absolute;
-    padding: 1px;
-    right: 20px;
-  
+.btn-flotante {
 
     cursor: pointer;
-}
+  
+  
+    color: #ffffff; /* Color del texto */
+   
+    letter-spacing: 2px; /* Espacio entre letras */
+    background-color: #E91E63; /* Color de fondo */
 
+ 
+  
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  
+  }
+  .btn-flotante:hover {
+    background-color: #2c2fa5; /* Color de fondo al pasar el cursor */
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-7px);
+  }
+  @media only screen and (max-width: 600px) {
+     .btn-flotante {
+        font-size: 14px;
+        padding: 12px 20px;
+        bottom: 20px;
+        
+    }
+  }
+}  
 span{
 
     cursor: pointer;
@@ -71,9 +89,9 @@ span{
 }
 
 
-}
 
-}
+
+
 
 p{
 
@@ -93,3 +111,5 @@ p{
     text-align: center;
   }
 
+}
+}

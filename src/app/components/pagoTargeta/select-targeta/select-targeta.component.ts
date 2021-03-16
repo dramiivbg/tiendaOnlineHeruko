@@ -20,6 +20,7 @@ import {Pedido} from '../../../shared/models/pedido';
 import { ProductService } from '@app/components/posts/product.service';
 import { Product } from '@app/shared/models/product.interface';
 import { Observable } from 'rxjs';
+import { ServiceTService } from '@app/serviceT/service-t.service';
 @Component({
   selector: 'app-select-targeta',
   templateUrl: './select-targeta.component.html',
@@ -30,7 +31,7 @@ export class SelectTargetaComponent implements OnInit {
 uid = '';
   stripeTest: FormGroup;
 
-  
+  pedidoT: Pedido;
 
   pago:Pago;
 
@@ -66,9 +67,13 @@ uid = '';
     private stripSvc: stripeService,private cantidaSvc: ValorService,
     private authAf: AuthService, private firestore: AuthCrudService,
     private postSvc: ProductService,
-    private router: Router,private message: MessageService,private productoSvc: ProductoService) {
+    private router: Router,private message: MessageService,private productoSvc: ProductoService,
+    private serviceTService: ServiceTService) {
 
 
+      this.pedidoT = serviceTService.getPedidoT();
+
+      console.log(this.pedidoT);
             
       this.products$ = this.postSvc.getAllPosts();
       this.authAf.afAuth.user.subscribe(res => {
@@ -110,6 +115,13 @@ createToken(): void {
 
        this.stripSvc.charge(valor, result.token.id).then(() => {
 
+
+    const pathT = `clientes/${this.uid}/pedidos`;
+
+    this.firestore.create<Pedido>(this.pedidoT,pathT,this.pedidoT.id).then(() => {
+
+     console.log('pedido guardado');
+    });
         const path = 'pagos';
 
        this.pago = {
@@ -130,9 +142,12 @@ createToken(): void {
        this.message.sendMessage(this.pedido).subscribe(() => {
 
         console.log('message enviado correctamente');
+
+
        });
        
 
+       
        
         this.firestore.doc<Pago>(this.pago,path).then(res => {
 
