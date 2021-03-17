@@ -87,6 +87,9 @@ getAllClient(){
 
   });
 
+  this.doughnutChartData = [];
+  this.doughnutChartLabels = [];
+
     
 }
 

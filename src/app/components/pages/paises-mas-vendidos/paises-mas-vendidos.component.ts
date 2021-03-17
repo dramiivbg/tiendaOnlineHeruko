@@ -122,6 +122,8 @@ getPais(){
   });   
 
 
+  this.doughnutChartData = [];
+  this.doughnutChartLabels = [];
   
   
   

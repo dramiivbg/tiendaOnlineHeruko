@@ -87,6 +87,8 @@ export class VentasRealesComponent implements OnInit {
       
     });
 
+    this.single = [];
+
   }
 
   onSelect(event) {

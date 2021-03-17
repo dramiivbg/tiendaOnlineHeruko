@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from '@app/shared/models/user.interface';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { UserService } from '@app/shared/services/user.service';
@@ -30,15 +30,18 @@ export class AnalityProductComponent implements OnInit {
   constructor(private userSvc: UserService, private firestoreSvc: AuthCrudService) { 
 
     this.user = userSvc.getAnality();
+    
+    
   }
 
   ngOnInit(): void {
 
-    this.doughnutChartLabels = [''];
-    this.doughnutChartData = [];
+  
     
     this.product();
   }
+
+ 
 
   product(){
 
@@ -60,6 +63,7 @@ export class AnalityProductComponent implements OnInit {
     
   }
 
+//limpiar palabras repetidas
 
   for (let index = 0; index < this.vector.length; index++) {
  
@@ -74,7 +78,7 @@ export class AnalityProductComponent implements OnInit {
      
     }
 
-   
+//introducir palabras no vacias   
 
   this.vector.find( producto => {
 
@@ -85,6 +89,7 @@ export class AnalityProductComponent implements OnInit {
     }
   });
 
+// comparacion de  areglo ordenado con el desordenado
 
   while( this.posi < this.doughnutChartLabels.length) {
 
@@ -114,7 +119,12 @@ export class AnalityProductComponent implements OnInit {
    
     
   }
-});   
+});
+
+//limpiar data
+
+this.doughnutChartData = [];
+this.doughnutChartLabels = [];
 
 
   

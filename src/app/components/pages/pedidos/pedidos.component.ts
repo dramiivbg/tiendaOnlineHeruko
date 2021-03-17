@@ -112,7 +112,9 @@ activar: boolean = false;
 
    }
 
- })
+ });
+
+ this.pedidos = [];
 
 
   }
@@ -143,6 +145,7 @@ activar: boolean = false;
    
     });
    
+    this.pedidos = [];
    
 
   }

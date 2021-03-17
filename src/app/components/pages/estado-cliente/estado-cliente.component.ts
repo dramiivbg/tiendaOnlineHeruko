@@ -87,6 +87,8 @@ export class EstadoClienteComponent implements OnInit {
   
   });
 
+  this.single = [];
+
 
 
 }
