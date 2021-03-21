@@ -70,11 +70,16 @@
           <br>
   
           <p><strong> ¿Esperas que tu producto favorezca tu vida en mas de una forma?</strong> </p>
-          <mat-form-field class="example-form-field">
+          
          
-            
-              <input matInput [(ngModel)]="esperanza" type="text"  placeholder=" " required>
-          </mat-form-field><br>
+            <mat-form-field appearance="fill">
+              <mat-select [(ngModel)]="esperanza">
+                <mat-option *ngFor="let respuesta of respuestas" [value]="respuesta.value">
+                  {{respuesta.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
             
         
   

@@ -58,9 +58,11 @@ try {
  if(user){
  
 
-  Swal.fire('user created successfully');
-   this.router.navigate(['/sendEmail']);
+  Swal.fire('user created successfully').then(() => {
 
+ this.router.navigate(['/sendEmail']);
+
+  })
 
    this.onsave(user.uid);
    

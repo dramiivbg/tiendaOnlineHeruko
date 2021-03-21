@@ -11,6 +11,11 @@ interface sexo {
   viewValue: string;
 }
 
+interface Respuesta {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-encuesta',
   templateUrl: './encuesta.component.html',
@@ -22,6 +27,13 @@ export class EncuestaComponent implements OnInit {
     {value: 'masculino', viewValue: 'Masculino'},
     {value: 'femenino', viewValue: 'Femenino'},
     {value: 'Otro', viewValue: 'otro'},
+    
+  ];
+
+  respuestas:Respuesta [] = [
+    {value: 'si', viewValue: 'Si'},
+    {value: 'no', viewValue: 'No'},
+    {value: 'tal vez', viewValue: 'Tal vez'},
     
   ];
 
@@ -62,6 +74,7 @@ export class EncuestaComponent implements OnInit {
 
   guardarEncuesta(){
 
+    if(this.edad <= 130){
     this.encuesta.edad = this.edad;
     this.encuesta.sexo = this.sexo;
     this.encuesta.ingreso = this.ingreso;
@@ -92,6 +105,9 @@ export class EncuestaComponent implements OnInit {
     });
 
 
-  }
+  }else{
 
+    Swal.fire('edad fuera de rango');
+  }
+  }
 }

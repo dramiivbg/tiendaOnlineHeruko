@@ -32,32 +32,34 @@ public vector: string[] = [];
   posi: number = 0;
   products$: Observable<Product[]>;
 
+  private product$: Observable<Pedido[]>
  porcentajeC: number = 0;
   users$: Observable<User[]>;
   pedidos$: Observable<Pedido[]>;
   product: string[] = [];
   pedidoCalificado: number = 0;
   calificaciones: number[] = [];
-
+ productos: string[] = [];
   calificacionGlobal: number = 0;
+id = '';
 
-  constructor(private postSvc: ProductService, private authCrud: AuthCrudService,
+ifcoment:boolean = false;
+  constructor(private postSvc: ProductService,
     private carritoSvc: CarritoService,
     private authSvc: AuthService,
     private router: Router,private firestore: AuthCrudService,
     private comentSvc: ComentProductService
       ) { 
 
+        
 
-            
+
         this.products$ = this.postSvc.getAllPosts();
 
         this.users$ = firestore.getUsers();
 
         
         this.pedidos$ = firestore.getPedidosAll();
-
-
 
 
        
@@ -86,6 +88,7 @@ this.contador = 0;
 
 this.calificacionGlobalProducto();
 
+this.comprobarUserComment();
   }
 
 
@@ -229,6 +232,76 @@ calificacionGlobalProducto(){
   });
 }
 
+comprobarUserComment(){
+
+  this.authSvc.afAuth.user.subscribe(user => {
+
+    if(user){
+    const path = `clientes/${user.uid}/pedidos`;    
+    this.product$ = this.firestore.getPedidos(path);
+   
+    
+ 
+
+
+  this.product$.subscribe(pedidos => {
+
+
+    for (let index = 0; index < pedidos.length; index++) {
+      
+  
+        for (let index1 = 0; index1 < pedidos[index].productos.length; index1++) {
+
+          const nombre = pedidos[index].productos[index1].producto.tipo_producto;
+
+           this.vector.push(nombre);
+            
+              }
+      
+    }
+
+
+    for (let index = 0; index < this.vector.length; index++) {
+   
+      for (let index1 = 1+index; index1 <=this.vector.length; index1++) {
+  
+        if(this.vector[index] == this.vector[index1]){
+  
+          this.vector[index1] = '';
+        }
+      } 
+  
+       
+      }
+  
+     
+
+    this.vector.find( producto => {
+
+      if(producto != ''){
+
+        this.productos.push(producto);
+        
+  
+        
+  
+      }
+    });
+
+
+  for (let index = 0; index < this.productos.length; index++) {
+    
+    
+  }
+  
+  
+  
+  });
+
+    }
+});
+    
+}
 productoComent(producto: Product){
 
   this.comentSvc.setProduct(producto);

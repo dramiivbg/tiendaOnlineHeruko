@@ -75,7 +75,7 @@ uid = '';
 
       console.log(this.pedidoT);
             
-      this.products$ = this.postSvc.getAllPosts();
+      
       this.authAf.afAuth.user.subscribe(res => {
 
         this.uid = res.uid;

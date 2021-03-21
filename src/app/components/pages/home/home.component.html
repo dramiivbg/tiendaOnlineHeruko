@@ -71,13 +71,17 @@
             <button   (click)="addCarrito(product)"  class="btn-flotante" >añadir al carrito</button>
          
         </div>
+        <div *ngIf="ifcoment">
          <p>
+
+           
 
             <span routerLink="/comentarios" (click)="productoComent(product)" class="material-icons">
                 comment
                 </span>
-         
+            
         </p>
+    </div>
         
 
         

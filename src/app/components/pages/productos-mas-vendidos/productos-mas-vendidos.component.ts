@@ -29,7 +29,7 @@ export class ProductosMasVendidosComponent implements OnInit {
 
   constructor(private firestoreSvc: AuthCrudService) {
 
-this.product$ = this.firestoreSvc.getPedidosAll<Pedido>();
+  this.product$ = this.firestoreSvc.getPedidosAll<Pedido>();
 
 
 
