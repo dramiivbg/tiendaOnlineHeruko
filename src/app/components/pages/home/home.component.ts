@@ -87,7 +87,6 @@ this.pedidos$.subscribe(res => console.log('pedidos->', res));
 this.contador = 0;
 
 this.calificacionGlobalProducto();
-
 this.comprobarUserComment();
   }
 
@@ -234,17 +233,17 @@ calificacionGlobalProducto(){
 
 comprobarUserComment(){
 
+  this.productos = [];
+this.vector = [];
+
   this.authSvc.afAuth.user.subscribe(user => {
 
     if(user){
     const path = `clientes/${user.uid}/pedidos`;    
     this.product$ = this.firestore.getPedidos(path);
    
-    
- 
-
-
-  this.product$.subscribe(pedidos => {
+       
+   this.product$.subscribe(pedidos => {
 
 
     for (let index = 0; index < pedidos.length; index++) {
@@ -255,6 +254,8 @@ comprobarUserComment(){
           const nombre = pedidos[index].productos[index1].producto.tipo_producto;
 
            this.vector.push(nombre);
+
+           
             
               }
       
@@ -282,6 +283,7 @@ comprobarUserComment(){
 
         this.productos.push(producto);
         
+        
   
         
   
@@ -289,10 +291,7 @@ comprobarUserComment(){
     });
 
 
-  for (let index = 0; index < this.productos.length; index++) {
-    
-    
-  }
+  
   
   
   

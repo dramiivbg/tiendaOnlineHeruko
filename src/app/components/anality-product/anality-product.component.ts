@@ -45,6 +45,9 @@ export class AnalityProductComponent implements OnInit {
 
   product(){
 
+this.doughnutChartData = [];
+this.doughnutChartLabels = [];
+
     const path = `clientes/${this.user.id}/pedidos`;
 
     this.firestoreSvc.getPedidos(path).subscribe(pedidos => {
@@ -123,8 +126,7 @@ export class AnalityProductComponent implements OnInit {
 
 //limpiar data
 
-this.doughnutChartData = [];
-this.doughnutChartLabels = [];
+
 
 
   

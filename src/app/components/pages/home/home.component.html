@@ -71,17 +71,27 @@
             <button   (click)="addCarrito(product)"  class="btn-flotante" >añadir al carrito</button>
          
         </div>
-        <div *ngIf="ifcoment">
-         <p>
-
-           
-
+        
+         
+    
+    <div *ngFor="let producto of productos">
+        
+       
+   <div *ngIf="product.tipo_producto == producto"> 
+       
+        <p>
             <span routerLink="/comentarios" (click)="productoComent(product)" class="material-icons">
                 comment
-                </span>
+            </span>
+
             
-        </p>
+      </p>
+        
+         </div> 
+    
     </div>
+
+
         
 
         
