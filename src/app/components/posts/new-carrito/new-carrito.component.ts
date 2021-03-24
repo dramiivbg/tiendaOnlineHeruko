@@ -4,6 +4,7 @@ import { AuthService } from '@app/components/auth/auth.service';
 import { ServiceTService } from '@app/serviceT/service-t.service';
 import { Pedido } from '@app/shared/models/pedido';
 import { User } from '@app/shared/models/user.interface';
+import { PaypalService } from '@app/shared/paypal.service';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { CarritoService } from '@app/shared/services/carrito.service';
 import { ProductoService } from '@app/shared/services/producto.service';
@@ -36,7 +37,8 @@ uid= '';
     private authSvc: AuthService,
 
       private totalSvc: ValorService,private productoSvc: ProductoService,
-      private serviceTService: ServiceTService) {
+      private serviceTService: ServiceTService,
+      private paypalSvc: PaypalService) {
  
         this.initCarrito();
       this.authSvc.afAuth.authState.subscribe( res => {
@@ -160,7 +162,8 @@ this.pedido.precioTotal = this.carritoTotal;
 
  this.serviceTService.setPedidoT(this.pedido);
 
-
+ this.paypalSvc.setPedidoPaypal(this.pedido);
+ 
 
 
 

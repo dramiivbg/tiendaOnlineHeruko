@@ -1,6 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Pedido } from '@app/shared/models/pedido';
+import { PaypalService } from '@app/shared/paypal.service';
+import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { ProductoService } from '@app/shared/services/producto.service';
+import { AuthService } from '../auth/auth.service';
 
 declare var paypal;
 
@@ -13,29 +17,32 @@ declare var paypal;
 export class PaypalComponent implements OnInit {
   @ViewChild('paypal', {static: true}) paypalElement : ElementRef;
   
-  // pedido: Pedido = {
+  pedido: Pedido = {
 
-  //   cliente: null,
-  //   estado: null,
-  //   fecha: null,
-  //   id: null,
-  //   precioTotal: null,
-  //   productos: null,
-  //   valoracion: null,
-  //   CorreoClient: null
+    cliente: null,
+    estado: null,
+    fecha: null,
+    id: null,
+    precioTotal: null,
+    productos: null,
+    valoracion: null,
+    CorreoClient: null
    
-  // }
+  }
+  uid = '';
   
 
-  producto = {
-    description : 'producto en venta',
-    precio      : 599.99,
-    img         : 'imagen'
-  }
 
-  constructor(private productoSvc: ProductoService) {
+  constructor(private paypalSvc: PaypalService,    private authAf: AuthService,
+     private firestore: AuthCrudService,private router: Router) {
 
-   // this.pedido = productoSvc.getProducto();
+    this.pedido = paypalSvc.getPedidoPaypal();
+
+    this.authAf.afAuth.user.subscribe(res => {
+
+      this.uid = res.uid;
+
+    });
 
    }
 
@@ -46,13 +53,15 @@ export class PaypalComponent implements OnInit {
       createOrder: (data, actions) => {
         return actions.order.create({
 
+         
           purchase_units: [{
 
-            description: this.producto.description,
+          
+            description: this.pedido.fecha,
             amount: {
 
-              currency_code: 'MXN',
-              value: this.producto.precio
+              currency_code: "USD",
+              value: this.pedido.precioTotal
 
 
             }
@@ -63,6 +72,17 @@ export class PaypalComponent implements OnInit {
       onApprove : async (data, actions) => {
         const order = await actions.order.capture();
         console.log(order);
+
+        if(order){
+
+          const pathT = `clientes/${this.uid}/pedidos`;
+
+          this.firestore.create<Pedido>(this.pedido,pathT,this.pedido.id).then(() => {
+      
+           console.log('pedido guardado');
+           this.router.navigate(['/home']);
+          });
+        }
       },
       onError: err =>  {
 
@@ -73,3 +93,5 @@ export class PaypalComponent implements OnInit {
   }
 
 }
+
+
