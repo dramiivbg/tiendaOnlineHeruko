@@ -42,8 +42,30 @@ uid = '';
 
   onLogin(emial,password){
 
+    console.log('correo->', emial.value);
+    console.log('password->', password.value);
 
+    if(emial.value == "" && password.value == ""){
+
+      Swal.fire('Porfavor introduzca su correo y contraseña');
+      
+      return;
+
+    } 
+    
+    if(password.value == ""){
+
+      Swal.fire('porfavor introduzca su contraseña');
+      return;
+      
+    }
+  else if(emial.value == ""){
+    Swal.fire('porfavor introduzca su correo');
+    return;
+  }
 this.authSvc.login(emial.value, password.value).then(res =>{
+
+
 
   if(res && res.user.emailVerified){
 
@@ -56,12 +78,13 @@ this.authSvc.login(emial.value, password.value).then(res =>{
   }
   
  
-}).catch(() => {
+}).catch(err => {
 
-  Swal.fire('password and user incorrect');
-})
+ Swal.fire(err.message);
+ 
+});
 
 }
-
+  
 
 }

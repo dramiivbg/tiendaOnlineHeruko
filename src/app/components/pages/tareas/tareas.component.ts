@@ -21,10 +21,10 @@ export class TareasComponent implements OnInit {
 
 
   public newPostForm = new FormGroup({
-    cedula_cliente: new FormControl(0 ,Validators.required),
-    tipo_tarea: new FormControl('',Validators.required),
+    cedula_cliente: new FormControl(0 ,Validators.pattern('[0-9]*')),
+    tipo_tarea: new FormControl('',Validators.pattern('[a-zA-Z]*')),
     fecha: new FormControl(new Date, Validators.required),
-    tarea: new FormControl('',Validators.required),
+    tarea: new FormControl('',Validators.pattern('[a-zA-Z]*')),
   
 
   });
@@ -36,6 +36,12 @@ export class TareasComponent implements OnInit {
 
   addWork(tarea: Tarea ){
 
+ 
+  if(tarea.cedula_cliente == 0 || tarea.fecha == null || tarea.tarea == "" || tarea.tipo_tarea == ""){
+
+    Swal.fire('campos vacio, por favor rellenar');
+    return;
+  }
  
 
    
@@ -49,6 +55,7 @@ export class TareasComponent implements OnInit {
 
   const path = 'tareas'
   this.firestoreSvc.docT(tarea,path).then(() => {
+
 
     console.log('tarea añadida');
   });

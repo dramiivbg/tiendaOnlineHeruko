@@ -25,11 +25,11 @@ export class NewVehiculoComponent implements OnInit {
   
 
   public newPostForm = new FormGroup({
-    nombre: new FormControl('', Validators.required),
-    marca: new FormControl('', Validators.required),
+    nombre: new FormControl('',Validators.pattern('[a-zA-Z ]*')),
+    marca: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
     imagen: new FormControl('', Validators.required),
     placa: new FormControl('',Validators.required),
-    color: new FormControl('',Validators.required),
+    color: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
 
   });
 

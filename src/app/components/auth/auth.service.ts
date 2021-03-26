@@ -48,7 +48,7 @@ export class AuthService {
   
   catch (error) {
     
-    console.log(error);
+    Swal.fire(error.message);
   }
   
 

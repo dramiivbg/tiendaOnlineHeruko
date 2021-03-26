@@ -6,10 +6,7 @@ import Swal from 'sweetalert2';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { User } from '@app/shared/models/user.interface';
 
-interface Rol {
-  value: string;
-  viewValue: string;
-}
+
 
 @Component({
   selector: 'app-crear-user',
@@ -23,20 +20,16 @@ export class CrearUserComponent implements OnInit {
   public  appName = 'ngOnline';
   public name: string = '';
   public apellido: string = '';
- public gmail: string = '';
+ public correo: string = '';
  public  password: string = '';
  public direccion: string = '';
  public  cedula:string = '';
  public  pais: string = '';
- public  rol: string = '';
+ public  rol: string = 'cliente';
  public telefono: number = 0;
 
 
-  roles: Rol[] = [
-
-    {value:'cliente', viewValue:'Cliente'}
-
-  ]
+ 
   constructor(private authService: AuthService, private router: Router,
     private authCrud: AuthCrudService){
 
@@ -50,10 +43,12 @@ export class CrearUserComponent implements OnInit {
 
  async loginUp(){
 
+
+ 
 try {
 
 
- const user =    await  this.authService.register(this.gmail,this.password)
+ const user =    await  this.authService.register(this.correo,this.password)
 
  if(user){
  
@@ -62,7 +57,7 @@ try {
 
  this.router.navigate(['/sendEmail']);
 
-  })
+  });
 
    this.onsave(user.uid);
    
@@ -71,7 +66,7 @@ try {
   
 } catch (error) {
   
-  console.log(error);
+  Swal.fire(error.message);
 }
 
     
@@ -86,13 +81,14 @@ try {
  try {
   
 
+
  
- this.authCrud.onSaveUser(this.name,this.apellido,this.gmail, Number(this.cedula),this.direccion,this.pais,this.rol,id,this.telefono);
+ this.authCrud.onSaveUser(this.name,this.apellido,this.correo, Number(this.cedula),this.direccion,this.pais,this.rol,id,this.telefono);
 
 
 } catch (error) {
   
-  console.log(error.message);
+  Swal.fire(error.message);
 }
   
 

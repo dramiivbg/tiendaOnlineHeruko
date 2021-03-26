@@ -4,6 +4,7 @@ import { Pedido } from '@app/shared/models/pedido';
 import { PaypalService } from '@app/shared/paypal.service';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { ProductoService } from '@app/shared/services/producto.service';
+import Swal from 'sweetalert2';
 import { AuthService } from '../auth/auth.service';
 
 declare var paypal;
@@ -86,7 +87,11 @@ export class PaypalComponent implements OnInit {
       },
       onError: err =>  {
 
-        console.log(err);
+        Swal.fire('transaccion fallida').then(() => {
+
+          this.router.navigate(['/home']);
+
+        });
       }
     })
     .render( this.paypalElement.nativeElement);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { AuthService } from '@app/components/auth/auth.service';
 import { ServiceTService } from '@app/serviceT/service-t.service';
 import { Pedido } from '@app/shared/models/pedido';
@@ -38,7 +39,8 @@ uid= '';
 
       private totalSvc: ValorService,private productoSvc: ProductoService,
       private serviceTService: ServiceTService,
-      private paypalSvc: PaypalService) {
+      private paypalSvc: PaypalService,
+      private router:Router) {
  
         this.initCarrito();
       this.authSvc.afAuth.authState.subscribe( res => {
@@ -151,6 +153,8 @@ pedir(){
 
   return;
 
+ }else{
+   this.router.navigate(['/pago']);
  }
 
 this.pedido.fecha = new Date();

@@ -23,10 +23,10 @@ export class NewPostComponent implements OnInit {
   }
   
   public newPostForm = new FormGroup({
-    ciudad_de_exportacion: new FormControl('', Validators.required),
+    ciudad_de_exportacion: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
     imagen: new FormControl('', Validators.required),
-    tipo_producto: new FormControl('', Validators.required),
-    valor: new FormControl('',Validators.required),
+    tipo_producto: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
+    valor: new FormControl('',Validators.pattern('[0-9]*')),
   
 
   });

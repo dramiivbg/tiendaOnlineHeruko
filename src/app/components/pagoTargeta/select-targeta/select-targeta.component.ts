@@ -70,7 +70,8 @@ uid = '';
     private router: Router,private message: MessageService,private productoSvc: ProductoService,
     private serviceTService: ServiceTService) {
 
-
+     this.products$ = postSvc.getAllPosts();
+     
       this.pedidoT = serviceTService.getPedidoT();
 
       console.log(this.pedidoT);
@@ -96,8 +97,12 @@ uid = '';
 }
 
 createToken(): void {
-  const name = this.stripeTest.get('name').value;
+  const name = this.stripeTest.get('name').value
 
+  if(name == ""){
+    Swal.fire("¡por favor! digite su nombre que esta en la targeta de pago");
+    return;
+  }
   this.stripeService
     .createToken(this.card.element, { name })
     .subscribe((result) => {
@@ -112,6 +117,10 @@ createToken(): void {
 
           this.cliente = res;
         });
+
+
+ 
+
 
        this.stripSvc.charge(valor, result.token.id).then(() => {
 
@@ -166,7 +175,8 @@ createToken(): void {
 
         
       } else if (result.error) {
-        console.log('error', result.error.message);
+        Swal.fire(result.error.message);
+        
     
       }
     });

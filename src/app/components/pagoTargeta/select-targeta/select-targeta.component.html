@@ -1,3 +1,5 @@
+
+<div *ngIf="products$  | async as products; else loading">
 <div class="container">
   <br>
 
@@ -11,7 +13,7 @@
 
 </div>
 
-<div class="container "  *ngIf="products$  | async as products; else loading" >
+<div class="container " >
   
   <br>
   <br>
@@ -28,7 +30,7 @@
   <form novalidate [formGroup]="stripeTest"  (ngSubmit)="createToken()" >
 
    
-    <input type="text" formControlName="name" placeholder="Full Name" />
+    <input type="text" formControlName="name" placeholder="Full Name" required />
     &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;  &nbsp;   &nbsp;
     &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;
  
@@ -46,7 +48,7 @@
 </div>
 
 
-
+</div>
 
 
 <ng-template #loading>
