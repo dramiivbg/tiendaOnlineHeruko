@@ -1,6 +1,6 @@
 <div class="new-post-container">
 
-    <form [formGroup]="newPostForm" (ngSubmit)="addNewPost(newPostForm.value)" >
+    <form novalidate [formGroup]="newPostForm" (ngSubmit)="addNewPost(newPostForm.value)"  #f="ngForm" >
 
         <mat-form-field>
             <mat-label>nombre</mat-label>
@@ -28,7 +28,7 @@
 
                  
         <div class="container-button">
-            <input type="submit" class="mat-flat-button" value="Save" (click)="create()">
+            <input type="submit" [disabled]="f.invalid" class="mat-flat-button" value="Save" (click)="create()">
         </div>
     </form>
 

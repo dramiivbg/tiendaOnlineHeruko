@@ -40,7 +40,7 @@ export class NewSendComponent implements OnInit {
   public newPostForm = new FormGroup({
    
     file: new FormControl(''),
-    asunto: new FormControl('', Validators.required),
+    asunto: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
     message: new FormControl('',Validators.required),
   
 
@@ -64,6 +64,9 @@ export class NewSendComponent implements OnInit {
   addNewMessage(data: Message){
 
 data.gmail = this.user.gmail;
+
+
+
 
 
     

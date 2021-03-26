@@ -43,10 +43,10 @@ export class EditPostComponent implements OnInit {
 
     
   public newPostForm = new FormGroup({
-    ciudad_de_exportacion: new FormControl('', Validators.required),
-    tipo_producto: new FormControl('', Validators.required),
+    ciudad_de_exportacion: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+    tipo_producto: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
     imagen: new FormControl('', Validators.required),
-    valor: new FormControl('',Validators.required),
+    valor: new FormControl('',[Validators.required, Validators.pattern('[0-9]*')]),
   
 
   });
@@ -139,11 +139,11 @@ export class EditPostComponent implements OnInit {
       if(result.value){
   
         
-          Swal.fire('Deleted!, Your post has been deleted.','sucessfull');
+          Swal.fire('Deleted!, Your post has been update.','sucessfull');
           
       }else{
   
-          Swal.fire('Error!, There was an error deleting this post','error');
+          Swal.fire('Error!, There was an error updating this post','error');
         }
     
       }

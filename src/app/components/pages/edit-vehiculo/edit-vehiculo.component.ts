@@ -49,11 +49,11 @@ export class EditVehiculoComponent implements OnInit {
     
 
   public newPostForm = new FormGroup({
-    nombre: new FormControl('',Validators.pattern('[a-zA-Z ]*')),
-    marca: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
+    nombre: new FormControl('',[Validators.pattern('[a-zA-Z ]*'), Validators.required]),
+    marca: new FormControl('', [Validators.pattern('[a-zA-Z ]*'), Validators.required]),
     imagen: new FormControl('', Validators.required),
     placa: new FormControl('',Validators.required),
-    color: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
+    color: new FormControl('', [Validators.pattern('[a-zA-Z ]*'), Validators.required]),
 
   });
   ngOnInit(): void {
@@ -145,11 +145,11 @@ export class EditVehiculoComponent implements OnInit {
       if(result.value){
   
         
-          Swal.fire('Deleted!, Your post has been deleted.','sucessfull');
+          Swal.fire('Deleted!, Your vehicle has been update.','sucessfull');
           
       }else{
   
-          Swal.fire('Error!, There was an error deleting this post','error');
+          Swal.fire('Error!, There was an error updating this vehicle','error');
         }
     
       }

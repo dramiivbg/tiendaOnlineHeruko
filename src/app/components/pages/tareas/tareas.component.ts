@@ -37,13 +37,6 @@ export class TareasComponent implements OnInit {
   addWork(tarea: Tarea ){
 
  
-  if(tarea.cedula_cliente == 0 || tarea.fecha == null || tarea.tarea == "" || tarea.tipo_tarea == ""){
-
-    Swal.fire('campos vacio, por favor rellenar');
-    return;
-  }
- 
-
    
    var fecha = new Date(tarea.fecha);
 

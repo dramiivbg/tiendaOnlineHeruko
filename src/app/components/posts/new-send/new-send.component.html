@@ -2,7 +2,7 @@
 
     
 
-    <form [formGroup]="newPostForm" (ngSubmit)="addNewMessage(newPostForm.value)" >
+    <form novalidate [formGroup]="newPostForm" (ngSubmit)="addNewMessage(newPostForm.value)" #f="ngForm" >
 
 
 
@@ -27,7 +27,7 @@
 
                  
         <div class="container-button">
-            <input type="submit" class="mat-flat-button" value="Send" (click)="send()">
+            <input type="submit" [disabled]="f.invalid" class="mat-flat-button" value="Send" (click)="send()">
         </div>
     </form>
 

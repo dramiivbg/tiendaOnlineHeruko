@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from '@app/components/auth/auth.service';
 import { Vehiculo } from '@app/shared/models/vehiculo';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
@@ -25,11 +26,11 @@ export class NewVehiculoComponent implements OnInit {
   
 
   public newPostForm = new FormGroup({
-    nombre: new FormControl('',Validators.pattern('[a-zA-Z ]*')),
-    marca: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
+    nombre: new FormControl('',[Validators.pattern('[a-zA-Z ]*'), Validators.required]),
+    marca: new FormControl('', [Validators.pattern('[a-zA-Z ]*'), Validators.required]),
     imagen: new FormControl('', Validators.required),
     placa: new FormControl('',Validators.required),
-    color: new FormControl('', Validators.pattern('[a-zA-Z ]*')),
+    color: new FormControl('', [Validators.pattern('[a-zA-Z ]*'), Validators.required]),
 
   });
 
@@ -40,7 +41,10 @@ export class NewVehiculoComponent implements OnInit {
 
   addNewVehiculo(data: Vehiculo){
 
-        
+   
+
+   
+    
     
     this.vehiculo =  console.log(this.vehiculoService.preAddAndUpdate(data, this.image));
       
@@ -73,31 +77,8 @@ export class NewVehiculoComponent implements OnInit {
 
   create(){
 
-    Swal.fire({
-
-      title:'Are you sure',
-      text:`You won't be able to revert this!`,
-      icon:'warning',
-      
-    }).then(result => {
+    Swal.fire('vehicle successfully created');
   
-      if(result.value){
-  
-        
-          Swal.fire('Deleted!, Your post has been deleted.','sucessfull');
-          
-      }else{
-  
-          Swal.fire('Error!, There was an error deleting this post','error');
-        }
-    
-      }
-    )
+  }
 
-
-  
-
-    }
-
-}
-
+  }

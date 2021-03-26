@@ -1,25 +1,25 @@
 <div class="new-post-container">
 
-    <form [formGroup]="newPostForm" (ngSubmit)="addNewVehiculo(newPostForm.value)" >
+    <form novalidate  [formGroup]="newPostForm" (ngSubmit)="addNewVehiculo(newPostForm.value)" #f="ngForm" >
 
         <mat-form-field>
             <mat-label>nombre</mat-label>
-           <input matInput placeholder="nombre" formControlName="nombre" required>   
+           <input matInput placeholder="nombre" formControlName="nombre">   
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>placa</mat-label>
-           <input matInput placeholder="placa" formControlName="placa" required>   
+           <input matInput placeholder="placa"  formControlName="placa">   
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>color</mat-label>
-           <input matInput placeholder="color" formControlName="color" required>   
+           <input matInput placeholder="color" formControlName="color">   
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>marca</mat-label>
-           <input matInput placeholder="marca" formControlName="marca" required>   
+           <input matInput placeholder="marca" formControlName="marca" >   
         </mat-form-field>
 
 
@@ -31,9 +31,11 @@
             </label>
         </div>
 
-                 
-        <div class="container-button">
-            <input type="submit" class="mat-flat-button" value="Save" (click)="create()">
+       
+        
+       
+        <div class="container-button" >
+            <input type="submit" [disabled]="f.invalid"  class="mat-flat-button" value="Save" (click)="create()">
         </div>
     </form>
 

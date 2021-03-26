@@ -8,7 +8,7 @@
         <mat-form-field class="example-form-field">
            
 
-            <input matInput [(ngModel)]="edad" type="number"  placeholder="" required>
+            <input matInput #f [(ngModel)]="edad" pattern="[0-9]*" type="number"  placeholder="" required>
           
            
           </mat-form-field>
@@ -31,7 +31,7 @@
           <mat-form-field class="example-form-field">
            
 
-              <input matInput [(ngModel)]="ingreso" type="number"  placeholder="" required>
+              <input matInput [(ngModel)]="ingreso" pattern="[0-9]*" type="number"  placeholder="" required>
        
            
           </mat-form-field>
@@ -43,7 +43,7 @@
            
 
          
-              <input matInput [(ngModel)]="trabajo" type="text"  placeholder="" required>
+              <input matInput [(ngModel)]="trabajo" type="text" pattern="[a-zA-z]*" placeholder="" required>
           
          
           </mat-form-field>
@@ -54,7 +54,7 @@
           
 
         
-              <input matInput [(ngModel)]="nivelEscolar" type="text"  placeholder="" required>
+              <input matInput [(ngModel)]="nivelEscolar" type="text" pattern="[a-zA-z]*"  placeholder="" required>
          
          
           </mat-form-field>
@@ -63,7 +63,7 @@
         <mat-form-field class="example-form-field">
          
         
-              <input matInput [(ngModel)]="productosPreferidos" type="text"  placeholder="" required>
+              <input matInput [(ngModel)]="productosPreferidos" pattern="[a-zA-z]*" type="text"  placeholder="" required>
         
          
           </mat-form-field>
@@ -91,7 +91,7 @@
   
      
     
-      <button mat-raised-button color="primary" (click)=" guardarEncuesta()" >Register</button>
+      <button mat-raised-button color="primary" [disabled]="f.invalid" (click)=" guardarEncuesta()" >save</button>
   
     
     

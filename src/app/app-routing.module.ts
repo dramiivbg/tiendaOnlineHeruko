@@ -48,6 +48,7 @@ const routes: Routes = [
       {path: 'carrito', component: NewCarritoComponent,
     
     
+    
     }
       ,
       
@@ -117,27 +118,36 @@ canActivate:[GuardAGuard]},
 {path: 'precios', component: AnalityPreciosComponent,
 canActivate: [GuardGuard] },
 
-{path: 'encuesta', component: EncuestaComponent},
-
-{path: 'miencuesta', component: UserEncuestaComponent},
-
-{path: 'crear-vehiculo', component: TableVehiculoComponent},
-
-{path: 'crear-tareas', component: TareasComponent},
-{path: 'ver-tareas', component: VerTareasComponent},
-
-{path: 'ventas', component: VentasRealesComponent},
+{path: 'encuesta', component: EncuestaComponent,
+canActivate:[GuardAGuard]},
 
 
 
-{path: 'calificar', component: CalificarPedidoComponent},
+{path: 'crear-vehiculo', component: TableVehiculoComponent,
+canActivate:[GuardGuard]},
+
+{path: 'crear-tareas', component: TareasComponent,
+canActivate:[GuardGuard]},
+{path: 'ver-tareas', component: VerTareasComponent,
+canActivate:[GuardGuard]},
+
+{path: 'ventas', component: VentasRealesComponent,
+canActivate:[GuardGuard]},
+
+
+
+{path: 'calificar', component: CalificarPedidoComponent,
+canActivate:[GuardAGuard]},
 
 {path: 'comentarios', component: ComentarioComponent},
 
-{path: 'anality-full-clients', component: AnalityClientComponent},
+{path: 'anality-full-clients', component: AnalityClientComponent,
+canActivate:[GuardGuard]},
 
-{path: 'anality-full-pedidos', component: AnalityPedidoComponent},
-{path: 'sendMail', component: SendMailComponent},
+{path: 'anality-full-pedidos', component: AnalityPedidoComponent,
+canActivate:[GuardGuard]},
+{path: 'sendMail', component: SendMailComponent,
+canActivate:[GuardGuard]},
 
 { path: 'fecha-calificacion', loadChildren: () => import('./components/pages/fecha-calificacion/fecha-calificacion.module').then(m => m.FechaCalificacionModule) },
 

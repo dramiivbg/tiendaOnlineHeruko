@@ -38,7 +38,7 @@ export class NewPostComponent implements OnInit {
 
   addNewPost(data: Product){
 
-        
+    
     
     this.product =  console.log(this.productSvc.preAddAndUpdate(data, this.image));
       
@@ -69,30 +69,8 @@ export class NewPostComponent implements OnInit {
 
   create(){
 
-    Swal.fire({
-
-      title:'Are you sure',
-      text:`You won't be able to revert this!`,
-      icon:'warning',
-      
-    }).then(result => {
+    Swal.fire('product successfully created');
   
-      if(result.value){
-  
-        
-          Swal.fire('Deleted!, Your post has been deleted.','sucessfull');
-          
-      }else{
-  
-          Swal.fire('Error!, There was an error deleting this post','error');
-        }
-    
-      }
-    )
-
-
-  
-
-    }
+  }
 
 }

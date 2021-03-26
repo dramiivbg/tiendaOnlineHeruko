@@ -2,7 +2,7 @@
 
     
  <mat-card>
-    <form [formGroup]="newPostForm" (ngSubmit)="addWork(newPostForm.value)" >
+    <form novalidate [formGroup]="newPostForm" (ngSubmit)="addWork(newPostForm.value)" #f="ngForm" >
 
 
         <mat-form-field>
@@ -35,7 +35,7 @@
               
         <div class="container-button">
   
-            <input  type="submit" class="mat-flat-button" value="save" (click)="create()" >
+            <input  type="submit" [disabled]="f.invalid" class="mat-flat-button" value="save" (click)="create()" >
             
         </div>
 
