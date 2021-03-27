@@ -21,10 +21,10 @@ export class TareasComponent implements OnInit {
 
 
   public newPostForm = new FormGroup({
-    cedula_cliente: new FormControl(0 ,Validators.pattern('[0-9]*')),
-    tipo_tarea: new FormControl('',Validators.pattern('[a-zA-Z]*')),
-    fecha: new FormControl(new Date, Validators.required),
-    tarea: new FormControl('',Validators.pattern('[a-zA-Z]*')),
+    cedula_cliente: new FormControl(0 ,[Validators.pattern('[0-9]*'), Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
+    tipo_tarea: new FormControl('',[Validators.required, Validators.pattern('[a-zA-Z]*')]),
+    fecha: new FormControl(new Date, [Validators.required]),
+    tarea: new FormControl('',Validators.pattern('[a-zA-Z0-9]*')),
   
 
   });
@@ -36,7 +36,9 @@ export class TareasComponent implements OnInit {
 
   addWork(tarea: Tarea ){
 
- 
+ const cedula = Number(tarea.cedula_cliente);
+
+ tarea.cedula_cliente = cedula;
    
    var fecha = new Date(tarea.fecha);
 

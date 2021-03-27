@@ -100,7 +100,7 @@
        </a>
      </mat-nav-list>
 
-     >
+     
 
      <mat-divider> </mat-divider>
   
@@ -132,16 +132,32 @@
       </a>
     </mat-nav-list>
 
-    <mat-divider> </mat-divider>
 
-    <mat-nav-list  *ngIf="admin">
-        
-      <a mat-list-item routerLink="/crear-vehiculo" >
+    <mat-divider> </mat-divider>
+  
+ 
+    <mat-nav-list  *ngIf="client">
+       
+      <a mat-list-item routerLink="/encuesta" >
        <span class="material-icons">
-         local_shipping
-         </span><p>crear vehiculo</p>
+         event_note
+         </span>
+         <p>realizar encuesta</p>
      </a>
    </mat-nav-list>
+
+    <mat-divider> </mat-divider>
+
+
+   <mat-nav-list  *ngIf="admin">
+       
+     <a mat-list-item routerLink="/crear-vehiculo" >
+      <span class="material-icons">
+        local_shipping
+        </span><p>crear vehiculo</p>
+    </a>
+  </mat-nav-list>
+
 
 
    <mat-divider> </mat-divider>

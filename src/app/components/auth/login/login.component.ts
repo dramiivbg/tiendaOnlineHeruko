@@ -67,6 +67,8 @@ this.authSvc.login(emial.value, password.value).then(res =>{
 
 
 
+  
+
   if(res && res.user.emailVerified){
 
    this.router.navigate(['/home']);
@@ -76,6 +78,19 @@ this.authSvc.login(emial.value, password.value).then(res =>{
     this.router.navigate(['/sendEmail']);
 
   }
+
+  const path = 'clientes';
+
+  this.firestore.getDoc<User>(path,res.user.uid).subscribe(user => {
+
+
+    if(user.encuesta.edad == 0 || user.encuesta.esperanza == "" || user.encuesta.ingreso == 0, 
+    user.encuesta.nivelEscolar == "" || user.encuesta.productosPreferidos == "" ||
+    user.encuesta.sexo == "" || user.encuesta.trabajo == "" ){
+
+      this.router.navigate(['/encuesta']);
+    }
+  });
   
  
 }).catch(err => {
