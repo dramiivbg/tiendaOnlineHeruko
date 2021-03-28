@@ -17,8 +17,9 @@
     <input matInput [(ngModel)]="apellido" pattern="[a-zA-Z ]*" type="text"  placeholder=" apellido" required>
 </mat-form-field><br>
   
-    <mat-form-field>
-        <input matInput [(ngModel)]="correo"  type="email"  placeholder=" correo electronico" required>
+    <mat-form-field >
+        <input  matInput [(ngModel)]="correo"  pattern="[a-zA-Z0-9]+@+[a-zA-Z.]+"  type="email"  placeholder=" correo electronico" required>
+   
     </mat-form-field><br>
     
     <mat-form-field>
@@ -26,7 +27,7 @@
     </mat-form-field><br>
 
     <mat-form-field>
-        <input matInput [(ngModel)]="direccion" type="text" placeholder=" direccion" required>
+        <input matInput [(ngModel)]="direccion"  type="text" placeholder=" direccion" required>
     </mat-form-field><br>
 
     <mat-form-field>
