@@ -85,6 +85,7 @@ uid= '';
 
   console.log('loadPedido() en carrito', res);
 
+  if(res){
   res.cliente = this.cliente;
   
  this.pedido = res;
@@ -92,14 +93,18 @@ uid= '';
 this.getTotal();
 
 this.getCantidad();
+  }
+  else{
 
+    console.log('error pedido no traido');
+  }
 
- } )
+ });
 
  
 
   
-
+ 
   
 
 }
