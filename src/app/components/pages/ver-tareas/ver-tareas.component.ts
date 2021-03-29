@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tarea } from '@app/shared/models/tarea';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
+import { MessageService } from '@app/shared/services/message.service';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
 export class VerTareasComponent implements OnInit {
 
   tarea$: Observable<Tarea[]>;
-  constructor(private firestoreSvc: AuthCrudService) { 
+  constructor(private firestoreSvc: AuthCrudService, private messageService: MessageService) { 
 
     this.tarea$ = firestoreSvc.getTareas();
   }
@@ -35,11 +36,18 @@ export class VerTareasComponent implements OnInit {
   
       if(result.value){
   
+
         const path = 'tareas';
   
         this.firestoreSvc.deleteDoc(path,tarea.id).then(() => {
   
           Swal.fire('Deleted!, Your post has been deleted.','sucessfull');
+
+          
+          this.messageService.sendMessageTarea(tarea).subscribe(res => {
+
+            console.log(res);
+          });
           
         }).catch((error) => {
   

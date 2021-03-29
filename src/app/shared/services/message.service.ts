@@ -15,7 +15,12 @@ export class MessageService {
   sendMessageUser(body: any){
 
     return this.http.post('http://localhost:1000/sendUser',body);
-  }  
+  }
+  
+  sendMessageTarea(body: any){
+
+    return this.http.post('http://localhost:500/tareaCumplida',body);
+  }
 }
 
 

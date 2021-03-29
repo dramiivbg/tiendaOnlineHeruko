@@ -21,10 +21,10 @@ export class TareasComponent implements OnInit {
 
 
   public newPostForm = new FormGroup({
-    cedula_cliente: new FormControl(0 ,[Validators.pattern('[0-9]*'), Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
-    tipo_tarea: new FormControl('',[Validators.required, Validators.pattern('[a-zA-Z]*')]),
+    cedula_cliente: new FormControl(0 ,[Validators.pattern('[0-9]*'), Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+    tipo_tarea: new FormControl('',[Validators.required, ]),
     fecha: new FormControl(new Date, [Validators.required]),
-    tarea: new FormControl('',Validators.pattern('[a-zA-Z0-9]*')),
+    tarea: new FormControl('',Validators.required),
   
 
   });

@@ -109,6 +109,8 @@ children:[
 canActivate:[GuardAGuard]},
 
 
+{path: 'miencuesta', component: UserEncuestaComponent,
+ canActivate:[GuardGuard]},
 
 {path: 'loginChat', component: LoginComponent},
 {path: 'roomlist', component: RoomlistComponent},
