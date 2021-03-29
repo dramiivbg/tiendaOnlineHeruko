@@ -44,6 +44,8 @@ getAllClient(){
   this.user$.subscribe(user => {
     for (let index = 0; index < user.length; index++) {
 
+      this.precioTotalPedidos = 0;
+
       this.doughnutChartLabels[index] = user[index].name;
      
     
@@ -56,10 +58,16 @@ getAllClient(){
 
       if(pedido.length){
 
-      this.precioTotalPedidos += pedido[index].precioTotal;
+        for (let index1 = 0; index1 < pedido.length; index1++) {
+          
+          
+        
 
+      this.precioTotalPedidos = this.precioTotalPedidos + pedido[index1].precioTotal;
+
+      this.doughnutChartData[index] = [this.precioTotalPedidos/2];
+        }
       
-        this.doughnutChartData[index] = [this.precioTotalPedidos];
      
    
         
@@ -71,7 +79,7 @@ getAllClient(){
       });
   
     
-    
+ 
         
         
     
