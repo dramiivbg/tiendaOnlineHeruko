@@ -133,11 +133,16 @@ createToken(): void {
     });
         const path = 'pagos';
 
+        var fecha = new Date()
+        const fechaT = (fecha.getMonth()+1) +'/'+ (fecha.getDay()+7)+'/'+fecha.getFullYear();
+        
+
        this.pago = {
 
         idtokenTargeta: result.token.id,
         cantidad: valor,
-        idCliente: this.uid
+        idCliente: this.uid,
+        fecha: fechaT
 
        }
        

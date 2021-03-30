@@ -175,7 +175,7 @@ const item =   this.pedido.productos.find( productoPedido => {
 
   if(item !== undefined){
 
-    item.cantidad+=1;
+    item.cantidad = item.cantidad + 1;
 
     
 
@@ -242,7 +242,7 @@ if(this.uid.length){
   
     if(item !== undefined){
   
-      item.cantidad-=1;
+      item.cantidad =  item.cantidad - 1;
   
       if(item.cantidad == 0){
 
@@ -263,16 +263,8 @@ if(this.uid.length){
       });
       
   }
-  
-
-
-  
-  
-  
-  
-
-
 }
+
 }
 
 clearCarrito(){

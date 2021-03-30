@@ -1,9 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Pago } from '@app/shared/models/pago';
 import { Pedido } from '@app/shared/models/pedido';
 import { PaypalService } from '@app/shared/paypal.service';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
+import { MessageService } from '@app/shared/services/message.service';
 import { ProductoService } from '@app/shared/services/producto.service';
+import { ValorService } from '@app/shared/services/valor.service';
 import Swal from 'sweetalert2';
 import { AuthService } from '../auth/auth.service';
 
@@ -31,13 +34,17 @@ export class PaypalComponent implements OnInit {
    
   }
   uid = '';
-  
 
+  pago:Pago;
 
   constructor(private paypalSvc: PaypalService,    private authAf: AuthService,
-     private firestore: AuthCrudService,private router: Router) {
+     private firestore: AuthCrudService,private router: Router,
+     private message: MessageService,
+     private cantidaSvc: ValorService) {
 
     this.pedido = paypalSvc.getPedidoPaypal();
+
+   
 
     this.authAf.afAuth.user.subscribe(res => {
 
@@ -52,6 +59,8 @@ export class PaypalComponent implements OnInit {
     paypal.
     Buttons({
       createOrder: (data, actions) => {
+         
+        
         return actions.order.create({
 
          
@@ -76,18 +85,54 @@ export class PaypalComponent implements OnInit {
 
         if(order){
 
-          const pathT = `clientes/${this.uid}/pedidos`;
+          const valor = this.cantidaSvc.getValorTotal();
 
+          const pathT = `clientes/${this.uid}/pedidos`;
+  
           this.firestore.create<Pedido>(this.pedido,pathT,this.pedido.id).then(() => {
-      
+           this.message.sendMessage(this.pedido).subscribe(() => {
+
+           });
            console.log('pedido guardado');
-           this.router.navigate(['/home']);
+           
+           const path = 'pagos';
+
+        var fecha = new Date()
+        const fechaT = (fecha.getMonth()+1) +'/'+ (fecha.getDay()+7)+'/'+fecha.getFullYear();
+        
+
+       this.pago = {
+
+        idtokenTargeta: order.id,
+        cantidad: valor,
+        idCliente: this.uid,
+        fecha: fechaT
+
+       }
+       this.firestore.doc<Pago>(this.pago,path).then(res => {
+
+        console.log(res);
+
+        Swal.fire('transaccion exitosa').then(() => {
+
+          this.router.navigate(['/home']);
+         })
+
+      }).catch(() => {
+
+
+        Swal.fire('¡transaccion fallida! porfavor intente de nuevo').then(() => {
+
+          this.router.navigate(['/home'])
+        });
+      });
+          
           });
         }
       },
       onError: err =>  {
 
-        Swal.fire('transaccion fallida').then(() => {
+        Swal.fire('¡transaccion fallida! por favor comenzar de nuevo').then(() => {
 
           this.router.navigate(['/home']);
 
@@ -95,7 +140,7 @@ export class PaypalComponent implements OnInit {
       }
     })
     .render( this.paypalElement.nativeElement);
-  }
+}
 
 }
 

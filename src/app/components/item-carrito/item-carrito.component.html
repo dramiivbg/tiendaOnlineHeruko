@@ -41,14 +41,13 @@
    productoPedido.producto.valor
  
  }}</p>
+<button  mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="addProducto()">
+   <mat-icon>add</mat-icon>
+   </button>&nbsp;
 
- <span class="material-icons" (click)="addProducto()">
-    control_point
-    </span>
-
-    <span class="material-icons" (click)="resProducto()">
-        do_disturb_on
-        </span>
+   <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="resProducto()">
+      <mat-icon>clear</mat-icon>
+      </button>
 
   
 

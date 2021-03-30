@@ -90,6 +90,8 @@ uid= '';
   
  this.pedido = res;
 
+
+
 this.getTotal();
 
 this.getCantidad();

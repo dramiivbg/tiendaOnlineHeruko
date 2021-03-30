@@ -43,6 +43,7 @@ export class ItemCarritoComponent implements OnInit {
   addProducto(){
 
 
+   
     this.carritoSvc.addProduct(this.productoPedido.producto);
 
 
@@ -51,8 +52,11 @@ export class ItemCarritoComponent implements OnInit {
 
   resProducto(){
 
-    this.carritoSvc.removeProduct(this.productoPedido.producto);
+   
+   this.carritoSvc.removeProduct(this.productoPedido.producto);
 
+
+    
   }
 
   
