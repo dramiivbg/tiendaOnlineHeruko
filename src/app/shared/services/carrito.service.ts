@@ -167,7 +167,6 @@ this.pedido$.next(this.pedido);
 
 addProduct(producto: Product){
 
-if(this.uid.length){
 
 const item =   this.pedido.productos.find( productoPedido => {
    return (productoPedido.producto.id == producto.id);
@@ -196,11 +195,7 @@ const item =   this.pedido.productos.find( productoPedido => {
 
   
 
-}else{
 
-  this.router.navigate(['/login']);
-  return;
-}
 
 
 this.pedido$.next(this.pedido);
@@ -231,7 +226,7 @@ removeProduct(producto: Product){
 
   
 
-if(this.uid.length > 0){
+
 
   let position = 0;
   const item =   this.pedido.productos.find( (productoPedido, index) => {
@@ -263,7 +258,7 @@ if(this.uid.length > 0){
       });
       
   }
-}
+
 
 }
 
