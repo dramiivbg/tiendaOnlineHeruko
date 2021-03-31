@@ -231,7 +231,7 @@ removeProduct(producto: Product){
 
   
 
-if(this.uid.length){
+if(this.uid.length > 0){
 
   let position = 0;
   const item =   this.pedido.productos.find( (productoPedido, index) => {

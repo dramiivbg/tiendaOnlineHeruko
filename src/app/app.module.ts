@@ -33,8 +33,6 @@ import {HttpClientModule} from '@angular/common/http';
 
 import {AuthCrudService} from '../app/shared/services/authCrud.service';
 
-import { NewCarritoComponent } from './components/posts/new-carrito/new-carrito.component';
-import { NewCarritoModule } from './components/posts/new-carrito/new-carrito.module';
 import { ItemCarritoComponent } from './components/item-carrito/item-carrito.component';
 import { PuenteComponent } from './shared/components/puente/puente.component';
 import { ToolbarLoginComponent } from './shared/components/toolbar-login/toolbar-login.component';
@@ -105,7 +103,7 @@ import { PaisesMasVendidosComponent } from './components/pages/paises-mas-vendid
     ContainerAppComponent,
     ModalComponent,
 
-    NewCarritoComponent,
+ 
     ItemCarritoComponent,
     PuenteComponent,
     ToolbarLoginComponent,
@@ -203,7 +201,7 @@ import { PaisesMasVendidosComponent } from './components/pages/paises-mas-vendid
     FormsModule, 
     ReactiveFormsModule,
     HttpClientModule,
-    NewCarritoModule,
+
     EditPostModule,
     NgxPayPalModule,
     ChartsModule,

@@ -15,15 +15,15 @@
 
 
 
-<div class="flexp ">
+<div class="flexp " *ngFor="let producto of pedido.productos">
 
     
-     <img [src]=" productoPedido.producto.image" />
+     <img [src]=" producto.producto.image" />
 
 
 <p>nombre: {{
 
- productoPedido.producto.tipo_producto
+ producto.producto.tipo_producto
 
 }}</p>
 
@@ -31,21 +31,21 @@
 
 <p> cantidad: {{
 
-   productoPedido.cantidad
+   producto.cantidad
 
 }}</p>
 
 
 <p>valor: {{
 
-   productoPedido.producto.valor
+   producto.producto.valor
  
  }}</p>
-<button  mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="addProducto()">
+<button  mat-fab color="primary"  (click)="addProducto(producto.producto)">
    <mat-icon>add</mat-icon>
    </button>&nbsp;
 
-   <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="resProducto()">
+   <button mat-fab color="primary"  (click)="resProducto(producto.producto)">
       <mat-icon>clear</mat-icon>
       </button>
 
@@ -59,6 +59,31 @@
 </mat-card-content>
 
 </mat-card>
+
+
+
+<footer>
+
+   <div>
+
+       <a  (click)="pedir()" routerLinkActive="active" class="btn-flotante" >comprar</a>
+    </div>
+
+
+   <div class="flexp ">    
+  <mat-card>
+
+   cantidad: {{cantidad}}
+  </mat-card> 
+
+  <mat-card>
+
+   total: ${{carritoTotal}}
+  </mat-card>
+
+   </div>
+</footer>
+ 
 
 
 

@@ -6,7 +6,7 @@ import {ContainerAppComponent} from '../app/components/pages/container-app/conta
 import { GuardGuard } from './guards/guard.guard';
 import { ContainerLoginsComponent } from './components/pages/container-logins/container-logins.component';
 
-import { NewCarritoComponent } from './components/posts/new-carrito/new-carrito.component';
+
 import { ItemCarritoComponent } from './components/item-carrito/item-carrito.component';
 import { PedidosComponent } from './components/pages/pedidos/pedidos.component';
 import { GuardAGuard } from './guards/guard-a.guard';
@@ -45,7 +45,7 @@ const routes: Routes = [
         
       },
 
-      {path: 'carrito', component: NewCarritoComponent,
+      {path: 'carrito', component: ItemCarritoComponent,
     
     
     
