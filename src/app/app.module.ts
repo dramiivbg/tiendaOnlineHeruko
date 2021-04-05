@@ -92,6 +92,7 @@ import { AnalityProductComponent } from './components/anality-product/anality-pr
 import { ModalAnalityUserComponent } from './shared/components/modal-anality-user/modal-anality-user.component';
 import { VentasRealesComponent } from './components/pages/ventas-reales/ventas-reales.component';
 import { PaisesMasVendidosComponent } from './components/pages/paises-mas-vendidos/paises-mas-vendidos.component';
+import { AnalityTComponent } from './components/pages/anality-t/anality-t.component';
 
 
 @NgModule({
@@ -177,6 +178,8 @@ import { PaisesMasVendidosComponent } from './components/pages/paises-mas-vendid
     VentasRealesComponent,
   
     PaisesMasVendidosComponent,
+  
+    AnalityTComponent,
    
 
  

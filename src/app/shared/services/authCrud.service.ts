@@ -12,6 +12,7 @@ import { Chat } from '../models/chat';
 import { AuthService } from '@app/components/auth/auth.service';
 import { Encuesta } from '../models/encuesta';
 import { Tarea } from '../models/tarea';
+import { Pago } from '../models/pago';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +28,7 @@ chats:  Observable<Chat[]>
 private usersCollection: AngularFirestoreCollection<User>;
 private vendedorCollection: AngularFirestoreCollection<Vendedor>;
 private docCollection: AngularFirestoreCollection<Product>;
+private pagoCollection: AngularFirestoreCollection<Pago>;
 
 private pedidosCollection: AngularFirestoreCollection<Pedido>;
 
@@ -45,6 +47,9 @@ private tareasCollection: AngularFirestoreCollection<Tarea>;
     this.usersCollection = afs.collection<User>('clientes');
 
     this.vendedorCollection = afs.collection<Vendedor>('vendedores');
+
+
+    this.pagoCollection = afs.collection<Pago>('pagos');
 
     
 
@@ -129,7 +134,29 @@ public getUsers(): Observable<User[]>{
 }
 
 
+
  
+public getT(): Observable<Pago[]>{
+
+  
+  return   this.pagoCollection
+    .snapshotChanges()
+    .pipe(
+      map(actions =>
+        actions.map(a => {
+          const data = a.payload.doc.data() as Pago;
+          const id = a.payload.doc.id;
+           return { id, ...data };
+        })
+      )
+    );
+
+  
+}
+
+
+
+
 public getEncuesta(path: string): Observable<Encuesta[]>{
 
 

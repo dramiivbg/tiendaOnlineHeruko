@@ -134,7 +134,7 @@ createToken(): void {
         const path = 'pagos';
 
         var fecha = new Date()
-        const fechaT = ((fecha.getDay()+28)+'/'+(1+fecha.getMonth()))+'/'+fecha.getFullYear();
+        const fechaT = ((fecha.getDate())+'/'+(1+fecha.getMonth()))+'/'+fecha.getFullYear();
         
 
        this.pago = {
