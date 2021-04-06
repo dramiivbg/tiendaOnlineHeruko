@@ -13,6 +13,7 @@ import { AuthService } from '@app/components/auth/auth.service';
 import { Encuesta } from '../models/encuesta';
 import { Tarea } from '../models/tarea';
 import { Pago } from '../models/pago';
+import { Domiciliario } from '../models/domiciliario';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +33,8 @@ private pagoCollection: AngularFirestoreCollection<Pago>;
 
 private pedidosCollection: AngularFirestoreCollection<Pedido>;
 
+private domiciliariosCollection: AngularFirestoreCollection<Domiciliario>;
+
 private chatsCollection: AngularFirestoreCollection<Chat>;
 
 
@@ -42,6 +45,7 @@ private tareasCollection: AngularFirestoreCollection<Tarea>;
   constructor(private afs: AngularFirestore,private authSvc: AuthService ){
 
  
+    this.domiciliariosCollection = afs.collection<Domiciliario>('domiciliarios');
 
 
     this.usersCollection = afs.collection<User>('clientes');
@@ -135,7 +139,30 @@ public getUsers(): Observable<User[]>{
 
 
 
- 
+
+public getDomici(): Observable<Domiciliario[]>{
+
+  
+  return   this.domiciliariosCollection
+    .snapshotChanges()
+    .pipe(
+      map(actions =>
+        actions.map(a => {
+          const data = a.payload.doc.data() as Domiciliario;
+          const id = a.payload.doc.id;
+           return { id, ...data };
+        })
+      )
+    );
+
+  
+}
+
+
+
+  
+
+
 public getT(): Observable<Pago[]>{
 
   
@@ -265,6 +292,25 @@ createDoc(data: Pedido, path: string, id: string){
 create<type>(data: any, path: string, id?: string){
 
   const collection = this.afs.collection<type>(path).doc(id).set( data);
+
+  return collection;
+
+}
+
+
+createD(data: Domiciliario, path: string, id?: string){
+
+  const domiciliario = {
+
+    nombre: data.nombre,
+    apellido: data.apellido,
+    correo: data.correo,
+    telefono: data.telefono,
+    pedidos: data.pedidos,
+    id: id
+  }
+
+  const collection = this.afs.collection<Domiciliario>(path).doc(id).set( domiciliario);
 
   return collection;
 

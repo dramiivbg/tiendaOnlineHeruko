@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalListDomiciComponent } from '@app/shared/components/modal-list-domici/modal-list-domici.component';
 import { Pedido } from '@app/shared/models/pedido';
 import { Vehiculo } from '@app/shared/models/vehiculo';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
@@ -36,7 +38,8 @@ export class ListVehiculoComponent implements OnInit {
   vehiculo: null
   }
   constructor(dataService: DataService, private firestore: AuthCrudService, 
-    private vehiculoSvc: VehiculoService, private sendProductService: SendProductService ) {
+    private vehiculoSvc: VehiculoService, private sendProductService: SendProductService,
+    public dialog: MatDialog, private dataSe: DataService ) {
 
     this.pedido = dataService.getPedido();
 
@@ -65,15 +68,12 @@ export class ListVehiculoComponent implements OnInit {
     
 
   console.log('añadido con exito');
+
+  this.dataSe.setPedido(this.pedido);
+
+ this.onpenDialog();
   
-  this.sendProductService.sendEstadoProduct(this.pedido).subscribe(() => {
-
-    
-
-  });
-
-  Swal.fire('notification sent successfully')
-
+ 
   });
 
 
@@ -81,5 +81,15 @@ export class ListVehiculoComponent implements OnInit {
 
 
   }
+
+
+onpenDialog(): void{
+
+  const dialogRef= this.dialog.open(ModalListDomiciComponent);
+  dialogRef.afterClosed().subscribe(result => {
+
+    console.log(`Dialog result ${result}`);
+  })
+}
 
 }

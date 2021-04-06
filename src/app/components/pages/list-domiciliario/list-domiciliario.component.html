@@ -1,0 +1,106 @@
+
+<div *ngIf="domini$ | async as dominis ; else loading">
+    <div *ngFor="let domini of   dominis " style="text-align: center;">
+    
+      &nbsp;
+      &nbsp;
+    
+    
+    
+    
+    
+    
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    
+    
+    
+    
+    <mat-card >
+    
+    
+    
+      <mat-card-content>
+    
+    
+    
+    <div class="flexp ">
+    
+      
+   
+      <span class="material-icons">
+        person
+        </span>
+    
+    <br>
+    <br>
+    
+    
+    
+    <p> <strong>nombre:{{
+    
+      domini.nombre
+    
+    }}
+    
+    </strong>
+    </p>
+    
+    
+    
+    <p> apellido: {{
+    
+      domini.apellido
+    
+    }}</p>
+    
+    
+    <p>telefono: {{
+    
+      domini.telefono
+    
+    }}</p>
+
+    <p>correo: {{
+    
+      domini.correo
+    
+    }}</p>
+    
+    
+    
+    <button (click)=" guardar(domini)"  class="boton" mat-raised-button color="primary">seleccionar</button>
+    
+        </div>
+    
+       
+    
+    
+      
+    
+    </mat-card-content>
+    
+    </mat-card>
+    
+    
+      
+    
+    </div>
+    </div>
+    
+    
+    <ng-template #loading>
+      <div class="container-spinner">
+      
+          <mat-spinner></mat-spinner>
+      </div>
+          
+      
+      </ng-template>
+    
+    
+      
+    

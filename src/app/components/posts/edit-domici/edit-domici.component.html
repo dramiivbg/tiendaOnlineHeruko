@@ -1,0 +1,34 @@
+<div class="new-post-container">
+
+    <form novalidate [formGroup]="newDomiciForm" (ngSubmit)="EditDomici(newDomiciForm.value)"  #f="ngForm" >
+
+        <mat-form-field>
+            <mat-label>nombre</mat-label>
+           <input  matInput placeholder="nombre" [(ngModel)]="domicili$.nombre" formControlName="nombre" required>   
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>apellido</mat-label>
+           <input matInput placeholder="apellido" [(ngModel)]="domicili$.apellido" formControlName="apellido" required>   
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>correo</mat-label>
+           <input matInput placeholder="correo" [(ngModel)]="domicili$.correo" formControlName="correo" required>   
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <mat-label>telefono</mat-label>
+           <input matInput placeholder="telefono" [(ngModel)]="domicili$.telefono" formControlName="telefono" required>   
+        </mat-form-field>
+
+
+
+                 
+        <div class="container-button">
+            <input type="submit" [disabled]="f.invalid" class="mat-flat-button" value="Save" (click)="create()">
+        </div>
+    </form>
+
+</div>

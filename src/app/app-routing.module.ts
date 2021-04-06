@@ -29,6 +29,8 @@ import { TableVehiculoComponent } from './shared/components/table-vehiculo/table
 import { TareasComponent } from './components/pages/tareas/tareas.component';
 import { VerTareasComponent } from './components/pages/ver-tareas/ver-tareas.component';
 import { VentasRealesComponent } from './components/pages/ventas-reales/ventas-reales.component';
+import { TableDomiciliarioComponent } from './shared/components/table-domiciliario/table-domiciliario.component';
+import { EntregarPedidosComponent } from './components/pages/entregar-pedidos/entregar-pedidos.component';
 
 
 
@@ -129,6 +131,11 @@ canActivate:[GuardAGuard]},
 
 {path: 'crear-vehiculo', component: TableVehiculoComponent,
 canActivate:[GuardGuard]},
+
+{path: 'crear-domiciliario', component: TableDomiciliarioComponent,
+canActivate:[GuardGuard]},
+
+{path: 'pedidos-asignados', component: EntregarPedidosComponent},
 
 {path: 'crear-tareas', component: TareasComponent,
 canActivate:[GuardGuard]},

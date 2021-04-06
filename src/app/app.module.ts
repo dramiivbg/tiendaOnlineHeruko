@@ -93,6 +93,14 @@ import { ModalAnalityUserComponent } from './shared/components/modal-anality-use
 import { VentasRealesComponent } from './components/pages/ventas-reales/ventas-reales.component';
 import { PaisesMasVendidosComponent } from './components/pages/paises-mas-vendidos/paises-mas-vendidos.component';
 import { AnalityTComponent } from './components/pages/anality-t/anality-t.component';
+import { TableDomiciliarioComponent } from './shared/components/table-domiciliario/table-domiciliario.component';
+import { NewDomiciliarioComponent } from './components/posts/new-domiciliario/new-domiciliario.component';
+import { ModalDomiciComponent } from './shared/components/modal-domici/modal-domici.component';
+import { EditDomiciComponent } from './components/posts/edit-domici/edit-domici.component';
+import { ModalEditDomiciComponent } from './shared/components/modal-edit-domici/modal-edit-domici.component';
+import { ListDomiciliarioComponent } from './components/pages/list-domiciliario/list-domiciliario.component';
+import { ModalListDomiciComponent } from './shared/components/modal-list-domici/modal-list-domici.component';
+import { EntregarPedidosComponent } from './components/pages/entregar-pedidos/entregar-pedidos.component';
 
 
 @NgModule({
@@ -180,6 +188,22 @@ import { AnalityTComponent } from './components/pages/anality-t/anality-t.compon
     PaisesMasVendidosComponent,
   
     AnalityTComponent,
+  
+    TableDomiciliarioComponent,
+  
+    NewDomiciliarioComponent,
+  
+    ModalDomiciComponent,
+  
+    EditDomiciComponent,
+  
+    ModalEditDomiciComponent,
+  
+    ListDomiciliarioComponent,
+  
+    ModalListDomiciComponent,
+  
+    EntregarPedidosComponent,
    
 
  

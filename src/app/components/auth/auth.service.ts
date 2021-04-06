@@ -6,14 +6,16 @@ import Swal from 'sweetalert2';
 import { Observable, of } from 'rxjs';
 import { User } from '@app/shared/models/user.interface';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Domiciliario } from '@app/shared/models/domiciliario';
 const helper = new JwtHelperService();
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   public user$: Observable<User>;
+  public domici$: Observable<Domiciliario>;
  
-  constructor(public afAuth: AngularFireAuth,private afs: AngularFirestore) { 
+  constructor(public afAuth: AngularFireAuth, public afAuth1: AngularFireAuth,private afs: AngularFirestore) { 
     
 
 
@@ -21,6 +23,16 @@ export class AuthService {
       switchMap((user) => {
         if (user) {
           return this.afs.doc<User>(`clientes/${user.uid}`).valueChanges();
+        }
+        return of(null);
+      })
+    );
+
+
+    this.domici$ = this.afAuth1.authState.pipe(
+      switchMap((user1) => {
+        if (user1) {
+          return this.afs.doc<Domiciliario>(`domiciliarios/${user1.uid}`).valueChanges();
         }
         return of(null);
       })
