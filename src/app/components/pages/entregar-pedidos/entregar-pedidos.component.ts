@@ -3,6 +3,7 @@ import { AuthService } from '@app/components/auth/auth.service';
 import { Domiciliario } from '@app/shared/models/domiciliario';
 import { Pedido } from '@app/shared/models/pedido';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
+import { SendProductService } from '@app/shared/services/sendProduct';
 
 @Component({
   selector: 'app-entregar-pedidos',
@@ -16,7 +17,8 @@ export class EntregarPedidosComponent implements OnInit {
 
   pedidos: Pedido[] =[];
   constructor(private authSvc: AuthService,
-     private firestoreSvc: AuthCrudService) {
+     private firestoreSvc: AuthCrudService,
+     private sendProductSvc: SendProductService) {
 
    
   }
@@ -108,6 +110,10 @@ export class EntregarPedidosComponent implements OnInit {
 
   
   console.log('añadido con exito');
+
+  this.sendProductSvc.sendEntregadoProduct(item1).subscribe(() => 
+  
+  console.log('producto entregado'));
   
 
   });

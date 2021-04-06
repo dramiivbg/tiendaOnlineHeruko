@@ -75,7 +75,7 @@ pedidoNew: Pedido;
 
    
     {value:'camino', viewValue:'Camino'},
-    {value:'entregado', viewValue:'Entregado'}
+   
 
   ]
   constructor(private firestoreSvc: AuthCrudService,
@@ -440,17 +440,9 @@ cambiarEstado(pedido: Pedido){
 
  if(item1 !== undefined){
 
-  console.log()
-
- item1.estado = this.rol;
+ 
 
 
- if(item.estado == 'entregado'){
-  this.sendProductSvc.sendEntregadoProduct(item).subscribe(() => 
-  
-  console.log('producto entregado'));
-  
-   }
 
  const id1 = item1.cliente.id;
 
