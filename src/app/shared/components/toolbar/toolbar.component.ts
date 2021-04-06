@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthCrudService } from '@app/shared/services/authCrud.service';
 import { Vendedor } from '@app/shared/models/vendedor';
 import { User } from '@app/shared/models/user.interface';
+import { Domiciliario } from '@app/shared/models/domiciliario';
 
 @Component({
   selector: 'app-toolbar',
@@ -22,6 +23,8 @@ export class ToolbarComponent implements OnInit {
   uid = '';
   admin: boolean = false;
   client: Boolean = false;
+  uidD = '';
+  domiciliario: Boolean = false;
 
   producto: any;
   constructor(private authSvc: AuthService, private firestore: AuthCrudService) {
@@ -34,6 +37,15 @@ export class ToolbarComponent implements OnInit {
       this.verifyClient();
 
     });
+
+  authSvc.afAuth1.user.subscribe( res => {
+
+
+    this.uidD = res.uid;
+
+    this.verifyDomici();
+  });
+  
    }
 
  async ngOnInit() {
@@ -111,6 +123,26 @@ try {
     })
     
   }
+
+
+  verifyDomici(){
+
+    const path = 'domiciliarios';
+    this.firestore.getDoc<Domiciliario>(path,this.uidD).subscribe(res => {
+
+      if(res){
+
+        this.domiciliario = true;
+
+      }else{
+
+        this.domiciliario = false;
+      }
+    })
+    
+  }
+
+
 
   
 

@@ -73,11 +73,11 @@ this.authSvc.login(emial.value, password.value).then(res =>{
 
    this.router.navigate(['/home']);
     
-  }else if(res){
-    this.authSvc.logout();
-    this.router.navigate(['/sendEmail']);
+   } // else if(res){
+  //   this.authSvc.logout();
+  //   this.router.navigate(['/sendEmail']);
 
-  }
+  // }
 
   const path = 'clientes';
 

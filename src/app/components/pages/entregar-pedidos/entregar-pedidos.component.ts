@@ -18,12 +18,7 @@ export class EntregarPedidosComponent implements OnInit {
   constructor(private authSvc: AuthService,
      private firestoreSvc: AuthCrudService) {
 
-    authSvc.afAuth1.user
-    .subscribe(domini => {
- 
-      this.uid = domini.uid
-
-    });
+   
   }
 
   ngOnInit(): void {
@@ -37,6 +32,15 @@ export class EntregarPedidosComponent implements OnInit {
 
     const path = 'domiciliarios';
 
+  
+    this.authSvc.afAuth1.user
+    .subscribe(domini => {
+ 
+      this.uid = domini.uid
+
+     
+
+    
     this.firestoreSvc.getDoc<Domiciliario>(path,this.uid).subscribe(domiciliarios => {
 
 
@@ -46,10 +50,80 @@ export class EntregarPedidosComponent implements OnInit {
 
            this.pedidos[index] = domiciliarios.pedidos[index];
 
-           console.log(this.pedidos);
+           
         
       }
     })
+
+  });
   }
 
+  eliminar(pedido: Pedido){
+
+    this.authSvc.afAuth1.user
+    .subscribe(domini => {
+ 
+      this.uid = domini.uid
+
+    let position = 0;
+    const item =   this.pedidos.find( (productoPedido, index) => {
+  
+      position = index;
+       return (productoPedido.id == pedido.id);
+      });
+    
+      if(item !== undefined){
+    
+       this.pedidos.splice(position, 1);
+
+       const path = 'domiciliarios'
+
+       this.firestoreSvc.getDoc<Domiciliario>(path, this.uid).subscribe( domini => {
+
+       
+    let position = 0;
+    const item1 =   domini.pedidos.find( (Pedido, index) => {
+  
+      position = index;
+       return (Pedido.id == pedido.id);
+      });
+    
+      if(item1 !== undefined){
+    
+       domini.pedidos.splice(position, 1);
+
+       
+
+       this.firestoreSvc.createD(domini,path,domini.id).then(() => {
+
+        console.log('eliminado');
+
+        const path1 = `clientes/pedidos/${item1.cliente.id}`;
+
+
+
+      item1.estado = 'entregado';
+
+ this.firestoreSvc.createDoc(item1,path1,item1.id).then(() => {
+
+  
+  console.log('añadido con exito');
+  
+
+  });
+
+       });
+      
+      
+      }
+
+
+       });
+      
+      
+      }
+  
+    });
+  
+  }
 }

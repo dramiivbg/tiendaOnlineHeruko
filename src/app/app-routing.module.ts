@@ -31,6 +31,7 @@ import { VerTareasComponent } from './components/pages/ver-tareas/ver-tareas.com
 import { VentasRealesComponent } from './components/pages/ventas-reales/ventas-reales.component';
 import { TableDomiciliarioComponent } from './shared/components/table-domiciliario/table-domiciliario.component';
 import { EntregarPedidosComponent } from './components/pages/entregar-pedidos/entregar-pedidos.component';
+import { GuardDGuard } from './guards/guard-d.guard';
 
 
 
@@ -135,7 +136,8 @@ canActivate:[GuardGuard]},
 {path: 'crear-domiciliario', component: TableDomiciliarioComponent,
 canActivate:[GuardGuard]},
 
-{path: 'pedidos-asignados', component: EntregarPedidosComponent},
+{path: 'pedidos-asignados', component: EntregarPedidosComponent,
+canActivate: [GuardDGuard]},
 
 {path: 'crear-tareas', component: TareasComponent,
 canActivate:[GuardGuard]},
