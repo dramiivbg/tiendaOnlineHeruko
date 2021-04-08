@@ -72,7 +72,7 @@ activar: boolean = false;
 
     this.pedidos = [];
 
-    this.getPedidosCulminados()
+    this.getPedidosCulminados();
 
   }
 

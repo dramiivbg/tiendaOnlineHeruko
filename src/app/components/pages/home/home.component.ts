@@ -12,6 +12,7 @@ import { FilterProductPipe } from '../../../pipe/filter-product.pipe';
 import { ComentProductService } from '@app/shared/services/coment-product.service';
 import { User } from '@app/shared/models/user.interface';
 import { tick } from '@angular/core/testing';
+import { Domiciliario } from '@app/shared/models/domiciliario';
 
 
 @Component({
@@ -186,14 +187,17 @@ productoComent(producto: Product){
 
    userActive(){
 
-      
+
+  
     this.authSvc.afAuth.user.subscribe(res1 => {
   
     
   
       if(res1 == null){
   
-      this.admin = true;
+      this.admin = false;
+
+      return;
         
         
       }else{
@@ -208,8 +212,11 @@ productoComent(producto: Product){
   comprobarUser(id: string){
 
   
+    const path = 'clientes';
+
+    this.firestore.getDoc<User>(path, id).subscribe(user => {
   
-        if(id !== 'Dik2UyFl6wQ0EamZoHrDIKGQj1e2'){
+        if(user){
   
         this.admin = true;
   
@@ -223,6 +230,34 @@ productoComent(producto: Product){
         
   
         
+      });
+        
+      
+  
+      }
+
+
+ 
+      comprobarDomici(id: string){
+
+  
+        const path = 'domiciliarios';
+        this.firestore.getDoc<Domiciliario>(path,id).subscribe(domici => {
+  
+        if(id == domici.id ){
+  
+        this.admin = true;
+  
+          
+        }else{
+  
+          this.admin = false;
+  
+        }
+         
+        });
+  
+        
         
         
       
@@ -230,7 +265,7 @@ productoComent(producto: Product){
       }
 
 
-  
+ 
 
 
 

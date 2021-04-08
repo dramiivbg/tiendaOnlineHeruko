@@ -100,7 +100,7 @@ export class EntregarPedidosComponent implements OnInit {
 
         console.log('eliminado');
 
-        const path1 = `clientes/pedidos/${item1.cliente.id}`;
+        const path1 = `clientes/${item1.cliente.id}/pedidos`;
 
 
 
@@ -108,7 +108,7 @@ export class EntregarPedidosComponent implements OnInit {
 
  this.firestoreSvc.createDoc(item1,path1,item1.id).then(() => {
 
-  
+  console.log(item1);
   console.log('añadido con exito');
 
   this.sendProductSvc.sendEntregadoProduct(item1).subscribe(() => 

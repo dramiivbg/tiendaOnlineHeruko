@@ -23,7 +23,7 @@
 
 
 
-    <mat-button-toggle class="boton2"  (change)="change($event)" value="culminados"><strong>culminados</strong></mat-button-toggle>
+    <mat-button-toggle class="boton2"  (click)="change($event)" value="culminados"><strong>culminados</strong></mat-button-toggle>
 
 
 
@@ -112,7 +112,7 @@
  
  }}</p>
 
- <div *ngIf="activar">
+ <div *ngIf="producto.producto.calificacion == 0">
 
   <button  (click)="productoP(pedido)" class="boton" mat-raised-button color="primary">calificar</button>
  
