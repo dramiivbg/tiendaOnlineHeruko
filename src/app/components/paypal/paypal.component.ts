@@ -44,7 +44,7 @@ export class PaypalComponent implements OnInit {
 
     this.pedido = paypalSvc.getPedidoPaypal();
 
-   
+   paypalSvc.setPedidoPaypal(this.pedido);
 
     this.authAf.afAuth.user.subscribe(res => {
 
@@ -55,6 +55,8 @@ export class PaypalComponent implements OnInit {
    }
 
   ngOnInit(){
+
+     
 
     paypal.
     Buttons({
@@ -71,7 +73,7 @@ export class PaypalComponent implements OnInit {
             amount: {
 
               currency_code: "USD",
-              value: this.pedido.precioTotal
+              value: this.pedido.precioTotal 
 
 
             }
@@ -87,12 +89,16 @@ export class PaypalComponent implements OnInit {
 
           const valor = this.cantidaSvc.getValorTotal();
 
+          const pedido = this.paypalSvc.getPedidoPaypal();
+
+          console.log('pedido->', pedido);
           const pathT = `clientes/${this.uid}/pedidos`;
   
-          this.firestore.create<Pedido>(this.pedido,pathT,this.pedido.id).then(() => {
-           this.message.sendMessage(this.pedido).subscribe(() => {
+          this.firestore.create<Pedido>(pedido,pathT,this.pedido.id);
+            
+           this.message.sendMessage(pedido).subscribe();
 
-           });
+           console.log('sendPedido->', pedido);
            console.log('pedido guardado');
            
            const path = 'pagos';
@@ -127,7 +133,7 @@ export class PaypalComponent implements OnInit {
         });
       });
           
-          });
+          
         }
       },
       onError: err =>  {

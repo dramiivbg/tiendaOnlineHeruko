@@ -19,6 +19,14 @@ export class AnalityTComponent implements OnInit {
 
   public barChartOptions: ChartOptions = {
     responsive: true,
+
+    scales: { xAxes: [{}], yAxes: [{}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
   };
   public barChartLabels: Label[] = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio','agosto',
 'septiembre','octubre','noviembre', 'diciembre'];

@@ -1,4 +1,6 @@
-
+<br>
+<br>
+<br><br><br>
 <div *ngIf="products$  | async as products; else loading">
 <div class="container">
   <br>
@@ -8,40 +10,6 @@
     <p style="text-align: center;"><strong> Paypal </strong></p>
 
  <app-paypal></app-paypal>
-
-</mat-card>
-
-</div>
-
-<div class="container " >
-  
-  <br>
-  <br>
-
-  
-
- 
-  &nbsp;
-  &nbsp;
- 
- <mat-card>
-
-  <p style="text-align: center;"><strong> Stripe </strong></p>
-  <form novalidate [formGroup]="stripeTest"  (ngSubmit)="createToken()" >
-
-   
-    <input type="text" formControlName="name" placeholder="Full Name" required />
-    &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;  &nbsp;   &nbsp;
-    &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;
- 
-    <ngx-stripe-card
-      [options]="cardOptions"
-      [elementsOptions]="elementsOptions"
-    ></ngx-stripe-card>
-    <button type="submit" mat-raised-button  color="primary">
-      Pagar
-    </button>
-  </form>
 
 </mat-card>
 
